@@ -74,3 +74,7 @@ By clicking on a card, you will be shown the list of all sessions in the wafer. 
 The Filter Menu allows you to choose parameters you want to select: temperature, session, die, filename and type of measurements. Once you have selected one or multiples parameters, choose one or more structure in the sessions. Then, you will be able to plot the data you have selected, register them into a PowerPoint or in an Excel file.
 
 **Don't forget to select structures.** By default, if you don't select a parameter in the filter menu, it will select all the parameters (For example if you don't chosoe any temeperature, it will take all data no matter the temperature of the measurements)
+
+
+## Change database
+If you want to create multiple databases, you can go to `new_manage_DB.py` file and change the name of default parameter in `connexion` (Line 242). From now, each time you will create and connect to a database, it is this one which will be taken. If you want to connect to an older DB, You will have to change this parameter to the name of the wanted database.
