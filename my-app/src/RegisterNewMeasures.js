@@ -50,8 +50,10 @@ function RegisterNewMeasures() {
 
     if(currentFile.name.startsWith('AL')) {
       newName = currentFile.name.split('.').slice(0, -1).join('.') + '_' + finalTemp + '.' + currentFile.name.split('.').pop();
+      newName = `${newName.split('.').join('.').toUpperCase()}.${newName.split('.').pop()}`
     } else {
       newName = currentFile.name.split('.').slice(0, -1).join('.') + '@@@' + lotId + '_' + waferId + '_' + finalTemp + '.' + currentFile.name.split('.').pop();
+      newName = `${newName.split('.').join('.').toUpperCase()}.${newName.split('.').pop()}`
     }
 
     let newFile = new File([currentFile], newName, {type: currentFile.type, lastModified: new Date() });
@@ -63,8 +65,7 @@ function RegisterNewMeasures() {
     setFileQueue(oldFileQueue => oldFileQueue.slice(1));
 
     setTemp("");
-    setLotId("");
-    setWaferId("");
+
   }
 
   const handleSend = async () => {

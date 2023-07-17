@@ -7,11 +7,13 @@ import Paper from '@mui/material/Paper';
 import {OpenContext} from "./Open";
 import {filterProps} from "framer-motion";
 
-export default function SubMenu({ children, items, color, filterType, structures, selectedItems, setSelectedItems }) {
+export default function SubMenu({ children, items, color, filterType, structures, selectedItems, setSelectedItems, filteredStructures, setFilteredStructures, session,
+                                filteredSessions, setFilteredSessions, filteredTypes, setFilteredTypes, filteredTemps, setFilteredTemps,
+                                   filteredFiles, setFilteredFiles, filteredCoords, setFilteredCoords}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedItem, setSelectedItem] = useState(items[0]);
   const open = Boolean(anchorEl);
-  const { selectedWafer, setStructures } = useContext(OpenContext);
+  const { selectedWafer } = useContext(OpenContext);
 
 
   const handleFilterChange = (selectedItem) => {
@@ -31,21 +33,30 @@ export default function SubMenu({ children, items, color, filterType, structures
           [filterType]: newSelectedItems
       });
 
+
       if(selectedWafer && selectedItem && !deselecting){
           let url;
 
           switch(filterType){
               case 'TypeOfMeasurements':
                   url = `filter_by_Meas/${selectedWafer}/${selectedItem}`
+                  setFilteredTypes(newSelectedItems)
                   break;
               case 'Temperature':
                   url = `filter_by_Temps/${selectedWafer}/${selectedItem}`
+                  setFilteredTemps(newSelectedItems)
                   break;
               case 'NameOfFile':
                   url = `filter_by_Filenames/${selectedWafer}/${selectedItem}`
+                  setFilteredFiles(newSelectedItems)
                   break;
               case 'Coordinates':
                   url = `filter_by_Coords/${selectedWafer}/${selectedItem}`
+                  setFilteredCoords(newSelectedItems)
+                  break;
+              case 'Session':
+                  url = `filter_by_Session/${selectedWafer}/${selectedItem}`
+                  setFilteredSessions(selectedItem)
                   break;
               default:
                   console.log("Unknown filter Type: " + filterType)
@@ -55,16 +66,19 @@ export default function SubMenu({ children, items, color, filterType, structures
           fetch(url)
           .then(response => response.json())
           .then(data => {
-              const intersection = structures.filter(value => data.includes(value));
-              setStructures(intersection)
+              const intersection = filteredStructures.filter(value => data.includes(value));
+              setFilteredStructures(intersection)
           });
       }
 
       if (deselecting) {
         // Refetch all structures
-        fetch(`/get_structures/${selectedWafer}`)
+        fetch(`/get_all_structures/${selectedWafer}`)
           .then(response => response.json())
           .then(data => {
+              if(selectedItem.length===0){
+                  setFilteredStructures(data);
+              }
             // Apply all still selected filters to the data
             Object.keys(selectedItems).forEach(filterType => {
               selectedItems[filterType].forEach(item => {
@@ -76,16 +90,24 @@ export default function SubMenu({ children, items, color, filterType, structures
                   switch(filterType){
                       case 'TypeOfMeasurements':
                         url = `filter_by_Meas/${selectedWafer}/${item}`
+                          setFilteredTypes(newSelectedItems)
                         break;
                       case 'Temperature':
                         url = `filter_by_Temps/${selectedWafer}/${item}`
+                          setFilteredTemps(newSelectedItems)
                         break;
                       case 'NameOfFile':
                         url = `filter_by_Filenames/${selectedWafer}/${item}`
+                          setFilteredFiles(newSelectedItems)
                         break;
                       case 'Coordinates':
                         url = `filter_by_Coords/${selectedWafer}/${item}`
+                          setFilteredCoords(newSelectedItems)
                         break;
+                      case 'Session':
+                          url = `filter_by_Session/${selectedWafer}/${item}`
+                          setFilteredSessions(newSelectedItems)
+                          break;
                       default:
                         console.log("Unknown filter Type: " + filterType)
                         return;
@@ -94,16 +116,14 @@ export default function SubMenu({ children, items, color, filterType, structures
                   fetch(url)
                       .then(response => response.json())
                       .then(data => {
-                          const intersection = structures.filter(value => data.includes(value));
-                          setStructures(intersection)
+                          const intersection = filteredStructures.filter(value => data.includes(value));
+                          setFilteredStructures(intersection)
                       });
               }
 
               });
             });
-
-            // After all filters have been applied
-            setStructures(data);
+          setFilteredStructures(data)
           });
       }
 

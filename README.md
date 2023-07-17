@@ -1,2 +1,76 @@
 # wafer-management
 Improved Data-Extraction with React
+
+## 1. Installing dependecies
+To install all dependecies, please run 
+```bash
+pip install -r requirements.txt
+```
+
+You will also need to install MongoDB. PLease go to the official mogoDB website
+
+## 2. MongoDB Installation
+### Windows
+
+1. Download the MongoDB Community Server from the [MongoDB Download Center](https://www.mongodb.com/try/download/community).
+
+2. Select the version of MongoDB to download. It's usually best to choose the current release.
+
+3. Choose `Windows x64` in the platform dropdown menu.
+
+4. Choose the `MSI` package option.
+
+5. Click `Download`.
+
+Once downloaded, follow the install wizard to install MongoDB.
+
+1. Run the installer that you downloaded.
+
+2. Follow the installation wizard. Choose the `Complete` setup type when it's offered.
+
+3. When the wizard finishes, MongoDB will be installed as a Windows service, which means it will start up automatically with your computer.
+
+ 
+
+### Configuring MongoDB
+Once installed, you can start MongoDB by starting the MongoDB service:
+
+1. Open the Services console: Press `Win + R`, then type `services.msc` and press `Enter`.
+
+2. Look for `MongoDB` in the services list, right click on it and select `Start`.
+
+By default, MongoDB listens on port 27017, and stores its data in `C:\Program Files\MongoDB\Server\4.4\data` (replace `4.4` with the version number you installed).
+
+ 
+
+### Connecting to MongoDB
+You can connect to MongoDB with the Mongo shell, or with a programming language-specific client library.
+
+ 
+
+### Client Libraries
+We will use MongoDB with python interface, so you won't need to use Mongo's shell, but if you want to have a look on all datas and how datas are organized, you can open :ongoDB application.
+See the [MongoDB Documentation](https://docs.mongodb.com/manual/applications/drivers/) for a list of MongoDB client libraries for various programming languages.
+
+### Further Reading
+For more information about MongoDB, see the [MongoDB Manual](https://docs.mongodb.com/manual/).
+
+### Troubleshooting
+If you have any problems installing or configuring MongoDB, please consult the [MongoDB Documentation](https://docs.mongodb.com/manual/installation/).
+
+
+## 3. Getting started
+Please click on the `wafer-Management.bat` file to get started with the application. Then, choose `Register New Measures` and drag and drop the files you want to register. Please drag and drop only .txt files, not lim files.
+Then, return to the home menu and go to `Open existing wafer`.
+Here, you have a view on all wafers you have registered. you can browse the list with a mouse or using the tactile screen. You can also use the trackpad but its usage is more delicate. 
+Once on the page of the wafers, you have two buttons on each: `Wafer Map` and `Delete wafer`. The first will ask you to select a session and a structure, and will plot the wafer Map of this structure.
+
+**WARNING: Please ensure that the structure you select has I-V measurements in it.**
+
+The second button allows you ti delete the wafer.
+
+By clicking on a card, you will be shown the list of all sessions in the wafer. A click on a session shows you all structures in the session. 
+### Filter Menu:
+The Filter Menu allows you to choose parameters you want to select: temperature, session, die, filename and type of measurements. Once you have selected one or multiples parameters, choose one or more structure in the sessions. Then, you will be able to plot the data you have selected, register them into a PowerPoint or in an Excel file.
+
+**Don't forget to select structures.** By default, if you don't select a parameter in the filter menu, it will select all the parameters (For example if you don't chosoe any temeperature, it will take all data no matter the temperature of the measurements)

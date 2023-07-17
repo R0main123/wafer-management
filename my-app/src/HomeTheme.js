@@ -28,6 +28,7 @@ export const homeTheme = createTheme({
                     alignItems: "center",
                     minHeight: "100vh",
                     margin: 0,
+                    overflowX: "hidden",
                     gap: "20px",
                 },
             },

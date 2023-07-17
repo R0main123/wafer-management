@@ -1,6 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {Backdrop, Chip, CircularProgress, Grid, ListItemText, MenuItem, Typography} from '@mui/material';
-import {CardFront, CarouselContainer, ExcelButton, PowerPointButton} from './OpenTheme';
+import {Backdrop, Chip, CircularProgress, Grid, ListItemText, MenuItem, Typography, Accordion, AccordionSummary, AccordionDetails} from '@mui/material';
+import {
+    ActionButton,
+    CardFront,
+    CarouselContainer,
+    ComplianceButton,
+    ExcelButton,
+    PowerPointButton,
+    WaferMapButton
+} from './OpenTheme';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { animateScroll as scroll } from 'react-scroll';
 import Box from '@mui/material/Box';
 import { Carousel as OriginalCarousel} from "react-responsive-carousel";
@@ -15,32 +24,54 @@ import FilterMenu from "./FilterMenu";
 import axios from "axios";
 import { Trash } from "react-bootstrap-icons";
 import {Select} from "./ChoiceTheme";
+import {ChoiceButton} from "./FinishedTheme";
+import {useNavigate} from "react-router-dom";
 export const OpenContext = React.createContext();
 
 function Open() {
+    const navigate = useNavigate();
     const [wafers, setWafers] = useState([]);
-    const [selectedWafer, setSelectedWafer] = useState(null);
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [openDialogMakeExcel, setOpenDialogMakeExcel] = useState(false);
+    const [openDialogMakePpt, setOpenDialogMakePpt] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
     const [openDialogExcelSelectStructures, setOpenDialogExcelSelectStructures] = useState(false);
     const [openDialogPptSelectStructures, setOpenDialogPptSelectStructures] = useState(false);
+    const [openMatricesDialog, setOpenMatricesDialog] = useState(false);
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [openSetComplianceDialog, setOpenSetComplianceDialog] = useState(false);
+    const [openWaferMapDialog, setOpenWaferMapDialog] = useState(false);
+    const [openShowWaferMapDialog, setOpenShowWaferMapDialog] = useState(false);
+    const [openPlotDialog, setOpenPlotDialog] = useState(false);
+    const [openAccordion, setOpenAccordion] = useState(false);
+    const [selectedWafer, setSelectedWafer] = useState(null);
+    const [selectedStructure, setSelectedStructure] = useState(null);
+    const [selectedSession, setSelectedSession] = useState(null);
+    const [selectedStructures, setSelectedStructures] = useState([]);
+    const [selectedMatrix, setSelectedMatrix] = useState(null);
+    const [selectedCompliance, setSelectedCompliance] = useState(null);
+    const [selectedMatrixIndex, setSelectedMatrixIndex] = useState(null);
+    const [triplets, setTriplets] = useState([]);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentWaferMap, setCurrentWaferMap] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
     const [structures, setStructures] = useState([]);
+    const [sessions, setSessions] = useState([]);
     const [allStructures, setAllStructures] = useState([]);
     const [matrices, setMatrices] = useState([]);
-    const [selectedStructure, setSelectedStructure] = useState(null);
-    const [selectedStructures, setSelectedStructures] = useState([]);
-    const [openMatricesDialog, setOpenMatricesDialog] = useState(false);
-    const [openMatrixDialog, setOpenMatrixDialog] = useState(false);
-    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
     const [matrixImages, setMatrixImages] = useState([]);
-    const [selectedMatrix, setSelectedMatrix] = useState(null);
     const [nameOfExcelFile, setNameOfExcelFile] = useState("");
     const [nameOfPptFile, setNameOfPptFile] = useState("");
-    const carouselRef = useRef(null);
-    const [openDialogMakeExcel, setOpenDialogMakeExcel] = useState(false);
-    const [openDialogMakePpt, setOpenDialogMakePpt] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [newCompliance, setNewCompliance] = useState(null);
+    const [compliances, setCompliances] = useState([]);
+    const carouselRef = useRef(null);
+    const [filteredStructures, setFilteredStructures] = useState([]);
+    const [filteredStructuresDisplay, setFilteredStructuresDisplay] = useState([]);
+    const [filteredSessions, setFilteredSessions] = useState([]);
+    const [filteredTypes, setFilteredTypes] = useState([]);
+    const [filteredTemps, setFilteredTemps] = useState([]);
+    const [filteredFiles, setFilteredFiles] = useState([]);
+    const [filteredCoords, setFilteredCoords] = useState([]);
 
 
     useEffect(() => {
@@ -53,10 +84,57 @@ function Open() {
 
     }, []);
 
+    useEffect(() => {
+        if(selectedWafer){
+            fetch(`/get_all_structures/${selectedWafer}`)
+            .then(response => response.json())
+            .then(data => {
+                setFilteredStructures(data);
+            });
+        }
+    }, [selectedWafer]);
+
+    useEffect(() => {
+        if(selectedWafer){
+            fetch(`/get_all_types/${selectedWafer}`)
+            .then(response => response.json())
+            .then(data => {
+                setFilteredTypes(data);
+            });
+
+            fetch(`/get_all_temps/${selectedWafer}`)
+            .then(response => response.json())
+            .then(data => {
+                setFilteredTemps(data);
+            });
+
+            fetch(`/get_all_filenames/${selectedWafer}`)
+            .then(response => response.json())
+            .then(data => {
+                setFilteredFiles(data);
+            });
+
+            fetch(`/get_all_coords/${selectedWafer}`)
+            .then(response => response.json())
+            .then(data => {
+                setFilteredCoords(data);
+            });
+        } else {
+            setFilteredTypes([]);
+            setFilteredCoords([]);
+            setFilteredFiles([]);
+            setFilteredTemps([]);
+        }
+    }, [selectedWafer]);
+
 
     useEffect(() => {
         setCurrentSlide(0)
     }, [wafers]);
+
+    useEffect(() => {
+        console.log(selectedMatrix)
+    }, [selectedMatrix]);
 
     useEffect(() => {
         console.log(isLoading);
@@ -72,7 +150,25 @@ function Open() {
 
     useEffect(() => {
         if(selectedWafer){
-            fetch(`/get_structures/${selectedWafer}`)
+            setIsLoading(true);
+            fetch(`/get_sessions/${selectedWafer}`)
+            .then(response => response.json())
+                .then(data => {
+                    setSessions(data);
+                    setFilteredSessions(data);
+                    console.log(selectedSession)
+            })
+            setIsLoading(false)
+        } else {
+            setSessions([])
+            setFilteredSessions([]);
+            console.log(selectedSession)
+        }
+    }, [selectedWafer]);
+
+    useEffect(() => {
+        if(selectedSession){
+            fetch(`/get_structures/${selectedWafer}/${selectedSession}`)
                 .then(response => response.json())
                 .then(data => {
                     setStructures(data);
@@ -81,7 +177,7 @@ function Open() {
         } else {
             setStructures([]);
         }
-    }, [selectedWafer]);
+    }, [selectedSession]);
 
     useEffect(() => {
         if(selectedStructure){
@@ -93,6 +189,17 @@ function Open() {
               });
         }
     }, [selectedStructure])
+
+
+    useEffect(() => {
+        setFilteredStructuresDisplay(structures.filter(structure => filteredStructures.includes(structure)));
+    }, [structures, filteredStructures]);
+
+
+    useEffect(() => {
+        console.log(matrixImages.length);
+    }, [matrixImages]);
+
 
     const handleCardClick = (waferId, event) => {
           event.stopPropagation();
@@ -106,9 +213,33 @@ function Open() {
           });
     };
 
+    const handleSessionClick = (session) => {
+        setSelectedSession(session);
+        fetch(`/get_structures/${selectedWafer}/${session}`)
+          .then(response => response.json())
+          .then(data => {
+            setStructures(data);
+          });
+    }
+
+    const handleComplianceSessionClick = (session) => {
+        setSelectedSession(session);
+        fetch(`/get_structures/${selectedWafer}/${session}`)
+          .then(response => response.json())
+          .then(data => {
+            setStructures(data);
+          });
+
+        fetch(`get_compl/${selectedWafer}/${session}`)
+        .then(response => response.json())
+        .then(data => setSelectedCompliance(data));
+    }
+
+
     const handleCloseDialog = () => {
           setSelectedWafer(null);
           setOpenDialog(false);
+          setSessions([])
           document.body.style.overflow = 'auto';
     };
 
@@ -117,10 +248,6 @@ function Open() {
         setOpenDialog(false);
         document.body.style.overflow = 'auto';
     }
-
-    const handleStructureClick = (structureId) => {
-      setSelectedStructure(structureId);
-    };
 
     const handleWheel = (event) => {
         if(event.deltaY < 0 && carouselRef.current && typeof carouselRef.current.decrement === "function") {
@@ -131,33 +258,11 @@ function Open() {
     };
 
     const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
-    }
-
-    const handleMatrixClic = (waferId, coordinates) => {
-        setSelectedMatrix(coordinates);
-        setOpenMatrixDialog(true);
-        setIsLoading(true);
-        fetch(`/plot_matrix/${waferId}/${coordinates}`)
-        .then(response => response.json())
-        .then(data => {
-            setMatrixImages(data);
-            setIsLoading(false);
-        });
-    }
-
-    const handleExcelSelectStructureClick = (structure) => {
-        if(selectedStructures.includes(structure)){
-            setSelectedStructures(selectedStructures.filter(item => item !== structure));
-            console.log(selectedStructures)
-        } else {
-            setSelectedStructures([...selectedStructures, structure]);
-            console.log(selectedStructures)
-        }
+        setSearchTerm(event.target.value.toUpperCase());
     }
 
 
-    const handlePptSelectStructureClick = (structure) => {
+    const handleChooseSelectStructureClick = (structure) => {
         if(selectedStructures.includes(structure)){
             setSelectedStructures(selectedStructures.filter(item => item !== structure));
             console.log(selectedStructures)
@@ -180,12 +285,16 @@ function Open() {
         setOpenDialog(false);
     }
 
+    function handleWaferMapClick() {
+        setOpenWaferMapDialog(true);
+    }
+
     const handleStartExcel = async () =>{
         setIsLoading(true);
         handleCloseDialog();
         setOpenDialogExcelSelectStructures(false);
         try {
-          const response = await axios.get(`http://localhost:3000/excel_structure/${selectedWafer}/${selectedStructures}/${nameOfExcelFile}`);
+          const response = await axios.get(`http://localhost:3000/excel_structure/${selectedWafer}/${filteredSessions}/${selectedStructures}/${filteredTypes}/${filteredTemps}/${filteredFiles}/${filteredCoords}/${nameOfExcelFile}`);
           if (response.status === 200) {
             setIsLoading(false);
             setOpenDialogMakeExcel(false);
@@ -198,12 +307,12 @@ function Open() {
         }
     }
 
-        const handleStartPpt = async () =>{
+    const handleStartPpt = async () =>{
         setIsLoading(true);
         handleCloseDialog();
         setOpenDialogPptSelectStructures(false);
         try {
-          const response = await axios.get(`http://localhost:3000/ppt_structure/${selectedWafer}/${selectedStructures}/${nameOfPptFile}`);
+          const response = await axios.get(`http://localhost:3000/ppt_structure/${selectedWafer}/${filteredSessions}/${selectedStructures}/${filteredTypes}/${filteredTemps}/${filteredFiles}/${filteredCoords}/${nameOfPptFile}`);
           if (response.status === 200) {
             setIsLoading(false);
             setOpenDialogMakePpt(false);
@@ -231,6 +340,21 @@ function Open() {
       }
     }
 
+    const handleSetCompliance = async () =>{
+        try {
+          const response = await axios.get(`http://localhost:3000/set_compl/${selectedWafer}/${selectedSession}/${newCompliance}`);
+          if (response.status === 200) {
+            setSelectedCompliance(newCompliance);
+            setOpenSetComplianceDialog(false);
+          }
+        } catch(error) {
+        console.error("Error uploading files: ", error)
+      } finally {
+            setOpenSetComplianceDialog(false);
+        }
+    }
+
+
     const handleSelectAll = () => {
         if(selectedStructures.length === structures.length) {
             setSelectedStructures([]);
@@ -239,23 +363,64 @@ function Open() {
         }
     }
 
+    const handleWaferMapStructure = async (structureId) => {
+        setOpenShowWaferMapDialog(true);
+        fetch(`/create_wafer_map/${selectedWafer}/${selectedSession}/${structureId}`)
+        .then(response => response.json())
+                .then(data => {
+                    setCurrentWaferMap(data);
+                });
+    }
+
+    const handlePlotPersonalized = () => {
+        setIsLoading(true)
+        setOpenPlotDialog(true);
+        console.log("Just before fetch")
+        fetch(`/plot_selected_matrices/${selectedWafer}/${filteredSessions}/${selectedStructures}/${filteredTypes}/${filteredTemps}/${filteredFiles}/${filteredCoords}`)
+        .then(response => {
+           return response.json()
+        })
+        .then(data => {
+            setMatrixImages(data);
+            setIsLoading(false);
+        });
+    }
+
     return (
         <OpenContext.Provider value={{selectedWafer, setStructures}}>
-            <TextField
-              id="outlined-search"
-              label="Search for a wafer"
-              type="search"
-              variant="outlined"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              sx={{
-                width: 200,
-                marginBottom: 2,
-                position: 'absolute',
-                top: 10,
-                left: 10
-              }}
-            />
+            <Box style={{ position: 'fixed',
+                top: 0,
+                left: 10,
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%'
+            }}>
+
+                <ChoiceButton variant="contained" color="primary" sx={{
+                    width: 120,
+                    height: 40,
+                  }} onClick={() => {
+                    navigate("/");
+                }}>
+                    Return home
+                </ChoiceButton>
+
+                <TextField
+                  id="outlined-search"
+                  label="Search for a wafer"
+                  type="search"
+                  variant="outlined"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  sx={{
+                    margin: '10px',
+                    marginRight: '10px',
+                    width: 200,
+                    marginBottom: 2,
+                  }}
+                />
+
+            </Box>
             <Box onWheel={handleWheel}>
                   <OriginalCarousel
                     onWheel={handleWheel}
@@ -292,6 +457,7 @@ function Open() {
                                     onCreateExcelClick={handleCreateExcelClick}
                                     onCreatePptClick={handleCreatePptClick}
                                     onDeleteClick={handleDeleteClick}
+                                    onWaferMapClick={handleWaferMapClick}
                                     className={selectedWafer === waferId ? 'selected' : ''}
                                     />
                                 ))}
@@ -303,6 +469,7 @@ function Open() {
                           style={{ zIndex: 1, color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
                 />
             </Box>
+
             <Dialog
               open={openDialog}
               onClose={handleCloseDialog}
@@ -312,86 +479,134 @@ function Open() {
             >
               <DialogTitle id="alert-dialog-title">{"Wafer Details"}</DialogTitle>
               <DialogContent>
-                <Typography variant="h5">{selectedWafer} ({structures.length} structures)</Typography>
-                  <FilterMenu selectedWafer={selectedWafer} setStructures={setStructures} structures={structures} allStructures={allStructures} style={{zIndex: 2}}/>
-                  {
-                      structures.length === 0 ?
-                          <div>No structure found</div> : (
-                               <Grid container spacing={2}>
-                                  {structures.map((structure, index) => (
-                                      <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
-                                              'flex-start': 'flex-end'}}>
-                                        <Chip
-                                            key={index}
-                                            label={structure}
-                                            onClick={() => handleStructureClick(structure)}
-                                            style={{margin: '5px', backgroundColor: "#4fbdff"}}
-                                        />
-                                      </Grid>
-                                  ))}
-                               </Grid>
-                          )
-                  }
+                  {isLoading ? (
+                      <>
+                        <Select>
+                            <CircularProgress />
+                            Processing...
+                        </Select>
+                    </>
+                  ) : (
+                      <>
+                <Typography variant="h5">{selectedWafer} ({sessions.length} sessions)</Typography>
+                <FilterMenu selectedWafer={selectedWafer}
+                            setStructures={setStructures}
+                            structures={structures}
+                            allStructures={allStructures}
+                            style={{zIndex: 2}}
+                            filteredStructures={filteredStructures}
+                            setFilteredStructures={setFilteredStructures}
+                            session={selectedSession}
+                            filteredSessions={filteredSessions}
+                            setFilteredSessions={setFilteredSessions}
+                            filteredTypes={filteredTypes}
+                            setFilteredTypes={setFilteredTypes}
+                            filteredTemps={filteredTemps}
+                            setFilteredTemps={setFilteredTemps}
+                            filteredFiles={filteredFiles}
+                            setFilteredFiles={setFilteredFiles}
+                            filteredCoords={filteredCoords}
+                            setFilteredCoords={setFilteredCoords}
+                            setIsloading={setIsLoading}
 
-                {/* Add more wafer details here */}
+                />
+
+                <Grid container spacing={2}>
+                  {sessions.map((session, index) => (
+                  <Grid item xs={12} key={index}>
+                    <Accordion expanded={openAccordion === `panel${index}`}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls={`panel${index}-content`}
+                        id={`panel${index}-header`}
+                        onClick={() => {
+                          handleSessionClick(session);
+                          setOpenAccordion(openAccordion === `panel${index}` ? false : `panel${index}`);
+                        }}
+                      >
+                        <Typography>{session}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Button style={{backgroundColor: "#4fbdff"}} onClick={handleSelectAll}>Select/Unselect All</Button>
+                        <Grid container spacing={2}>
+                          {filteredStructuresDisplay.map((structure, index) => (
+                              <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
+                          'flex-start': 'flex-end'}}>
+                            <Chip
+                                key={`Selected ${index}`}
+                                label={`${structure}${selectedStructures.includes(structure) ? " \u2714" : ""}`}
+                                onClick={() => handleChooseSelectStructureClick(structure)}
+                                style={{margin: '5px', backgroundColor: selectedStructures.includes(structure) ? "#4fbdff" : "#888888"}}
+                            />
+                          </Grid>
+                          ))}
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Grid>
+                  ))}
+                </Grid>
+                </>
+                )}
+
               </DialogContent>
               <DialogActions>
+                  <ExcelButton onClick={() => setOpenDialogMakeExcel(true)}>Make Excel</ExcelButton>
+                  <PowerPointButton onClick={() => setOpenDialogMakePpt(true)}>Make PowerPoint</PowerPointButton>
+                  <Button onClick={handlePlotPersonalized} sx={{backgroundColor:'#47a3ff', color: 'white', '&:hover':{backgroundColor: 'blue'}}}>Plot</Button>
                 <Button onClick={handleCloseDialog} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>
             </Dialog>
 
             <Dialog
-              open={openDialogExcelSelectStructures}
-              onClose={() => {
-                  setOpenDialogExcelSelectStructures(false);
-                  setSelectedStructures([]);
-                  setSelectedWafer(null);
-                  setOpenDialog(false);
-                  document.body.style.overflow = 'auto';
-              }}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
+                open={openPlotDialog}
+                onClose={() => {
+                    setOpenPlotDialog(false);
+                    setMatrixImages([]);
+                }}
+                maxWidth='md'
+                fullWidth={true}
+                aria-labelledby="matrices-dialog-title"
+                aria-describedby="matrices-dialog-description"
             >
-              <DialogTitle id="alert-dialog-title">{"Please select structures"}</DialogTitle>
-              <DialogContent>
-                <Typography variant="h5">{selectedWafer} ({structures.length} structures)</Typography>
-                  <Button style={{backgroundColor: "#4fbdff"}} onClick={handleSelectAll}>Select/Unselect All</Button>
-                  <FilterMenu selectedWafer={selectedWafer} setStructures={setStructures} structures={structures} allStructures={allStructures} style={{zIndex: 2}}/>
-                  <Grid container spacing={2}>
-                  {structures.map((structure, index) => (
-                      <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
-                              'flex-start': 'flex-end'}}>
-                        <Chip
-                            key={`Selected ${index}`}
-                            label={`${structure}${selectedStructures.includes(structure) ? " \u2714" : ""}`}
-                            onClick={() => handleExcelSelectStructureClick(structure)}
-                            style={{margin: '5px', backgroundColor: selectedStructures.includes(structure) ? "#4fbdff" : "#888888"}}
-                        />
-                      </Grid>
-                  ))}
-                  </Grid>
-                {/* Add more wafer details here */}
-              </DialogContent>
-              <DialogActions>
-                  <ExcelButton onClick={() => setOpenDialogMakeExcel(true)}>Make Excel</ExcelButton>
-                <Button onClick={() =>{
-                    setOpenDialogExcelSelectStructures(false);
-                    setSelectedStructures([]);
-                  setSelectedWafer(null);
-                  setOpenDialog(false);
-                  document.body.style.overflow = 'auto';
-                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
-              </DialogActions>
+                <DialogTitle id="matrices-dialog-title">{`Plots of your selection`}</DialogTitle>
+                <DialogContent>
+                    {
+                        isLoading ? (
+                            <>
+                                <Select>
+                                    <CircularProgress />
+                                    Processing...
+                                </Select>
+                            </>
+                        ) : (
+                            matrixImages.map((img, index) => (
+                                <img
+                                    src={`data:image/png;base64,${img}`}
+                                    alt={`Matrix ${index + 1}`}
+                                    style={{ width:"100%", height: 'auto' }}
+                                    key={index}
+                                />
+                            ))
+                        )
+                    }
+                </DialogContent>
+
+                <DialogActions>
+                    <Button onClick={() => {
+                        setOpenPlotDialog(false);
+                        setMatrixImages([]);
+                    }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+                </DialogActions>
             </Dialog>
 
 
             <Dialog
               open={openDialogMakeExcel}
               onClose={() => {
-                  setOpenDialogExcelSelectStructures(false);
                   setSelectedStructures([]);
-                  setSelectedWafer(null);
-                  setOpenDialog(false);
+                  setOpenDialogMakeExcel(false);
+                  setNameOfExcelFile("");
                   document.body.style.overflow = 'auto';
               }}
               aria-labelledby="alert-dialog-title"
@@ -426,6 +641,266 @@ function Open() {
                     setOpenDialogMakeExcel(false);
                     setSelectedStructures([]);
                     setNameOfExcelFile("")
+                  document.body.style.overflow = 'auto';
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
+
+            <Dialog
+              open={openDialogMakePpt}
+              onClose={() => {
+                  setSelectedStructures([]);
+                  setOpenDialogMakePpt(false);
+                  setNameOfPptFile("");
+                  document.body.style.overflow = 'auto';
+              }}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"A PowerPoint File will be created with the following structures:"}</DialogTitle>
+              <DialogContent>
+                  {isLoading ? (
+                      <>
+                        <Select>
+                            <CircularProgress />
+                            Processing...
+                        </Select>
+                    </>
+                  ) : (<Grid container spacing={2}>
+                  {selectedStructures.map((structure, index) => (
+                      <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
+                              'flex-start': 'flex-end'}}>
+                        <Chip
+                            key={`Selected ${index}`}
+                            label={structure}
+                            style={{margin: '5px', backgroundColor: "#4fbdff" }}
+                        />
+                      </Grid>
+                  ))}
+                  </Grid>)}
+                  <TextField autoFocus margin="dense" label="Name of File" fullWidth variant="standard" onChange={(e) => setNameOfPptFile(e.target.value)} />
+
+              </DialogContent>
+              <DialogActions>
+                  <PowerPointButton onClick={handleStartPpt}>Start</PowerPointButton>
+                <Button onClick={() =>{
+                    setOpenDialogMakePpt(false);
+                    setSelectedStructures([]);
+                    setNameOfPptFile("")
+                  document.body.style.overflow = 'auto';
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
+
+            <Dialog
+              open={openWaferMapDialog}
+              onClose={() => {
+                  setOpenWaferMapDialog(false);
+              }}
+              onBackdropClick={() => {
+                  setOpenWaferMapDialog(false);
+              }}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please select a structure in a wafer"}</DialogTitle>
+              <DialogContent>
+                <Typography variant="h5">{selectedWafer} ({sessions.length} sessions)</Typography>
+                <FilterMenu selectedWafer={selectedWafer}
+                            setStructures={setStructures}
+                            structures={structures}
+                            allStructures={allStructures}
+                            style={{zIndex: 2}}
+                            filteredStructures={filteredStructures}
+                            setFilteredStructures={setFilteredStructures}
+                            session={selectedSession}
+                            filteredSessions={filteredSessions}
+                            setFilteredSessions={setFilteredSessions}
+                            filteredTypes={filteredTypes}
+                            setFilteredTypes={setFilteredTypes}
+                            filteredTemps={filteredTemps}
+                            setFilteredTemps={setFilteredTemps}
+                            filteredFiles={filteredFiles}
+                            setFilteredFiles={setFilteredFiles}
+                            filteredCoords={filteredCoords}
+                            setFilteredCoords={setFilteredCoords}
+                            setIsloading={setIsLoading}
+
+                />
+                {
+                sessions.length === 0 ?
+                <div>No session found</div> : (
+                <Grid container spacing={2}>
+                  {sessions.map((session, index) => (
+                  <Grid item xs={12} key={index}>
+                    <Accordion expanded={openAccordion === `panel${index}`}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls={`panel${index}-content`}
+                        id={`panel${index}-header`}
+                        onClick={() => {
+                          handleComplianceSessionClick(session);
+                          setOpenAccordion(openAccordion === `panel${index}` ? false : `panel${index}`);
+                        }}
+                      >
+                        <Typography>{session}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                          <Typography> Compliance: {selectedCompliance} A</Typography>
+                          <ActionButton onClick={() => setOpenSetComplianceDialog(true)}>Set compliance</ActionButton>
+                        <Grid container spacing={2}>
+                          {filteredStructuresDisplay.map((structure, index) => (
+                              <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
+                          'flex-start': 'flex-end'}}>
+                            <Chip
+                                key={`Selected ${index}`}
+                                label={`${structure}${selectedStructures.includes(structure) ? " \u2714" : ""}`}
+                                onClick={() => {
+                                    handleWaferMapStructure(structure);
+                                }}
+                                style={{margin: '5px', backgroundColor:  "#4fbdff" }}
+                            />
+                          </Grid>
+                          ))}
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Grid>
+                  ))}
+                </Grid>
+                )
+                }
+
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => {
+                  setOpenWaferMapDialog(false)
+              }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
+
+
+            <Dialog
+              open={openSetComplianceDialog}
+              onClose={() => {
+                  setOpenSetComplianceDialog(false);
+                  document.body.style.overflow = 'auto';
+              }}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please enter a new value:"}</DialogTitle>
+              <DialogContent>
+                  <TextField autoFocus margin="dense" label="New Compliance value" fullWidth variant="standard" onChange={(e) => setNewCompliance(e.target.value)} />
+              </DialogContent>
+              <DialogActions>
+                  <ComplianceButton onClick={handleSetCompliance}>Set</ComplianceButton>
+                <Button onClick={() =>{
+                    setOpenSetComplianceDialog(false);
+                  document.body.style.overflow = 'auto';
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
+
+
+            <Dialog
+                open={openShowWaferMapDialog}
+                onClose={() => {
+                    setOpenShowWaferMapDialog(false);
+                    setMatrixImages([]);
+                }}
+                maxWidth='md'
+                fullWidth={true}
+                aria-labelledby="matrices-dialog-title"
+                aria-describedby="matrices-dialog-description"
+            >
+                <DialogTitle id="matrices-dialog-title">{`Plots of ${selectedMatrix} in ${selectedStructure}`}</DialogTitle>
+                <DialogContent>
+                    <img
+                        src={`data:image/png;base64,${currentWaferMap}`}
+                        alt={`Wafer Map of ${selectedStructure}`}
+                        style={{ width:"100%", height: 'auto' }}
+                    />
+
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => {
+                        setOpenShowWaferMapDialog(false);
+                        setCompliances([]);
+                        setCurrentWaferMap(null);
+                        setSelectedMatrixIndex(null);
+                        setSelectedCompliance(null);
+                        setTriplets([]);
+                    }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+                </DialogActions>
+            </Dialog>
+
+            <Dialog
+                open={openDeleteDialog}
+                onClose={() => setOpenDeleteDialog(false)}
+                aria-labelledby="delete-dialog-title"
+                aria-describedby="delete-dialog-description"
+            >
+                <DialogTitle id="delete-dialog-title">{"Are you sure you want to delete this wafer?"}</DialogTitle>
+                <DialogContent
+                    style={{display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: "center",
+                    justifyContent: "center"
+                }}>
+                    <Chip key="Delete"
+                              label="Delete"
+                              style={{backgroundColor: 'red'}}
+                              icon={<Trash />}
+                              onClick={() => handleDeleteWaferClick(selectedWafer)}
+                        />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => {
+                        setOpenDeleteDialog(false);
+                        setSelectedWafer(null);
+                    }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+                </DialogActions>
+            </Dialog>
+
+            {/*
+            <Dialog
+              open={openDialogExcelSelectStructures}
+              onClose={() => {
+                  setOpenDialogExcelSelectStructures(false);
+                  setSelectedStructures([]);
+                  setSelectedWafer(null);
+                  setOpenDialog(false);
+                  document.body.style.overflow = 'auto';
+              }}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please select structures"}</DialogTitle>
+              <DialogContent>
+                <Typography variant="h5">{selectedWafer} ({structures.length} structures)</Typography>
+                  <Button style={{backgroundColor: "#4fbdff"}} onClick={handleSelectAll}>Select/Unselect All</Button>
+                  <FilterMenu selectedWafer={selectedWafer} setStructures={setStructures} structures={structures} allStructures={allStructures} style={{zIndex: 2}}/>
+                  <Grid container spacing={2}>
+                  {structures.map((structure, index) => (
+                      <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
+                              'flex-start': 'flex-end'}}>
+                        <Chip
+                            key={`Selected ${index}`}
+                            label={`${structure}${selectedStructures.includes(structure) ? " \u2714" : ""}`}
+                            onClick={() => handleExcelSelectStructureClick(structure)}
+                            style={{margin: '5px', backgroundColor: selectedStructures.includes(structure) ? "#4fbdff" : "#888888"}}
+                        />
+                      </Grid>
+                  ))}
+                  </Grid>
+
+              </DialogContent>
+              <DialogActions>
+                  <ExcelButton onClick={() => setOpenDialogMakeExcel(true)}>Make Excel</ExcelButton>
+                <Button onClick={() =>{
+                    setOpenDialogExcelSelectStructures(false);
+                    setSelectedStructures([]);
                   setSelectedWafer(null);
                   setOpenDialog(false);
                   document.body.style.overflow = 'auto';
@@ -463,7 +938,7 @@ function Open() {
                       </Grid>
                   ))}
                   </Grid>
-                {/* Add more wafer details here */}
+
               </DialogContent>
               <DialogActions>
                   <PowerPointButton onClick={() => setOpenDialogMakePpt(true)}>Make PowerPoint</PowerPointButton>
@@ -477,61 +952,13 @@ function Open() {
               </DialogActions>
             </Dialog>
 
-
-            <Dialog
-              open={openDialogMakePpt}
-              onClose={() => {
-                  setOpenDialogPptSelectStructures(false);
-                  setSelectedStructures([]);
-                  setSelectedWafer(null);
-                  setOpenDialog(false);
-                  document.body.style.overflow = 'auto';
-              }}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">{"A PowerPoint File will be created with the following structures:"}</DialogTitle>
-              <DialogContent>
-                  {isLoading ? (
-                      <>
-                        <Select>
-                            <CircularProgress />
-                            Processing...
-                        </Select>
-                    </>
-                  ) : (<Grid container spacing={2}>
-                  {selectedStructures.map((structure, index) => (
-                      <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
-                              'flex-start': 'flex-end'}}>
-                        <Chip
-                            key={`Selected ${index}`}
-                            label={structure}
-                            style={{margin: '5px', backgroundColor: "#4fbdff" }}
-                        />
-                      </Grid>
-                  ))}
-                  </Grid>)}
-                  <TextField autoFocus margin="dense" label="Name of File" fullWidth variant="standard" onChange={(e) => setNameOfPptFile(e.target.value)} />
-                {/* Add more wafer details here */}
-              </DialogContent>
-              <DialogActions>
-                  <PowerPointButton onClick={handleStartPpt}>Start</PowerPointButton>
-                <Button onClick={() =>{
-                    setOpenDialogMakePpt(false);
-                    setSelectedStructures([]);
-                    setNameOfPptFile("")
-                  setSelectedWafer(null);
-                  setOpenDialog(false);
-                  document.body.style.overflow = 'auto';
-                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
-              </DialogActions>
-            </Dialog>
-
-
-
             <Dialog
                 open={openMatricesDialog}
-                onClose={() => setOpenMatricesDialog(false)}
+                onClose={() => {
+                    setOpenMatricesDialog(false);
+                    setSelectedStructure(null);
+                    setSelectedCompliance(null);
+                }}
                 aria-labelledby="matrices-dialog-title"
                 aria-describedby="matrices-dialog-description"
             >
@@ -541,47 +968,101 @@ function Open() {
                         <Chip key={index}
                               label={matrix}
                               style={{margin:'10px', backgroundColor: index % 2 === 0 ? "#e8eaf6" : "#c5cae9"}}
-                              onClick={() => handleMatrixClic(selectedWafer, matrix)}
+                              onClick={() => {
+                                  handleMatrixClic(selectedWafer, matrix);
+                              }}
                         />
 
                     ))}
                 </DialogContent>
+                <DialogTitle id="matrices-dialog-title">{"Registered Compliance"}</DialogTitle>
+                <DialogContent>
+                    <div>
+                        {selectedCompliance}
+                        <ComplianceButton onClick={() => setOpenSetComplianceDialog(true)}>Set Compliance</ComplianceButton>
+                    </div>
+                </DialogContent>
                 <DialogActions>
+                    <ComplianceButton onClick={handleSelectWaferMap}>Show WaferMap</ComplianceButton>
                     <Button onClick={() => {
+                        setNewCompliance(null);
                         setOpenMatricesDialog(false);
-                        setSelectedStructure(null);
                     }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
                 </DialogActions>
             </Dialog>
+
+
+            <div>
+                {matrices.map((matrix, index) => (
+
+                    <Dialog
+                        open={openWaferMapDialog && selectedMatrixIndex === index}
+                        onClose={() => {
+                            setOpenWaferMapDialog(false);
+                        }}
+                        aria-labelledby="matrix-dialog-title"
+                        aria-describedby="matrix-dialog-description"
+                        key={`dialog-${index}`}
+                    >
+                        <DialogTitle id="matrix-dialog-title">
+                            Please select the compliance you want for matrix {matrix}
+                        </DialogTitle>
+                        <DialogContent>
+                            {currentCompliances.map((item, idx) => (
+                                <div key={idx}>
+                                    <input
+                                        type="radio"
+                                        id={`compliance-${index}-${idx}`}
+                                        name={`compliance-${index}`}
+                                        value={idx}
+                                        onChange={e => setSelectedCompliance(item.VBD)}
+                                    />
+                                    <label htmlFor={`compliance-${index}-${idx}`}>Compliance: {item.Compliance} A (VBD: {item.VBD} V)</label>
+                                </div>
+                            ))}
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={() => {
+                                const matrix = matrices[selectedMatrixIndex];
+                                const x = matrix.split(',')[0].slice(1);
+                                const y = matrix.split(',')[1].slice(0, -1);
+                                setTriplets(triplets.concat([[x, y, selectedCompliance]]));
+                                console.log(triplets)
+                                if (selectedMatrixIndex < matrices.length - 1) {
+                                    setSelectedMatrixIndex(selectedMatrixIndex + 1);
+                                } else {
+                                    setOpenWaferMapDialog(false);
+                                    handleWaferMap();
+                                }
+                            }}>Next</Button>
+                        </DialogActions>
+                    </Dialog>
+                ))}
+            </div>
 
 
             <Dialog
-                open={openDeleteDialog}
-                onClose={() => setOpenDeleteDialog(false)}
-                aria-labelledby="delete-dialog-title"
-                aria-describedby="delete-dialog-description"
+              open={openSetComplianceDialog}
+              onClose={() => {
+                  setOpenSetComplianceDialog(false);
+                  document.body.style.overflow = 'auto';
+              }}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="delete-dialog-title">{"Are you sure you want to delete this wafer?"}</DialogTitle>
-                <DialogContent
-                    style={{display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: "center",
-                    justifyContent: "center"
-                }}>
-                    <Chip key="Delete"
-                              label="Delete"
-                              style={{backgroundColor: 'red'}}
-                              icon={<Trash />}
-                              onClick={() => handleDeleteWaferClick(selectedWafer)}
-                        />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => {
-                        setOpenDeleteDialog(false);
-                        setSelectedWafer(null);
-                    }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
-                </DialogActions>
+              <DialogTitle id="alert-dialog-title">{"Please enter a new value:"}</DialogTitle>
+              <DialogContent>
+                  <TextField autoFocus margin="dense" label="New Compliance value" fullWidth variant="standard" onChange={(e) => setNewCompliance(e.target.value)} />
+              </DialogContent>
+              <DialogActions>
+                  <ComplianceButton onClick={handleSetCompliance}>Set</ComplianceButton>
+                <Button onClick={() =>{
+                    setOpenSetComplianceDialog(false);
+                  document.body.style.overflow = 'auto';
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
             </Dialog>
+
 
             <Dialog
                 open={openMatrixDialog}
@@ -616,6 +1097,20 @@ function Open() {
                         )
                     }
                 </DialogContent>
+
+                <DialogTitle id="matrices-dialog-title">{`Registered compliances for ${selectedMatrix}`}</DialogTitle>
+                <DialogContent>
+                    <div>
+                        {
+                            compliances.map((item, index) => (
+                                <div key={index}>
+                                    <p>Compliance: {item.Compliance}A VBD: {item.VBD}V</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <ComplianceButton onClick={() => setOpenTryComplianceDialog(true)}>Try another compliance</ComplianceButton>
+                </DialogContent>
                 <DialogActions>
                     <Button onClick={() => {
                         setOpenMatrixDialog(false);
@@ -624,6 +1119,60 @@ function Open() {
                 </DialogActions>
             </Dialog>
 
+            <Dialog
+              open={openTryComplianceDialog}
+              onClose={() => {
+                  setOpenTryComplianceDialog(false);
+                  document.body.style.overflow = 'auto';
+              }}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please enter a new value:"}</DialogTitle>
+              <DialogContent>
+                  <TextField autoFocus margin="dense" label="New Compliance value" fullWidth variant="standard" onChange={(e) => setNewCompliance(e.target.value)} />
+              </DialogContent>
+              <DialogActions>
+                  <ComplianceButton onClick={handleTryCompliance}>Try</ComplianceButton>
+                <Button onClick={() =>{
+                    setOpenTryComplianceDialog(false);
+                  document.body.style.overflow = 'auto';
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
+
+
+            <Dialog
+                open={openShowWaferMapDialog}
+                onClose={() => {
+                    setOpenMatrixDialog(false);
+                    setMatrixImages([]);
+                }}
+                maxWidth='md'
+                fullWidth={true}
+                aria-labelledby="matrices-dialog-title"
+                aria-describedby="matrices-dialog-description"
+            >
+                <DialogTitle id="matrices-dialog-title">{`Plots of ${selectedMatrix} in ${selectedStructure}`}</DialogTitle>
+                <DialogContent>
+                    <img
+                        src={`data:image/png;base64,${currentWaferMap}`}
+                        alt={`Wafer Map of ${selectedStructure}`}
+                        style={{ width:"100%", height: 'auto' }}
+                    />
+
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => {
+                        setOpenShowWaferMapDialog(false);
+                        setCompliances([]);
+                        setCurrentWaferMap(null);
+                        setSelectedMatrixIndex(null);
+                        setSelectedCompliance(null);
+                        setTriplets([]);
+                    }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+                </DialogActions>
+            </Dialog>*/}
         </OpenContext.Provider>
     );
 }

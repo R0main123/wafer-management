@@ -30,6 +30,13 @@ export const ActionButton = styled(Button)(({ theme }) => ({
   margin: theme.spacing(1),
 }));
 
+export const WaferMapButton =styled(ActionButton)(({ theme }) => ({
+  backgroundColor: "#9943d3",
+  '&:hover':{
+        backgroundColor: "#470075",
+    },
+}));
+
 export const ExcelButton =styled(ActionButton)(({ theme }) => ({
   backgroundColor: "#43d343",
   '&:hover':{
@@ -52,15 +59,23 @@ export const DeleteButton =styled(ActionButton)(({ theme }) => ({
 }));
 
 
+export const ComplianceButton =styled(ActionButton)(({ theme }) => ({
+  backgroundColor: "#5096ff",
+
+  '&:hover':{
+        backgroundColor: "#0066ff",
+        color: "white"
+    },
+}));
 
 
-export const CardFront = ({ waferId, onCreateExcelClick, onCreatePptClick, onDeleteClick, ...props }) => (
+
+export const CardFront = ({ waferId, onCreateExcelClick, onCreatePptClick, onDeleteClick, onWaferMapClick, ...props }) => (
   <WaferCard {...props}>
     <CardContent
     marginBottom={"20px"}>
       <Typography variant="h5">{waferId}</Typography>
-      <ExcelButton variant="contained" onClick={onCreateExcelClick}>Create Excel</ExcelButton>
-      <PowerPointButton variant="contained" onClick={onCreatePptClick}>Create PowerPoint</PowerPointButton>
+      <WaferMapButton variant="contained" onClick={onWaferMapClick}>Wafer Map</WaferMapButton>
       <DeleteButton variant="contained" onClick={onDeleteClick}>Delete wafer</DeleteButton>
     </CardContent>
   </WaferCard>
