@@ -50,7 +50,7 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
         y_values = y_values_dict[type]
         for session in sessions:
             for structure in structures:
-                if wafer[session].get(structure) is None:
+                if wafer[session].get(structure) is None or structure == 'Compliance':
                     continue
                 for matrix in wafer[session][structure]["matrices"]:
                     coordinates = f"({matrix['coordinates']['x']},{matrix['coordinates']['y']})"
