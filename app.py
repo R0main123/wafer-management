@@ -15,7 +15,7 @@ from new_manage_DB import create_db
 from plot_and_powerpoint import plot_wanted_matrices, wanted_ppt
 from converter import handle_file
 from getter import get_types, get_temps, get_filenames, get_coords, get_compliance, get_VBDs, get_sessions, get_wafer, \
-    get_structures
+    get_structures, get_map_sessions
 
 from filter import filter_by_meas, filter_by_temp, filter_by_coord, filter_by_filename, filter_by_session
 from VBD import create_wafer_map
@@ -274,6 +274,11 @@ def plot_we_want(waferId, sessions, structures, types, temps, files, coords):
     coords = coords.split(" ")
 
     return jsonify(plot_wanted_matrices(waferId, sessions, structures, types, temps, files, coords))
+
+@app.route('/get_map_sessions/<wafer_id>', methods=['GET'])
+def get_map_sessions_server(wafer_id):
+    print("Here")
+    return jsonify(get_map_sessions(wafer_id)), 200
 
 """
 @app.route('/register')

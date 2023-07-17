@@ -151,14 +151,14 @@ function Open() {
     useEffect(() => {
         if(selectedWafer){
             setIsLoading(true);
-            fetch(`/get_sessions/${selectedWafer}`)
+            fetch(`/get_map_sessions/${selectedWafer}`)
             .then(response => response.json())
-                .then(data => {
-                    setSessions(data);
-                    setFilteredSessions(data);
-                    console.log(selectedSession)
-            })
-            setIsLoading(false)
+            .then(data => {
+                setSessions(data);
+                setFilteredSessions(data);
+                console.log(selectedSession)
+        })
+        setIsLoading(false)
         } else {
             setSessions([])
             setFilteredSessions([]);
@@ -285,8 +285,18 @@ function Open() {
         setOpenDialog(false);
     }
 
-    function handleWaferMapClick() {
+    const handleWaferMapClick = (waferId) => {
+        setSelectedWafer(waferId);
         setOpenWaferMapDialog(true);
+        setIsLoading(true);
+        fetch(`/get_sessions/${selectedWafer}`)
+        .then(response => response.json())
+        .then(data => {
+            setSessions(data);
+            setFilteredSessions(data);
+            console.log(selectedSession)
+        })
+            setIsLoading(false)
     }
 
     const handleStartExcel = async () =>{

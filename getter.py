@@ -189,5 +189,24 @@ def get_sessions(wafer_id):
     wafer = get_wafer(wafer_id)
     return [session for session in wafer][2:]
 
+
+def get_map_sessions(wafer_id):
+    wafer = get_wafer(wafer_id)
+    sessions = []
+    for session in [session for session in wafer][2:]:
+        if session in sessions:
+            continue
+        for structure in wafer[session]:
+            if structure == "Compliance":
+                continue
+            if session in sessions:
+                break
+            for matrix in wafer[session][structure]['matrices']:
+                if 'I' in matrix["results"]:
+                    sessions.append(session)
+                    break
+
+    return sessions
+
 def get_structures(wafer_id, session):
     return [structure for structure in get_wafer(wafer_id)[session]][1:]

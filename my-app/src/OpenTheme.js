@@ -75,8 +75,14 @@ export const CardFront = ({ waferId, onCreateExcelClick, onCreatePptClick, onDel
     <CardContent
     marginBottom={"20px"}>
       <Typography variant="h5">{waferId}</Typography>
-      <WaferMapButton variant="contained" onClick={onWaferMapClick}>Wafer Map</WaferMapButton>
-      <DeleteButton variant="contained" onClick={onDeleteClick}>Delete wafer</DeleteButton>
+      <WaferMapButton variant="contained" onClick={(event) => {
+        event.stopPropagation();
+        onWaferMapClick(waferId);
+      }}>Wafer Map</WaferMapButton>
+      <DeleteButton variant="contained" onClick={(event) => {
+        event.stopPropagation();
+        onDeleteClick();
+      }}>Delete wafer</DeleteButton>
     </CardContent>
   </WaferCard>
 );
