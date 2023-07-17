@@ -10,7 +10,7 @@ def get_wafer(wafer_id):
     :param <str> wafer_id: name of the wafer_id
     :return <dict>: the wafer
     """
-    collection = connexion("New Wafers")
+    collection = connexion()
     return collection.find_one({"wafer_id": wafer_id})
 
 
@@ -207,6 +207,8 @@ def get_map_sessions(wafer_id):
                     break
 
     return sessions
+
+
 
 def get_structures(wafer_id, session):
     return [structure for structure in get_wafer(wafer_id)[session]][1:]

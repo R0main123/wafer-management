@@ -288,15 +288,6 @@ function Open() {
     const handleWaferMapClick = (waferId) => {
         setSelectedWafer(waferId);
         setOpenWaferMapDialog(true);
-        setIsLoading(true);
-        fetch(`/get_sessions/${selectedWafer}`)
-        .then(response => response.json())
-        .then(data => {
-            setSessions(data);
-            setFilteredSessions(data);
-            console.log(selectedSession)
-        })
-            setIsLoading(false)
     }
 
     const handleStartExcel = async () =>{

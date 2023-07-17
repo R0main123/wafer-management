@@ -15,7 +15,7 @@ def get_wafer(wafer_id):
     :param <str> wafer_id: name of the wafer_id
     :return <dict>: the wafer
     """
-    collection = connexion("New Wafers")
+    collection = connexion()
     return collection.find_one({"wafer_id": wafer_id})
 
 
@@ -52,6 +52,7 @@ def calculate_breakdown(X, Y, compliance):
     new_Y = []
 
     for i in range(1, Y1.shape[0]):
+
         if Y1[i] < compliance:
             new_X.append(X1[i])
             new_Y.append(Y1[i])
@@ -59,22 +60,13 @@ def calculate_breakdown(X, Y, compliance):
     new_X = np.array(new_X)
     new_Y = np.array(new_Y)
 
-    print(new_X.shape)
-    print(X1.shape)
-
     if new_X.shape[0] == X1.shape[0] - 1:
         return math.nan, math.nan, 0, math.nan
-
-    print(new_X)
-    print(new_Y)
 
     if len(new_Y) <= 1:
         return math.nan, math.nan, 0, math.nan
 
     DiffY = np.gradient(new_Y, new_X)
-    print(DiffY)
-    print(np.max(DiffY))
-
     pos = []
     pos.append(X[np.argmax(DiffY) - 1])
 
@@ -82,15 +74,12 @@ def calculate_breakdown(X, Y, compliance):
 
     if len(pos) > 0:
         pos0 = pos[0]
-        print(pos)
-        print(pos[0])
 
         idx = pos0 if pos0 <= 1 else pos0 - 1
 
         #Breakd_Leak = Y[np.where(X == pos[0])]
         Breakd_Leak = np.nan
         Breakd_Volt = pos[0]
-        print(Breakd_Volt)
 
     else:
         Breakd_Leak = np.nan
@@ -113,8 +102,6 @@ def get_all_x(wafer_id, session, structure_id):
     """
     all_x = []
     wafer = get_wafer(wafer_id)
-    print(session)
-    print(structure_id)
     for matrix in wafer[session][structure_id]['matrices']:
         all_x.append(matrix["coordinates"]["x"])
 

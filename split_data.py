@@ -25,3 +25,14 @@ def C_spliter(line):
     """
     infos = spliter(line)
     return [infos.split(' ')[i] for i in range(len(infos.split(' ')))]
+
+
+
+def converter_split(line):
+    line.replace('"', '')
+    line.replace('(', '')
+    line.replace(')', '')
+    info = line.split(' ')[0]
+    data = line.split(' ')[1]
+    return [info, data]
+

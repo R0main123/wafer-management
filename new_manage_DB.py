@@ -6,6 +6,10 @@ from pymongo import MongoClient
 from split_data import spliter, dataSpliter, C_spliter
 
 
+def get_db_name(db_name="New Wafers"):
+    return db_name
+
+
 def create_db(path=str, is_JV=bool):
     """
     This function create a database or open it if it already exists, and fill it with measurement information
@@ -239,15 +243,27 @@ def create_db(path=str, is_JV=bool):
     print(f"Sucessfully created database for {filename}")
     return list_of_wafers
 
-def connexion(db_name="New Wafers"):
+
+def connexion():
     client = MongoClient('mongodb://localhost:27017/')
     db = client['Measurements']
-    collection = db[db_name]
+    collection = db[get_db_name()]
     return collection
 
+
 def setCompliance(waferId, session, compliance):
-    wafer = connexion().find_one({"wafer_id": waferId})
-    wafer[session]['Compliance'] = compliance
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client['Measurements']
+    collection = db[get_db_name()]
+
+    compliance=float(compliance)
+
+    result = collection.update_one(
+        {"wafer_id": waferId},
+        {"$set": {f"{session}.Compliance": compliance}}
+    )
+
+    client.close()
 
 
 """files = ["Test Files\\AL213656_D02_CV.txt", "Test Files\\AL213656_D02_IV.txt",  "Test Files\\AL215095_D07_IV.txt", "Test Files\\AL215095_D08_IV.txt", "Test Files\\AL215095_D09_IV.txt", "Test Files\\AL215095_D10_IV.txt",  "Test Files\\AL215095_D12.txt", "Test Files\\AL215095_D14.txt", "Test Files\\AL215095_D15.txt", "Test Files\\AL215095_D16.txt", "Test Files\\D04-TOP-IV-t1@@@AL123456_D04.txt", "Test Files\\D20-100C-KV-IV_min@@@AL234567_D20.txt"]

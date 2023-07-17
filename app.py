@@ -10,8 +10,7 @@ import timeit
 
 from new_manage_DB import connexion
 from excel import wanted_excel
-from manage_DB import setCompliance
-from new_manage_DB import create_db
+from new_manage_DB import create_db, setCompliance
 from plot_and_powerpoint import plot_wanted_matrices, wanted_ppt
 from converter import handle_file
 from getter import get_types, get_temps, get_filenames, get_coords, get_compliance, get_VBDs, get_sessions, get_wafer, \
