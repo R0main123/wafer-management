@@ -81,7 +81,7 @@ export const CardFront = ({ waferId, onCreateExcelClick, onCreatePptClick, onDel
       }}>Wafer Map</WaferMapButton>
       <DeleteButton variant="contained" onClick={(event) => {
         event.stopPropagation();
-        onDeleteClick();
+        onDeleteClick(waferId);
       }}>Delete wafer</DeleteButton>
     </CardContent>
   </WaferCard>

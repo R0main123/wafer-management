@@ -39,6 +39,16 @@ function RegisterNewMeasures() {
 
 
   const handleClose = () => {
+    var parts= currentFile.name.split('.');
+    if(parts.length > 1){
+      var extension = parts.pop();
+
+      if (extension === 'lim'){
+        alert('When dropping a .lim file, please ensure that it comes with a file with the same name. Else, it won\'t be registered.')
+      }
+    } else{
+      alert('When dropping a file without extension, please ensure that it comes with a .lim file with the same name. Else, it won\'t be registered.')
+    }
     if (!currentFile?.name.startsWith('AL') && (!lotId || !waferId)){
       alert("Please fill out all fields");
       return;

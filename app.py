@@ -10,7 +10,7 @@ import timeit
 
 from new_manage_DB import connexion
 from excel import wanted_excel
-from new_manage_DB import create_db, setCompliance
+from new_manage_DB import create_db, setCompliance, create_db_tbl, get_db_name
 from plot_and_powerpoint import plot_wanted_matrices, wanted_ppt
 from converter import handle_file
 from getter import get_types, get_temps, get_filenames, get_coords, get_compliance, get_VBDs, get_sessions, get_wafer, \
@@ -65,7 +65,6 @@ def upload():
         os.makedirs(UPLOAD_FOLDER)
     files = request.files.getlist("file")
     for file in files:
-
         filename = file.filename
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
@@ -86,7 +85,10 @@ def options(checkbox_checked):
 
             filename = file.split("\\")[-1]
             socketio.emit('message', {'data': f"Creating database for file {filename}"})
-            create_db(file, checkbox_checked)
+            if file.split('.')[-1] == 'txt':
+                create_db(file, checkbox_checked)
+            elif file.split('.')[-1] == 'tbl':
+                create_db_tbl(file, checkbox_checked)
 
             socketio.emit('message', {'data': f"Processing {filename}"})
 
@@ -185,6 +187,7 @@ def filter_by_Coords(wafer_id, selectedMeasurement):
 def filter_by_Filenames(wafer_id, selectedMeasurement):
     return jsonify(filter_by_filename(selectedMeasurement, wafer_id)), 200
 
+
 @app.route('/filter_by_Session/<wafer_id>/<selectedMeasurement>', methods=['GET'])
 def filter_by_Session(wafer_id, selectedMeasurement):
     return jsonify(filter_by_session(selectedMeasurement, wafer_id)), 200
@@ -233,7 +236,7 @@ def ppt_structure_route(waferId, sessions, structures, types, temps, files, coor
 def delete_wafer(wafer_id):
     client = MongoClient('mongodb://localhost:27017/')
     db = client['Measurements']
-    db.Wafers.delete_one({'wafer_id': wafer_id})
+    db[get_db_name()].delete_one({'wafer_id': wafer_id})
     return jsonify({'result': 'success'}), 200
 
 

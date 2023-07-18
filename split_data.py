@@ -29,10 +29,19 @@ def C_spliter(line):
 
 
 def converter_split(line):
-    line.replace('"', '')
-    line.replace('(', '')
-    line.replace(')', '')
-    info = line.split(' ')[0]
-    data = line.split(' ')[1]
-    return [info, data]
+    line = line.replace('"', '')
+    line = line.replace('(', '')
+    line = line.replace(')', '')
+    data = line.split(' ')[-1]
+    data = data.replace(' ', '')[:-1]
 
+    return data
+
+
+def converter_split_session(line):
+    line = line.replace('"', '')
+    line = line.replace('(', '')
+    line = line.replace(')', '')
+    data = line.split(' ')[1:]
+
+    return data

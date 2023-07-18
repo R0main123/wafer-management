@@ -15,7 +15,7 @@ def get_wafer(wafer_id):
     :param <str> wafer_id: name of the wafer_id
     :return <dict>: the wafer
     """
-    collection = connexion("New Wafers")
+    collection = connexion()
     return collection.find_one({"wafer_id": wafer_id})
 
 

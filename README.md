@@ -49,7 +49,8 @@ You can connect to MongoDB with the Mongo shell, or with a programming language-
  
 
 ### Client Libraries
-We will use MongoDB with python interface, so you won't need to use Mongo's shell, but if you want to have a look on all datas and how datas are organized, you can open :ongoDB application.
+We will use MongoDB with python interface, so you won't need to use Mongo's shell, but if you want to have a look on all datas and how datas are organized, you can open 
+ongoDB application.
 See the [MongoDB Documentation](https://docs.mongodb.com/manual/applications/drivers/) for a list of MongoDB client libraries for various programming languages.
 
 ### Further Reading

@@ -280,7 +280,8 @@ function Open() {
         setOpenDialogPptSelectStructures(true);
     }
 
-    function handleDeleteClick(){
+    function handleDeleteClick(waferId){
+        setSelectedWafer(waferId);
         setOpenDeleteDialog(true);
         setOpenDialog(false);
     }
@@ -338,7 +339,9 @@ function Open() {
           }
         } catch(error) {
         console.error("Error uploading files: ", error)
-      }
+      } finally {
+            setSelectedWafer(null);
+        }
     }
 
     const handleSetCompliance = async () =>{
@@ -365,12 +368,13 @@ function Open() {
     }
 
     const handleWaferMapStructure = async (structureId) => {
-        setOpenShowWaferMapDialog(true);
         fetch(`/create_wafer_map/${selectedWafer}/${selectedSession}/${structureId}`)
         .then(response => response.json())
                 .then(data => {
                     setCurrentWaferMap(data);
                 });
+        setOpenShowWaferMapDialog(true);
+
     }
 
     const handlePlotPersonalized = () => {
@@ -563,6 +567,8 @@ function Open() {
                 open={openPlotDialog}
                 onClose={() => {
                     setOpenPlotDialog(false);
+                    setSelectedStructures([]);
+                    setOpenAccordion(false);
                     setMatrixImages([]);
                 }}
                 maxWidth='md'
@@ -596,6 +602,8 @@ function Open() {
                 <DialogActions>
                     <Button onClick={() => {
                         setOpenPlotDialog(false);
+                        setOpenAccordion(false);
+                        setSelectedStructures([])
                         setMatrixImages([]);
                     }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
                 </DialogActions>
