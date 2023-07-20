@@ -184,6 +184,10 @@ function Open() {
     }, [selectedSession]);
 
     useEffect(() => {
+        console.log(selectedSession);
+    }, [selectedSession]);
+
+    useEffect(() => {
         if(selectedStructure){
               fetch(`/get_matrices/${selectedWafer}/${selectedStructure}`)
               .then(response => response.json())
@@ -247,7 +251,8 @@ function Open() {
     const handleCloseDialog = () => {
           setSelectedWafer(null);
           setOpenDialog(false);
-          setSessions([])
+          setSessions([]);
+          setSelectedSession(null);
           document.body.style.overflow = 'auto';
     };
 
@@ -383,12 +388,14 @@ function Open() {
     }
 
     const handleWaferMapStructure = async (structureId) => {
+        setOpenShowWaferMapDialog(true);
+        setIsLoading(true);
         fetch(`/create_wafer_map/${selectedWafer}/${selectedSession}/${structureId}`)
         .then(response => response.json())
                 .then(data => {
                     setCurrentWaferMap(data);
                 });
-        setOpenShowWaferMapDialog(true);
+        setIsLoading(false);
 
     }
 
@@ -831,7 +838,8 @@ function Open() {
                 open={openShowWaferMapDialog}
                 onClose={() => {
                     setOpenShowWaferMapDialog(false);
-                    setMatrixImages([]);
+                    setCurrentWaferMap(null);
+                    setSelectedSession(null);
                 }}
                 maxWidth='md'
                 fullWidth={true}
@@ -840,11 +848,20 @@ function Open() {
             >
                 <DialogTitle id="matrices-dialog-title">{`Plots of ${selectedMatrix} in ${selectedStructure}`}</DialogTitle>
                 <DialogContent>
-                    <img
+                    {isLoading ? (
+                      <>
+                        <Select>
+                            <CircularProgress />
+                            Processing...
+                        </Select>
+                    </>
+                  ) : (
+                      <img
                         src={`data:image/png;base64,${currentWaferMap}`}
                         alt={`Wafer Map of ${selectedStructure}`}
                         style={{ width:"100%", height: 'auto' }}
                     />
+                )}
 
                 </DialogContent>
                 <DialogActions>
@@ -854,6 +871,7 @@ function Open() {
                         setCurrentWaferMap(null);
                         setSelectedMatrixIndex(null);
                         setSelectedCompliance(null);
+                        setSelectedSession(null);
                         setTriplets([]);
                     }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
                 </DialogActions>
