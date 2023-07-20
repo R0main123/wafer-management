@@ -1,7 +1,4 @@
-import pytest
-
 from filter import filter_by_meas, filter_by_temp
-from getter import get_types, get_temps, get_compliance, get_VBDs
 from collections import Counter
 def test_filter():
     assert Counter(filter_by_meas("C", "AL213656_D02")) == Counter(["CAP-BEOL10_23-50_50-BEOL10", "CAP-BEOL9_14-100_100-BEOL9",

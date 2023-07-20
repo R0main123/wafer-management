@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 from openpyxl.reader.excel import load_workbook
-from pymongo import MongoClient
 from getter import get_wafer
 
 

@@ -46,9 +46,10 @@ function RegisterNewMeasures() {
       if (extension === 'lim'){
         alert('When dropping a .lim file, please ensure that it comes with a file with the same name. Else, it won\'t be registered.')
       }
-    } else{
+    } else {
       alert('When dropping a file without extension, please ensure that it comes with a .lim file with the same name. Else, it won\'t be registered.')
     }
+
     if (!currentFile?.name.startsWith('AL') && (!lotId || !waferId)){
       alert("Please fill out all fields");
       return;
@@ -59,11 +60,27 @@ function RegisterNewMeasures() {
     let finalTemp = temp === "" ? 25 : temp;
 
     if(currentFile.name.startsWith('AL')) {
-      newName = currentFile.name.split('.').slice(0, -1).join('.') + '_' + finalTemp + '.' + currentFile.name.split('.').pop();
-      newName = `${newName.split('.').join('.').toUpperCase()}.${newName.split('.').pop()}`
+      if(currentFile.name.endsWith('.tbl.Z')){
+        newName = currentFile.name.split('.').slice(0, -2).join('.') + '_' + finalTemp + '.tbl.Z'
+      } else {
+        if (currentFile.name.split('.').length === 1) {
+          newName = currentFile.name + '_' + finalTemp;
+        } else {
+          newName = currentFile.name.split('.').slice(0, -1).join('.') + '_' + finalTemp + '.' + currentFile.name.split('.').pop();
+        }
+      }
+      console.log(newName)
     } else {
-      newName = currentFile.name.split('.').slice(0, -1).join('.') + '@@@' + lotId + '_' + waferId + '_' + finalTemp + '.' + currentFile.name.split('.').pop();
-      newName = `${newName.split('.').join('.').toUpperCase()}.${newName.split('.').pop()}`
+      if (currentFile.name.endsWith('.tbl.Z')) {
+        newName = currentFile.name.split('.').slice(0, -2).join('.') + '@@@' + lotId.toUpperCase() + '_' + waferId.toUpperCase() + '_' + finalTemp + '.tbl.Z'
+      } else {
+        if (currentFile.name.split('.').length === 1) {
+          newName = currentFile.name + '@@@' + lotId.toUpperCase() + '_' + waferId.toUpperCase() + '_' + finalTemp;
+        } else {
+          newName = currentFile.name.split('.').slice(0, -1).join('.') + '@@@' + lotId.toUpperCase() + '_' + waferId.toUpperCase() + '_' + finalTemp + '.' + currentFile.name.split('.').pop();
+        }
+      }
+      console.log(newName)
     }
 
     let newFile = new File([currentFile], newName, {type: currentFile.type, lastModified: new Date() });
@@ -75,7 +92,6 @@ function RegisterNewMeasures() {
     setFileQueue(oldFileQueue => oldFileQueue.slice(1));
 
     setTemp("");
-
   }
 
   const handleSend = async () => {

@@ -1,6 +1,6 @@
 import os
-import shutil
 import patoolib
+
 
 
 def handle_file(file_path):
@@ -22,23 +22,8 @@ def handle_file(file_path):
         file_path = file_name
         file_name, file_extension = os.path.splitext(file_path)
 
-    if file_extension == ".tbl":
-        # Rename .tbl to .txt
-        new_file_path = file_name + ".txt"
-        os.rename(file_path, new_file_path)
-        file_path = new_file_path
-
-    for filename in os.listdir(".\DataFiles\\"):
-        if not filename.endswith('.txt'):
-            file_path = os.path.join(".\DataFiles\\", filename)
-            try:
-                if os.path.isfile(file_path) or os.path.islink(file_path):
-                    os.unlink(file_path)
-                elif os.path.isdir(file_path):
-                    shutil.rmtree(file_path)
-            except Exception as e:
-                print("Failed to delete %s. Reason: %s" % (file_path, e))
+    print(f"File extension: {file_extension}")
 
     # If file extension is .txt, do nothing
-    if file_path.endswith(".txt"):
+    if file_extension == '.txt' or file_extension == '.tbl' or file_extension == '.lim' or file_extension == '':
         return file_path

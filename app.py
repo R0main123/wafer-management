@@ -1,3 +1,4 @@
+import glob
 import json
 import math
 
@@ -8,13 +9,12 @@ from flask import Flask, request, jsonify, send_from_directory
 import os
 import timeit
 
-from new_manage_DB import connexion
 from excel import wanted_excel
-from new_manage_DB import create_db, setCompliance, create_db_tbl, get_db_name
+from new_manage_DB import create_db, setCompliance, create_db_tbl, get_db_name, create_db_lim
 from plot_and_powerpoint import plot_wanted_matrices, wanted_ppt
 from converter import handle_file
-from getter import get_types, get_temps, get_filenames, get_coords, get_compliance, get_VBDs, get_sessions, get_wafer, \
-    get_structures, get_map_sessions
+from getter import get_types, get_temps, get_filenames, get_coords, get_compliance, get_sessions, get_wafer, \
+    get_structures, get_map_sessions, connexion, get_map_structures
 
 from filter import filter_by_meas, filter_by_temp, filter_by_coord, filter_by_filename, filter_by_session
 from VBD import create_wafer_map
@@ -64,6 +64,8 @@ def upload():
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
     files = request.files.getlist("file")
+    print(files)
+
     for file in files:
         filename = file.filename
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -72,6 +74,25 @@ def upload():
 
         if processed_file is not None:
             all_files.append(processed_file)
+            
+        print(all_files)
+
+    files.clear()
+
+    for file in all_files:
+        file_name, file_extension = os.path.splitext(file)
+        if file_extension == "":
+            file_to_check = file_name.split("\\")[-1] + ".lim"
+            if file_to_check not in os.listdir("DataFiles\\"):
+                os.remove(f"{file_name}")
+                return None
+
+        if file_extension == ".lim":
+            file_to_check = file_name.split("\\")[-1]
+            if file_to_check not in os.listdir("DataFiles\\"):
+                os.remove(f"{file_name}.lim")
+                return None
+
 
     return jsonify({'result': 'success'}), 200
 
@@ -87,19 +108,24 @@ def options(checkbox_checked):
             socketio.emit('message', {'data': f"Creating database for file {filename}"})
             if file.split('.')[-1] == 'txt':
                 create_db(file, checkbox_checked)
+
             elif file.split('.')[-1] == 'tbl':
                 create_db_tbl(file, checkbox_checked)
 
-            socketio.emit('message', {'data': f"Processing {filename}"})
+            elif file.split('.')[-1] == 'lim':
+                create_db_lim(file)
 
-            if os.path.isfile(file):
-                os.remove(file)
+            elif len(file.split('.')) == 1:
+                continue
+
+            socketio.emit('message', {'data': f"Processing {filename}"})
 
         all_files.clear()
 
         if os.path.isdir("DataFiles"):
-            if not os.listdir("DataFiles"):
-                os.rmdir("DataFiles")
+            for f in glob.glob("DataFiles\*"):
+                os.remove(f)
+
 
         socketio.emit('message', {'data': "Finished processing."})
 
@@ -145,6 +171,7 @@ def get_all_structures(wafer_id):
 
 @app.route('/get_sessions/<wafer_id>', methods=['GET'])
 def get_sessions_server(wafer_id):
+    print(jsonify(get_sessions(wafer_id)))
     return jsonify(get_sessions(wafer_id)), 200
 
 
@@ -251,14 +278,6 @@ def set_compl(waferId, session, compliance):
     return jsonify({'result': 'success'}), 200
 
 
-@app.route("/get_breakdown/<wafer_id>/<structure_id>/<x>/<y>/", methods=["GET"])
-def flask_get_breakdown(wafer_id, structure_id, x, y):
-    compliances, VBDs = get_VBDs(wafer_id, structure_id, x, y)
-
-    result = [{"Compliance": c, "VBD": v} for c, v in zip(compliances, VBDs)]
-    return json.dumps(result, default=lambda x: None if math.isnan(x) else x)
-
-
 @app.route("/create_wafer_map/<waferId>/<session>/<structure>", methods=["GET"])
 def personal_wafer_map(waferId, session, structure):
     image = create_wafer_map(waferId, session, structure)
@@ -279,8 +298,11 @@ def plot_we_want(waferId, sessions, structures, types, temps, files, coords):
 
 @app.route('/get_map_sessions/<wafer_id>', methods=['GET'])
 def get_map_sessions_server(wafer_id):
-    print("Here")
     return jsonify(get_map_sessions(wafer_id)), 200
+
+@app.route('/get_map_structures/<wafer_id>/<session>', methods=['GET'])
+def get_map_structures_server(wafer_id, session):
+    return jsonify(get_map_structures(wafer_id, session)), 200
 
 """
 @app.route('/register')

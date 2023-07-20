@@ -1,5 +1,3 @@
-import timeit
-from pymongo import MongoClient
 from getter import get_sessions, get_structures, get_wafer
 
 
@@ -26,7 +24,6 @@ def filter_by_meas(meas, wafer_id):
                 list_of_structures.add(structure)
 
     return list(list_of_structures)
-
 
 
 def filter_by_temp(temps, wafer_id):
@@ -77,7 +74,6 @@ def filter_by_coord(coords, wafer_id):
                 if matrix["coordinates"]["x"] == coords[0] and matrix["coordinates"]["y"] == coords[1]:
                     list_of_structures.add(structure)
     return list(list_of_structures)
-
 
 
 def filter_by_filename(file=str, wafer_id=str):

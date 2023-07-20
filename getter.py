@@ -1,6 +1,15 @@
-import math
-from VBD import calculate_breakdown, get_vectors_in_matrix
-from new_manage_DB import connexion
+from pymongo import MongoClient
+
+
+def get_db_name(db_name="New Wafers"):
+    return db_name
+
+
+def connexion():
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client['Measurements']
+    collection = db[get_db_name()]
+    return collection
 
 
 def get_wafer(wafer_id):
@@ -108,43 +117,6 @@ def get_compliance(wafer_id, session):
     return wafer[session].get("Compliance")
 
 
-def get_VBDs(wafer_id, structure_id, x, y):
-    """
-        This function finds the couples of VBDs and compliance from the specified die in the database
-        If the die has no VBD registered, it returns the calculated VBD with registered compliance.
-        If the structure has no compliance registered, it calculates VBD based on default value (1e-3)
-
-        :param <str> wafer_id: name of the wafer_id
-        :param <str> structure_id: name of the structure
-        :param <str> x: the horizontal coordinate of the matrix
-        :param <str> y: the vertical coordinate of the matrix
-
-        :return <str>: The VBD found or calculated
-        """
-    wafer = get_wafer(wafer_id)
-    VBD = None
-
-    sessions = get_sessions(wafer_id)
-
-    for session in sessions:
-        structures = get_structures(wafer_id, session)
-        for structure in structures:
-            for matrix in wafer[session][structure]["matrices"]:
-                if matrix["coordinates"]["x"] == x and matrix["coordinates"]["y"] == y:
-                    VBD = matrix["results"]["I"].get("VBDs")
-
-    if VBD is None:
-        VBDs = [str(calculate_breakdown(get_vectors_in_matrix(wafer_id, structure_id, x, y)[0],
-                                        get_vectors_in_matrix(wafer_id, structure_id, x, y)[1],
-                                        get_compliance(wafer_id, structure_id))[0])]
-        compliances = ["1e-3"]
-    else:
-        compliances = [couple["Compliance"] for couple in VBD]
-        VBDs = [str(couple["VBD"]) if not math.isnan(couple["VBD"]) else "Nan" for couple in VBD ]
-
-    return compliances, VBDs
-
-
 def get_matrices_with_I(wafer_id, structure_id):
     """
     This function finds all matrices that contain I-V measurements. Used to display buttons in the right place in the User Interface
@@ -166,49 +138,49 @@ def get_matrices_with_I(wafer_id, structure_id):
     return list_of_matrices
 
 
-def get_all_infos_matrices(wafer_id, structure_id):
-    wafer = get_wafer(wafer_id)
-    list_of_infos = []
-
-    sessions = get_sessions(wafer_id)
-    for session in sessions:
-        structures = get_structures(wafer_id, session)
-        for structure in structures:
-            for matrix in wafer[session][structure]["matrices"]:
-                x = matrix["coordinates"]["x"]
-                y = matrix["coordinates"]["y"]
-                compliance = get_compliance(wafer_id, structure_id)
-                list_of_infos.append({"x": x,
-                                      "y": y,
-                                      "compliance": compliance if compliance is not None else [get_VBDs(wafer_id, structure_id, x, y)[0]]})
-
-    return list_of_infos
-
-
 def get_sessions(wafer_id):
     wafer = get_wafer(wafer_id)
-    return [session for session in wafer][2:]
+    sessions = [session for session in wafer]
+    if "_id" in sessions:
+        sessions.remove("_id")
+
+    if "wafer_id" in sessions:
+        sessions.remove("wafer_id")
+
+    return sessions
 
 
 def get_map_sessions(wafer_id):
     wafer = get_wafer(wafer_id)
     sessions = []
-    for session in [session for session in wafer][2:]:
-        if session in sessions:
-            continue
+    for session in get_sessions(wafer_id):
         for structure in wafer[session]:
             if structure == "Compliance":
                 continue
-            if session in sessions:
-                break
             for matrix in wafer[session][structure]['matrices']:
                 if 'I' in matrix["results"]:
                     sessions.append(session)
                     break
 
-    return sessions
+    return list(set(sessions))
 
+
+def get_map_structures(wafer_id, session):
+    wafer = get_wafer(wafer_id)
+    structures = []
+    for structure in get_structures(wafer_id, session):
+        for matrix in wafer[session][structure]['matrices']:
+            if 'I' in matrix["results"]:
+                structures.append(structure)
+                break
+
+    return structures
 
 
 def get_structures(wafer_id, session):
-    return [structure for structure in get_wafer(wafer_id)[session]][1:]
+    structures = [structure for structure in get_wafer(wafer_id)[session]]
+
+    if "Compliance" in structures:
+        structures.remove("Compliance")
+
+    return structures

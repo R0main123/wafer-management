@@ -7,6 +7,7 @@ def spliter(line):
     """
     return line.split(' : ')[-1][:-1]
 
+
 def dataSpliter(line):
     """
     This function takes a line of datas from a .txt file in argument and returns a list with voltage in first position and current in second position
@@ -15,6 +16,7 @@ def dataSpliter(line):
     :rtype: list of str
     """
     return [float(line[:-1].split('\t')[i]) for i in range(len(line[:-1].split('\t')))]
+
 
 def C_spliter(line):
     """
@@ -25,7 +27,6 @@ def C_spliter(line):
     """
     infos = spliter(line)
     return [infos.split(' ')[i] for i in range(len(infos.split(' ')))]
-
 
 
 def converter_split(line):

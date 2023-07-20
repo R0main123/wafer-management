@@ -4,19 +4,9 @@ import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib.colors as colors
 import seaborn as sns
-from plot_and_powerpoint import fig_to_base64
-from new_manage_DB import connexion
-
-
-def get_wafer(wafer_id):
-    """
-    This function finds the wafer specified in the database
-
-    :param <str> wafer_id: name of the wafer_id
-    :return <dict>: the wafer
-    """
-    collection = connexion()
-    return collection.find_one({"wafer_id": wafer_id})
+import base64
+import io
+from getter import get_wafer
 
 
 def get_compliance(wafer_id, session):
@@ -189,6 +179,7 @@ def create_wafer_map(wafer_id, session, structure_id):
         vec_X, vec_Y = get_vectors_in_matrix(wafer_id, session, structure_id, matrix["coordinates"]["x"], matrix["coordinates"]["y"])
         VBD = calculate_breakdown(vec_X, vec_Y, compliance)[0]
 
+
         if not (np.isnan(VBD)):
             VBDs[int(float(matrix["coordinates"]["y"]) - min_y), int(float(matrix["coordinates"]["x"]) - min_x)] = VBD
 
@@ -224,4 +215,15 @@ def create_wafer_map(wafer_id, session, structure_id):
     return base64_str
 
 
-
+def fig_to_base64(fig):
+    """
+    Function used to convert a png to base64 to help communication between server and User. Used in ppt_matrix.
+    :param <png> fig: a figure in png format
+    :return <base64>: The converted figure
+    """
+    fig_file = io.BytesIO()
+    fig.savefig(fig_file, format='png')
+    fig_file.seek(0)
+    fig_png_base64 = base64.b64encode(fig_file.read())
+    fig_file.close()
+    return fig_png_base64.decode('utf-8')

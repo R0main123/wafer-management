@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import base64
 import io
-from new_manage_DB import connexion
+from getter import connexion
 
 
 def get_wafer(wafer_id):
@@ -218,6 +218,7 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
     if len(prs.slides) > 0:
         prs.save(f"{wafer_id}\\{file_name}.pptx")
     return
+
 
 def fig_to_base64(fig):
     """

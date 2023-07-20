@@ -56,6 +56,8 @@ function Open() {
     const [searchTerm, setSearchTerm] = useState("");
     const [structures, setStructures] = useState([]);
     const [sessions, setSessions] = useState([]);
+    const [mapSessions, setMapSessions] = useState([]);
+    const [mapStructures, setMapStructures] = useState([]);
     const [allStructures, setAllStructures] = useState([]);
     const [matrices, setMatrices] = useState([]);
     const [matrixImages, setMatrixImages] = useState([]);
@@ -64,6 +66,7 @@ function Open() {
     const [isLoading, setIsLoading] = useState(false);
     const [newCompliance, setNewCompliance] = useState(null);
     const [compliances, setCompliances] = useState([]);
+    const [filteredMapStructuresDisplay, setFilteredMapStructuresDisplay] = useState([]);
     const carouselRef = useRef(null);
     const [filteredStructures, setFilteredStructures] = useState([]);
     const [filteredStructuresDisplay, setFilteredStructuresDisplay] = useState([]);
@@ -151,7 +154,7 @@ function Open() {
     useEffect(() => {
         if(selectedWafer){
             setIsLoading(true);
-            fetch(`/get_map_sessions/${selectedWafer}`)
+            fetch(`/get_sessions/${selectedWafer}`)
             .then(response => response.json())
             .then(data => {
                 setSessions(data);
@@ -161,6 +164,7 @@ function Open() {
         setIsLoading(false)
         } else {
             setSessions([])
+            setMapSessions([]);
             setFilteredSessions([]);
             console.log(selectedSession)
         }
@@ -195,6 +199,10 @@ function Open() {
         setFilteredStructuresDisplay(structures.filter(structure => filteredStructures.includes(structure)));
     }, [structures, filteredStructures]);
 
+    useEffect(() => {
+        setFilteredMapStructuresDisplay(mapStructures.filter(structure => filteredStructures.includes(structure)));
+    }, [mapStructures, filteredStructures]);
+
 
     useEffect(() => {
         console.log(matrixImages.length);
@@ -224,7 +232,7 @@ function Open() {
 
     const handleComplianceSessionClick = (session) => {
         setSelectedSession(session);
-        fetch(`/get_structures/${selectedWafer}/${session}`)
+        fetch(`/get_map_structures/${selectedWafer}/${session}`)
           .then(response => response.json())
           .then(data => {
             setStructures(data);
@@ -288,6 +296,13 @@ function Open() {
 
     const handleWaferMapClick = (waferId) => {
         setSelectedWafer(waferId);
+        fetch(`/get_map_sessions/${waferId}`)
+            .then(response => response.json())
+            .then(data => {
+                setMapSessions(data);
+                setFilteredSessions(data);
+                console.log(selectedSession)
+        })
         setOpenWaferMapDialog(true);
     }
 
@@ -714,7 +729,7 @@ function Open() {
             >
               <DialogTitle id="alert-dialog-title">{"Please select a structure in a wafer"}</DialogTitle>
               <DialogContent>
-                <Typography variant="h5">{selectedWafer} ({sessions.length} sessions)</Typography>
+                <Typography variant="h5">{selectedWafer} ({mapSessions.length} sessions)</Typography>
                 <FilterMenu selectedWafer={selectedWafer}
                             setStructures={setStructures}
                             structures={structures}
@@ -737,10 +752,10 @@ function Open() {
 
                 />
                 {
-                sessions.length === 0 ?
-                <div>No session found</div> : (
+                mapSessions.length === 0 ?
+                <div>Found no sessions with I-V measures</div> : (
                 <Grid container spacing={2}>
-                  {sessions.map((session, index) => (
+                  {mapSessions.map((session, index) => (
                   <Grid item xs={12} key={index}>
                     <Accordion expanded={openAccordion === `panel${index}`}>
                       <AccordionSummary
