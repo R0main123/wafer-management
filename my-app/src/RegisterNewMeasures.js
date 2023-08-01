@@ -69,7 +69,6 @@ function RegisterNewMeasures() {
           newName = currentFile.name.split('.').slice(0, -1).join('.') + '_' + finalTemp + '.' + currentFile.name.split('.').pop();
         }
       }
-      console.log(newName)
     } else {
       if (currentFile.name.endsWith('.tbl.Z')) {
         newName = currentFile.name.split('.').slice(0, -2).join('.') + '@@@' + lotId.toUpperCase() + '_' + waferId.toUpperCase() + '_' + finalTemp + '.tbl.Z'
@@ -80,7 +79,6 @@ function RegisterNewMeasures() {
           newName = currentFile.name.split('.').slice(0, -1).join('.') + '@@@' + lotId.toUpperCase() + '_' + waferId.toUpperCase() + '_' + finalTemp + '.' + currentFile.name.split('.').pop();
         }
       }
-      console.log(newName)
     }
 
     let newFile = new File([currentFile], newName, {type: currentFile.type, lastModified: new Date() });

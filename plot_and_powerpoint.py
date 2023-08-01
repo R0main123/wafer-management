@@ -65,7 +65,8 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
                                 for double in matrix["results"][type]["Values"]:
                                     data_values[0].append(abs(double["V"]))
                                     for idx, unit in enumerate(y_values, 1):
-                                        data_values[idx].append(abs(double[unit]))
+                                        if double.get(unit) is not None:
+                                            data_values[idx].append(abs(double[unit]))
 
                                 columns = [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}"] + [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}" + " " + unit for unit in y_values]
                                 new_df = pd.DataFrame(list(zip(*data_values)), columns=columns)

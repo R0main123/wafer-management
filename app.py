@@ -9,15 +9,16 @@ from flask import Flask, request, jsonify, send_from_directory
 import os
 import timeit
 
-from excel import wanted_excel
+from excel import wanted_excel, excel_VBD
 from new_manage_DB import create_db, setCompliance, create_db_tbl, get_db_name, create_db_lim
 from plot_and_powerpoint import plot_wanted_matrices, wanted_ppt
-from converter import handle_file
+from converter import handle_file, tbl_to_txt
 from getter import get_types, get_temps, get_filenames, get_coords, get_compliance, get_sessions, get_wafer, \
     get_structures, get_map_sessions, connexion, get_map_structures
 
 from filter import filter_by_meas, filter_by_temp, filter_by_coord, filter_by_filename, filter_by_session
 from VBD import create_wafer_map
+from normal_plots import *
 
 all_files = []
 
@@ -64,7 +65,6 @@ def upload():
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
     files = request.files.getlist("file")
-    print(files)
 
     for file in files:
         filename = file.filename
@@ -74,8 +74,6 @@ def upload():
 
         if processed_file is not None:
             all_files.append(processed_file)
-            
-        print(all_files)
 
     files.clear()
 
@@ -111,6 +109,7 @@ def options(checkbox_checked):
 
             elif file.split('.')[-1] == 'tbl':
                 create_db_tbl(file, checkbox_checked)
+                tbl_to_txt(file)
 
             elif file.split('.')[-1] == 'lim':
                 create_db_lim(file)
@@ -171,7 +170,6 @@ def get_all_structures(wafer_id):
 
 @app.route('/get_sessions/<wafer_id>', methods=['GET'])
 def get_sessions_server(wafer_id):
-    print(jsonify(get_sessions(wafer_id)))
     return jsonify(get_sessions(wafer_id)), 200
 
 
@@ -220,7 +218,6 @@ def filter_by_Session(wafer_id, selectedMeasurement):
     return jsonify(filter_by_session(selectedMeasurement, wafer_id)), 200
 
 
-# TODO
 @app.route('/get_matrices/<wafer_id>/<structure_id>', methods=['GET'])
 def get_matrices(wafer_id, structure_id):
     wafer = get_wafer(wafer_id)
@@ -296,131 +293,87 @@ def plot_we_want(waferId, sessions, structures, types, temps, files, coords):
 
     return jsonify(plot_wanted_matrices(waferId, sessions, structures, types, temps, files, coords))
 
+
 @app.route('/get_map_sessions/<wafer_id>', methods=['GET'])
 def get_map_sessions_server(wafer_id):
     return jsonify(get_map_sessions(wafer_id)), 200
+
 
 @app.route('/get_map_structures/<wafer_id>/<session>', methods=['GET'])
 def get_map_structures_server(wafer_id, session):
     return jsonify(get_map_structures(wafer_id, session)), 200
 
-"""
-@app.route('/register')
-def register():
-    return render_template('register.html')
 
-
-@app.route('/write_excel/<wafer_id>', methods=['POST'])
-def write_excel_route(wafer_id):
-    writeExcel(wafer_id)
-    return render_template('done.html', message='Excel file successfully created!')
-
-
-@app.route('/write_ppt/<wafer_id>', methods=['POST'])
-def write_ppt_route(wafer_id):
-    writeppt(wafer_id)
-    return render_template('done.html', message='PowerPoint file successfully created!')
-
-
-@app.route('/ppt_structure/<wafer_id>/<structure_ids>/<file_name>', methods=['GET'])
-def ppt_structure_route(wafer_id, structure_ids, file_name):
-    structure_ids = structure_ids.split(',')
-    ppt_structure(wafer_id, structure_ids, file_name)
-    return render_template('done.html', message='PowerPoint file successfully created!')
-
-
-@app.route('/open')
-def open():
-    client = MongoClient('mongodb://localhost:27017/')
-
-    db = client['Measurements']
-
-    collection = db["Wafers"]
-
-    wafers = collection.find({})
-
-    return render_template('open.html', wafers=wafers)
-
-
-@app.route('/upload', methods=['POST'])
-def upload():
-    if not os.path.exists(UPLOAD_FOLDER):
-        os.makedirs(UPLOAD_FOLDER)
-    files = request.files.getlist("file")
-    for file in files:
-
-        filename = file.filename
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(file_path)
-        processed_file = handle_file(file_path)
-
-        if processed_file is not None:
-            all_files.append(processed_file)
-
-    return redirect(url_for('options'))  # Assurez-vous de rediriger vers la bonne route
-
-
-
-@app.route("/get_matrices_with_I/<wafer_id>/<structure_id>", methods=["GET"])
-def get_matrices_for_VBD(wafer_id, structure_id):
-    return jsonify(get_matrices_with_I(wafer_id, structure_id))
-
-
-@app.route("/calculate_breakdown/<wafer_id>/<structure_id>/<x>/<y>/<compliance>", methods=["GET"])
-def flask_calculate_breakdown(wafer_id, structure_id, x, y, compliance):
-    X, Y = get_vectors_in_matrix(wafer_id, structure_id, x, y)
-
-    if compliance != 'null':
-        Breakd_Volt, Breakd_Leak, reached_comp, high_leak = calculate_breakdown(X, Y, compliance)
-
-    else:
-        Breakd_Volt, Breakd_Leak, reached_comp, high_leak = calculate_breakdown(X, Y)
-
-    if np.isnan(Breakd_Volt):
-        return jsonify("NaN")
-    else:
-        return jsonify(Breakd_Volt)
-
-
-@app.route("/calculate_breakdown/<wafer_id>/<structure_id>/<x>/<y>/", methods=["GET"])
-def flask_calculate_breakdown_wout_compl(wafer_id, structure_id, x, y):
-    X, Y = get_vectors_in_matrix(wafer_id, structure_id, x, y)
-
-    Breakd_Volt, Breakd_Leak, reached_comp, high_leak = calculate_breakdown(X, Y)
-
-    if np.isnan(Breakd_Volt):
-        return jsonify("NaN")
-    else:
-        return jsonify(Breakd_Volt)
-
-
-@app.route("/get_vectors_in_matrix/<waferId>/<structureId>/<x>/<y>")
-def get_vectors_for_matrix(waferId, structureId, x, y):
-    return jsonify(get_vectors_in_matrix(waferId, structureId, x, y))
-
-
-@app.route("/create_wafer_map/<waferId>/<structureId>")
-def wafer_map(waferId, structureId):
-    image = create_wafer_map(waferId, structureId)
-    return jsonify({"image": image})
-
-
-@app.route("/create_wafer_map/<waferId>/<structureId>/<compliances>")
-def personal_wafer_map(waferId, structureId, compliances):
-    image = create_wafer_map(waferId, structureId, compliances)
-    return jsonify({"image": image})
-
-
-@app.route("/get_matrices_and_compliances/<wafer_id>/<structure_id>")
-def getAllInfos(wafer_id, structure_id):
-    return jsonify(get_all_infos_matrices(wafer_id, structure_id))
-
-@app.route("/reg_vbd/<waferId>/<structureId>/<x>/<y>/<compliance>", methods=["GET"])
-def reg_VBD(waferId, structureId, x, y, compliance):
-    register_VBD(waferId, structureId, x, y, compliance)
+@app.route('/register_excel_VBD/<waferId>/<sessions>/<structures>/<temps>/<files>/<coords>/<file_name>', methods=['GET'])
+def reg_excel_VBD(waferId, sessions, structures, temps, files, coords, file_name):
+    sessions = sessions.split(',')
+    sessions = list(set(sessions) & set(get_map_sessions(waferId)))
+    structures = structures.split(',')
+    temps = temps.split(',')
+    files = files.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+    excel_VBD(waferId, sessions, structures, temps, files, coords, file_name)
     return jsonify({'result': 'success'}), 200
 
-"""
+
+@app.route("/normal_distrib_VBD/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
+def VBD_normal(waferId, sessions, structures, coords):
+    sessions = sessions.split(',')
+    sessions = list(set(sessions) & set(get_map_sessions(waferId)))
+    if len(sessions) == 0:
+        return jsonify(["There is no I-V measures in your selected sessions"])
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    if "Compliance" in structures:
+        structures.remove("Compliance")
+
+    return jsonify([VBD_normal_distrib_pos(waferId, sessions, structures, coords), VBD_normal_distrib_neg(waferId, sessions, structures, coords)])
+
+@app.route("/normal_distrib_R/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
+def R_normal(waferId, sessions, structures, coords):
+    sessions = sessions.split(',')
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    return jsonify([R_normal_distrib_pos(waferId, sessions, structures, coords), R_normal_distrib_neg(waferId, sessions, structures, coords)])
+
+
+@app.route("/normal_distrib_Leak/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
+def Leak_normal(waferId, sessions, structures, coords):
+    sessions = sessions.split(',')
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    return jsonify([Leakage_normal_distrib_pos(waferId, sessions, structures, coords), Leakage_normal_distrib_neg(waferId, sessions, structures, coords)])
+
+
+@app.route("/normal_distrib_C/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
+def C_normal(waferId, sessions, structures, coords):
+    sessions = sessions.split(',')
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    return jsonify([C_normal_distrib_pos(waferId, sessions, structures, coords), C_normal_distrib_neg(waferId, sessions, structures, coords)])
+
+
+@app.route("/normal_distrib_Cmes/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
+def Cmes_normal(waferId, sessions, structures, coords):
+    sessions = sessions.split(',')
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    return jsonify([Cmes_normal_distrib_pos(waferId, sessions, structures, coords), Cmes_normal_distrib_neg(waferId, sessions, structures, coords)])
+
+@app.route("/get_normal_values/<waferId>", methods=["GET"])
+def get_normal_values(waferId):
+    return jsonify(get_values(waferId))
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

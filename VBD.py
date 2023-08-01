@@ -227,3 +227,4 @@ def fig_to_base64(fig):
     fig_png_base64 = base64.b64encode(fig_file.read())
     fig_file.close()
     return fig_png_base64.decode('utf-8')
+

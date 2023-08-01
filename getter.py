@@ -119,7 +119,7 @@ def get_compliance(wafer_id, session):
 
 def get_matrices_with_I(wafer_id, structure_id):
     """
-    This function finds all matrices that contain I-V measurements. Used to display buttons in the right place in the User Interface
+    This function finds all matrices that contain I-V measurements. Used to display buttons in the right place in the UI
 
     :param <str> wafer_id: the name of the wafer
     :param <str> structure_id: the name of the structure
@@ -173,8 +173,10 @@ def get_map_structures(wafer_id, session):
             if 'I' in matrix["results"]:
                 structures.append(structure)
                 break
+    if "Compliance" in structures:
+        structures.remove("Compliance")
 
-    return structures
+    return list(set(structures))
 
 
 def get_structures(wafer_id, session):
@@ -183,4 +185,4 @@ def get_structures(wafer_id, session):
     if "Compliance" in structures:
         structures.remove("Compliance")
 
-    return structures
+    return list(set(structures))

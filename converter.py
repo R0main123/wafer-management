@@ -27,3 +27,160 @@ def handle_file(file_path):
     # If file extension is .txt, do nothing
     if file_extension == '.txt' or file_extension == '.tbl' or file_extension == '.lim' or file_extension == '':
         return file_path
+
+
+def traducer(line):
+    if 'date' in line:
+        info = ''.join(line.split('" ')[0].replace('"', '').replace('(', '').split())
+        value = line.split('" ')[1].replace('"', '').replace(')', '')
+
+    else:
+        info = line.split('" ')[0].replace('"', '').replace('(', '').replace(' ', '')
+        value = line.split('" ')[1].replace('"', '').replace(')', '').replace(' ', '')
+
+    return f"{info} : {value}"
+
+def tbl_to_txt(path):
+    if not os.path.exists("Converted Files\\"):
+        os.makedirs("Converted Files\\")
+
+    filename = path.split('@@@')[-1]
+    filename = "".join(filename.split('.')[:-1]) + '.txt'
+    filename = filename.split("\\")[-1]
+    filename = "Converted Files\\"+filename
+
+    translated = []
+    with open(path, 'r') as input:
+        while True:
+            line = next((l for l in input if l.split() == ['(record']), None)
+            if line is None:
+                break
+
+            while ')' not in line:
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            while line.split() != [')']:
+                translated.append(traducer(line))
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            while '(' not in line:
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            while ')' not in line:
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            while ')' in line:
+                translated.append(traducer(line))
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            while ')' not in line:
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            while line.split() != ['("session"']:
+                info = line.split('" "')[1].replace('"', '').replace(')', '').replace('\n', '')
+                line = next((l for l in input), None)
+
+                unit = line.split('" "')[1].replace('"', '').replace(')', '')
+
+                if 'none' in unit:
+                    unit = '\n'
+                line = next((l for l in input), None)
+
+                value = line.split('" ')[1].replace('"', '').replace(')', '').replace('\n', '')
+
+                translated.append(f"{info} : {value} {unit if unit != 'none' else ''}")
+
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+                while '(' not in line:
+                    line = next((l for l in input), None)
+                    if line is None:
+                        break
+
+                if line.split() == ['("session"']:
+                    break
+
+                while ')' not in line:
+                    line = next((l for l in input), None)
+                    if line is None:
+                        break
+
+            while ')' not in line:
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            while line.split() != [')']:
+                translated.append(traducer(line))
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            while '(' not in line:
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            while ')' not in line:
+                line = next((l for l in input), None)
+                if line is None:
+                    break
+
+            nrCurves = int(line.split('" ')[1].replace('"', '').replace(')', ''))
+            line = next((l for l in input), None)
+            if line is None:
+                break
+
+            infos = line.split()[1:nrCurves+1]
+            final = ''
+            for item in infos:
+                item = item.replace('"', '').replace(')', '')
+                final += item + ' '
+            translated.append(f"curveValue : {final[:-1]}\nBOD\n")
+
+
+            line = next((l for l in input if 'sweepValue' in l), None)
+            values = line.replace(')', '')
+            values = values.split()[1:]
+
+            line = next((l for l in input), None)
+            i = 0
+            results = [f"\t{value}" for value in line.split()[1:nrCurves+1]]
+            translated.append(f"{values[i]}{''.join(results)}\n")
+
+            line = next((l for l in input), None)
+            i += 1
+
+            while ')' not in line:
+                results = [f"\t{value}" for value in line.split()[0:nrCurves]]
+                translated.append(f"{values[i]}{''.join(results)}\n")
+
+                line = next((l for l in input), None)
+                i += 1
+
+            results = [f"\t{value}" for value in line.split()[0:nrCurves]]
+            results[-1] = results[-1].replace(')', '')
+            translated.append(f"{values[i]}{''.join(results)}\nEOD\n")
+
+    with open(filename, 'w') as output:
+        for line in translated:
+            output.write(line)
+
+
+#tbl_to_txt("Test Files\\tAL213656_D02.tbl")
+#tbl_to_txt("Test Files\\tAL213656_D02_IV.tbl")
+

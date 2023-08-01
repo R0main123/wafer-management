@@ -37,6 +37,14 @@ export const WaferMapButton =styled(ActionButton)(({ theme }) => ({
     },
 }));
 
+
+export const NormalButton =styled(ActionButton)(({ theme }) => ({
+  backgroundColor: "#d37a43",
+  '&:hover':{
+        backgroundColor: "#cb5500",
+    },
+}));
+
 export const ExcelButton =styled(ActionButton)(({ theme }) => ({
   backgroundColor: "#43d343",
   '&:hover':{
@@ -70,7 +78,7 @@ export const ComplianceButton =styled(ActionButton)(({ theme }) => ({
 
 
 
-export const CardFront = ({ waferId, onCreateExcelClick, onCreatePptClick, onDeleteClick, onWaferMapClick, ...props }) => (
+export const CardFront = ({ waferId, onCreateExcelClick, onCreatePptClick, onDeleteClick, onWaferMapClick, onNormalClick, ...props }) => (
   <WaferCard {...props}>
     <CardContent
     marginBottom={"20px"}>
@@ -79,6 +87,12 @@ export const CardFront = ({ waferId, onCreateExcelClick, onCreatePptClick, onDel
         event.stopPropagation();
         onWaferMapClick(waferId);
       }}>Wafer Map</WaferMapButton>
+
+      <NormalButton variant="contained" onClick={(event) => {
+        event.stopPropagation();
+        onNormalClick(waferId);
+      }}>Normal plots</NormalButton>
+
       <DeleteButton variant="contained" onClick={(event) => {
         event.stopPropagation();
         onDeleteClick(waferId);
