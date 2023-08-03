@@ -2,10 +2,20 @@ from pymongo import MongoClient
 
 
 def get_db_name(db_name="New Wafers"):
+    """
+    Used to know which database has to be opened. Default parameter can be changed manually, so a new database will be created if it doesn't exist yet.
+
+    :param <str> db_name: Name of the database. Please change it to create a new database or switch to another existing
+    :return: Name of the database
+    """
     return db_name
 
 
 def connexion():
+    """
+    Used to connect to the database, so we can manipulate data. /!\ Only use to read data, not to write data in the DB /!\
+    :return: The collection.
+    """
     client = MongoClient('mongodb://localhost:27017/')
     db = client['Measurements']
     collection = db[get_db_name()]
@@ -14,7 +24,7 @@ def connexion():
 
 def get_wafer(wafer_id):
     """
-    This function finds the wafer specified in the database
+    This function finds the wafer specified in the database. /!\ Only use to read data, not to write data in the DB /!\
 
     :param <str> wafer_id: name of the wafer_id
     :return <dict>: the wafer
@@ -45,7 +55,7 @@ def get_types(wafer_id):
     return list(list_of_types)
 
 
-def get_temps(wafer_id=str):
+def get_temps(wafer_id):
     """
         This function finds all the temperatures from the specified wafer in the database
         :param <str> wafer_id: name of the wafer_id
@@ -84,7 +94,7 @@ def get_coords(wafer_id):
     return list(list_of_coords)
 
 
-def get_filenames(wafer_id=str):
+def get_filenames(wafer_id):
     """
         This function finds all the filenames in the specified wafer in the database
         :param <str> wafer_id: name of the wafer_id
@@ -139,6 +149,11 @@ def get_matrices_with_I(wafer_id, structure_id):
 
 
 def get_sessions(wafer_id):
+    """
+    Used to get all sessions inside a given wafer.
+    :param <str> wafer_id: ID of the wafer
+    :return <list of str>: All sessions inside the wafer
+    """
     wafer = get_wafer(wafer_id)
     sessions = [session for session in wafer]
     if "_id" in sessions:
@@ -151,6 +166,11 @@ def get_sessions(wafer_id):
 
 
 def get_map_sessions(wafer_id):
+    """
+    Used to get all sessions that contain I-V measurements (for wafer maps) inside a wafer.
+    :param <str> wafer_id: ID of the wafer
+    :return <list of str>: All sessions with I-V measurements inside the wafer
+    """
     wafer = get_wafer(wafer_id)
     sessions = []
     for session in get_sessions(wafer_id):
@@ -161,11 +181,19 @@ def get_map_sessions(wafer_id):
                 if 'I' in matrix["results"]:
                     sessions.append(session)
                     break
+            break
 
     return list(set(sessions))
 
 
 def get_map_structures(wafer_id, session):
+    """
+    Used to get all structures that contain I-V measurements (for wafer maps) inside the given session of a wafer.
+
+    :param <str> wafer_id: ID of the wafer
+    :param <str> session: Selected session
+    :return <list of str>: All structures that contain I-V measurements inside the session
+    """
     wafer = get_wafer(wafer_id)
     structures = []
     for structure in get_structures(wafer_id, session):
@@ -180,9 +208,186 @@ def get_map_structures(wafer_id, session):
 
 
 def get_structures(wafer_id, session):
+    """
+    Used to get all structures  inside the given session of a wafer.
+
+    :param <str> wafer_id: ID of the wafer
+    :param <str> session: Selected session
+    :return <list of str>: All structures inside the session
+    """
     structures = [structure for structure in get_wafer(wafer_id)[session]]
 
     if "Compliance" in structures:
         structures.remove("Compliance")
+
+    return list(set(structures))
+
+
+def get_R_sessions(wafer_id):
+    """
+    Used to get all sessions that contain R values (for wafer maps)
+    :param <str> wafer_id: ID of the wafer
+    :return <list>: List of all sessions that contain R values
+    """
+    wafer = get_wafer(wafer_id)
+    sessions = []
+    for session in get_sessions(wafer_id):
+        for structure in wafer[session]:
+            if structure == "Compliance":
+                continue
+            for matrix in wafer[session][structure]['matrices']:
+                if 'R' in matrix:
+                    sessions.append(session)
+                    break
+            break
+
+    return list(set(sessions))
+
+
+def get_Leak_sessions(wafer_id):
+    """
+    Used to get all sessions that contain Leak values (for wafer maps)
+    :param <str> wafer_id: ID of the wafer
+    :return <list>: List of all sessions that contain Leak values
+    """
+    wafer = get_wafer(wafer_id)
+    sessions = []
+    for session in get_sessions(wafer_id):
+        for structure in wafer[session]:
+            if structure == "Compliance":
+                continue
+            for matrix in wafer[session][structure]['matrices']:
+                if 'Leak' in matrix:
+                    sessions.append(session)
+                    break
+            break
+
+    return list(set(sessions))
+
+
+def get_C_sessions(wafer_id):
+    """
+    Used to get all sessions that contain C values (for wafer maps)
+    :param <str> wafer_id: ID of the wafer
+    :return <list>: List of all sessions that contain C values
+    """
+    wafer = get_wafer(wafer_id)
+    sessions = []
+    for session in get_sessions(wafer_id):
+        for structure in wafer[session]:
+            if structure == "Compliance":
+                continue
+            for matrix in wafer[session][structure]['matrices']:
+                if matrix.get('Cap') is not None:
+                    if 'C' in matrix['Cap']:
+                        sessions.append(session)
+                    break
+            break
+
+    return list(set(sessions))
+
+
+def get_Cmes_sessions(wafer_id):
+    """
+    Used to get all sessions that contain Cmes values (for wafer maps)
+    :param <str> wafer_id: ID of the wafer
+    :return <list>: List of all sessions that contain Cmes values
+    """
+    wafer = get_wafer(wafer_id)
+    sessions = []
+    for session in get_sessions(wafer_id):
+        for structure in wafer[session]:
+            if structure == "Compliance":
+                continue
+            for matrix in wafer[session][structure]['matrices']:
+                if matrix.get('Cap') is not None:
+                    if 'Cmes' in matrix['Cap']:
+                        sessions.append(session)
+                    break
+            break
+
+
+def get_R_structures(wafer_id, session):
+    """
+    Used to get all structures that contain R values (for wafer maps)
+    :param <str> wafer_id: ID of the wafer
+    :param <str> session: Name of the session
+    :return <list>: List of all structures that contain R values
+    """
+    wafer = get_wafer(wafer_id)
+    structures = []
+    for structure in wafer[session]:
+        if structure == "Compliance":
+            continue
+        for matrix in wafer[session][structure]['matrices']:
+            if 'R' in matrix:
+                structures.append(structure)
+                break
+        break
+
+    return list(set(structures))
+
+
+def get_Leak_structures(wafer_id, session):
+    """
+    Used to get all structures that contain Leak values (for wafer maps)
+    :param <str> wafer_id: ID of the wafer
+    :param <str> session: Name of the session
+    :return <list>: List of all structures that contain Leak values
+    """
+    wafer = get_wafer(wafer_id)
+    structures = []
+    for structure in wafer[session]:
+        if structure == "Compliance":
+            continue
+        for matrix in wafer[session][structure]['matrices']:
+            if 'Leak' in matrix:
+                structures.append(structure)
+                break
+        break
+
+    return list(set(structures))
+
+
+def get_C_structures(wafer_id, session):
+    """
+    Used to get all structures that contain C values (for wafer maps)
+    :param <str> wafer_id: ID of the wafer
+    :param <str> session: Name of the session
+    :return <list>: List of all structures that contain C values
+    """
+    wafer = get_wafer(wafer_id)
+    structures = []
+    for structure in wafer[session]:
+        if structure == "Compliance":
+            continue
+        for matrix in wafer[session][structure]['matrices']:
+            if matrix.get('Cap') is not None:
+                if 'C' in matrix['Cap']:
+                    structures.append(structure)
+                break
+        break
+
+    return list(set(structures))
+
+
+def get_Cmes_structures(wafer_id, session):
+    """
+    Used to get all structures that contain Cmes values (for wafer maps)
+    :param <str> wafer_id: ID of the wafer
+    :param <str> session: Name of the session
+    :return <list>: List of all structures that contain Cmes values
+    """
+    wafer = get_wafer(wafer_id)
+    structures = []
+    for structure in wafer[session]:
+        if structure == "Compliance":
+            continue
+        for matrix in wafer[session][structure]['matrices']:
+            if matrix.get('Cap') is not None:
+                if 'Cmes' in matrix['Cap']:
+                    structures.append(structure)
+                break
+        break
 
     return list(set(structures))

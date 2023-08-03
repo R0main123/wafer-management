@@ -33,22 +33,34 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
+    """
+        Used for set up the app
+    """
     return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route('/static/js/<path:path>')
 def send_js(path):
+    """
+        Used for set up the app
+    """
     return send_from_directory(os.path.join(app.static_folder, 'static', 'js'), path)
 
 
 @app.route('/static/css/<path:path>')
 def send_css(path):
+    """
+        Used for set up the app
+    """
     return send_from_directory(os.path.join(app.static_folder, 'static', 'css'), path)
 
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
+    """
+        Used for set up the app
+    """
     if path != "" and os.path.exists("my-app/build/" + path):
         return send_from_directory("my-app/build", path)
     else:
@@ -57,11 +69,19 @@ def serve(path):
 
 @app.route('/static/<path:path>')
 def send_static_files(path):
+    """
+        Used for set up the app
+    """
     return send_from_directory('my-app/build/static', path)
 
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    """
+    Used for collect files dropped by user. We create an Upload Folder and then handle each file:
+    Step 1: uncompress file if it is a compressed file
+    Step 2: Manage lim files and file without extension
+    """
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
     files = request.files.getlist("file")
@@ -97,6 +117,12 @@ def upload():
 
 @app.route('/options/<checkbox_checked>', methods=['GET', 'POST'])
 def options(checkbox_checked):
+    """
+    Used for registering data in the database. We check if the user wants to register J-V measures.
+    Then, we use the correct function for each type of file (txt, tbl or lim)
+    tbl files are converted into txt.
+    Finally, Upload Folder is cleared
+    """
     if request.method == 'POST':
         start_time = timeit.default_timer()
 
@@ -139,6 +165,9 @@ def options(checkbox_checked):
 
 @app.route('/open')
 def open():
+    """
+    Used for displaying all registered wafers.
+    """
     collection = connexion()
     wafers = collection.find({})
     wafer_ids = []
@@ -150,15 +179,17 @@ def open():
 
 @app.route('/get_structures/<wafer_id>/<session>', methods=['GET'])
 def get_structures_json(wafer_id, session):
-    wafer = get_wafer(wafer_id)
-    structures = []
-    for structure in wafer[session]:
-        structures.append(structure)
-    return jsonify(structures), 200
+    """
+    Used for getting all structures inside a given session in a wafer.
+    """
+    return jsonify(get_structures(wafer_id, session)), 200
 
 
 @app.route('/get_all_structures/<wafer_id>', methods=['GET'])
 def get_all_structures(wafer_id):
+    """
+    Used for getting all structures in all sessions in a wafer.
+    """
     all_structures = []
     sessions = get_sessions(wafer_id)
     for session in sessions:
@@ -170,56 +201,89 @@ def get_all_structures(wafer_id):
 
 @app.route('/get_sessions/<wafer_id>', methods=['GET'])
 def get_sessions_server(wafer_id):
+    """
+    Used for getting all sessions inside a given wafer.
+    """
     return jsonify(get_sessions(wafer_id)), 200
 
 
 @app.route('/get_all_types/<wafer_id>', methods=['GET'])
 def get_all_types(wafer_id):
+    """
+    Used for getting all types of measures inside a given wafer.
+    """
     return jsonify(get_types(wafer_id)), 200
 
 
 @app.route('/get_all_temps/<wafer_id>', methods=['GET'])
 def get_all_temps(wafer_id):
+    """
+    Used for getting all temperatures inside a given wafer.
+    """
     return jsonify(get_temps(wafer_id)), 200
 
 
 @app.route('/get_all_coords/<wafer_id>', methods=['GET'])
 def get_all_coords(wafer_id):
+    """
+    Used for getting all coordinates inside a given wafer.
+    """
     return jsonify(get_coords(wafer_id)), 200
 
 
 @app.route('/get_all_filenames/<wafer_id>', methods=['GET'])
 def get_all_filenames(wafer_id):
+    """
+    Used for getting all filenames inside a given wafer.
+    """
     return jsonify(get_filenames(wafer_id)), 200
 
 
 @app.route('/filter_by_Meas/<wafer_id>/<selectedMeasurement>', methods=['GET'])
 def filter_by_Meas(wafer_id, selectedMeasurement):
+    """
+    Used for displaying all structures that contain the selected type of measure inside the given wafer.
+    """
     return jsonify(filter_by_meas(selectedMeasurement, wafer_id)), 200
 
 
 @app.route('/filter_by_Temps/<wafer_id>/<selectedMeasurement>', methods=['GET'])
 def filter_by_Temps(wafer_id, selectedMeasurement):
+    """
+    Used for displaying all structures that contain the selected temperature inside the given wafer.
+    """
     return jsonify(filter_by_temp(selectedMeasurement, wafer_id)), 200
 
 
 @app.route('/filter_by_Coords/<wafer_id>/<selectedMeasurement>', methods=['GET'])
 def filter_by_Coords(wafer_id, selectedMeasurement):
+    """
+    Used for displaying all structures that contain the selected coordinates inside the given wafer.
+    """
     return jsonify(filter_by_coord(selectedMeasurement, wafer_id)), 200
 
 
 @app.route('/filter_by_Filenames/<wafer_id>/<selectedMeasurement>', methods=['GET'])
 def filter_by_Filenames(wafer_id, selectedMeasurement):
+    """
+    Used for displaying all structures that contain the selected filename inside the given wafer.
+    """
     return jsonify(filter_by_filename(selectedMeasurement, wafer_id)), 200
 
 
 @app.route('/filter_by_Session/<wafer_id>/<selectedMeasurement>', methods=['GET'])
 def filter_by_Session(wafer_id, selectedMeasurement):
+    """
+    Used for displaying all structures that contain the selected session inside the given wafer.
+    """
     return jsonify(filter_by_session(selectedMeasurement, wafer_id)), 200
 
 
 @app.route('/get_matrices/<wafer_id>/<structure_id>', methods=['GET'])
 def get_matrices(wafer_id, structure_id):
+    """
+    Used for getting all dies in the structure selected
+    """
     wafer = get_wafer(wafer_id)
     matrices = []
 
@@ -232,6 +296,9 @@ def get_matrices(wafer_id, structure_id):
 
 @app.route('/excel_structure/<waferId>/<sessions>/<structures>/<types>/<temps>/<files>/<coords>/<file_name>', methods=['GET'])
 def excel_structure_route(waferId, sessions, structures, types, temps, files, coords, file_name):
+    """
+    Used for creating an Excel with selected parameters. We first refactor received information and then call the function
+    """
     sessions = sessions.split(',')
     structures = structures.split(',')
     types = types.split(',')
@@ -245,6 +312,9 @@ def excel_structure_route(waferId, sessions, structures, types, temps, files, co
 
 @app.route('/ppt_structure/<waferId>/<sessions>/<structures>/<types>/<temps>/<files>/<coords>/<file_name>', methods=['GET'])
 def ppt_structure_route(waferId, sessions, structures, types, temps, files, coords, file_name):
+    """
+    Used for creating a Powerpoint with selected parameters. We first refactor received information and then call the function
+    """
     sessions = sessions.split(',')
     structures = structures.split(',')
     types = types.split(',')
@@ -258,6 +328,9 @@ def ppt_structure_route(waferId, sessions, structures, types, temps, files, coor
 
 @app.route('/delete_wafer/<wafer_id>', methods=['DELETE'])
 def delete_wafer(wafer_id):
+    """
+    Used for deleting a wafer
+    """
     client = MongoClient('mongodb://localhost:27017/')
     db = client['Measurements']
     db[get_db_name()].delete_one({'wafer_id': wafer_id})
@@ -266,23 +339,35 @@ def delete_wafer(wafer_id):
 
 @app.route("/get_compl/<waferId>/<session>", methods=["GET"])
 def get_compl(waferId, session):
+    """
+    Used for getting the compliance of the selected session
+    """
     return jsonify(get_compliance(waferId, session))
 
 
 @app.route("/set_compl/<waferId>/<session>/<compliance>")
 def set_compl(waferId, session, compliance):
+    """
+    Used for setting the compliance of the selected session
+    """
     setCompliance(waferId, session, compliance)
     return jsonify({'result': 'success'}), 200
 
 
 @app.route("/create_wafer_map/<waferId>/<session>/<structure>", methods=["GET"])
 def personal_wafer_map(waferId, session, structure):
+    """
+    Used for plotting the wafer map of the selected structure
+    """
     image = create_wafer_map(waferId, session, structure)
     return jsonify(image)
 
 
 @app.route("/plot_selected_matrices/<waferId>/<sessions>/<structures>/<types>/<temps>/<files>/<coords>", methods=["GET"])
 def plot_we_want(waferId, sessions, structures, types, temps, files, coords):
+    """
+    Used for plotting the dies selected with selected parameters. We first refactor received information and then call the function
+    """
     sessions = sessions.split(',')
     structures = structures.split(',')
     types = types.split(',')
@@ -296,16 +381,26 @@ def plot_we_want(waferId, sessions, structures, types, temps, files, coords):
 
 @app.route('/get_map_sessions/<wafer_id>', methods=['GET'])
 def get_map_sessions_server(wafer_id):
+    """
+        Used for getting all sessions that contain I-V measurements (for the wafer map)
+    """
     return jsonify(get_map_sessions(wafer_id)), 200
 
 
 @app.route('/get_map_structures/<wafer_id>/<session>', methods=['GET'])
 def get_map_structures_server(wafer_id, session):
+    """
+        Used for getting all structures that contain I-V measurements (for the wafer map)
+    """
     return jsonify(get_map_structures(wafer_id, session)), 200
 
 
 @app.route('/register_excel_VBD/<waferId>/<sessions>/<structures>/<temps>/<files>/<coords>/<file_name>', methods=['GET'])
 def reg_excel_VBD(waferId, sessions, structures, temps, files, coords, file_name):
+    """
+        Used for saving selected VBDs in an excel file.
+        We first refactor received information and then call the function
+    """
     sessions = sessions.split(',')
     sessions = list(set(sessions) & set(get_map_sessions(waferId)))
     structures = structures.split(',')
@@ -319,6 +414,10 @@ def reg_excel_VBD(waferId, sessions, structures, temps, files, coords, file_name
 
 @app.route("/normal_distrib_VBD/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
 def VBD_normal(waferId, sessions, structures, coords):
+    """
+        Used for plotting the normal plots of selected VBD.
+        We first refactor received information and then call the function
+    """
     sessions = sessions.split(',')
     sessions = list(set(sessions) & set(get_map_sessions(waferId)))
     if len(sessions) == 0:
@@ -334,6 +433,10 @@ def VBD_normal(waferId, sessions, structures, coords):
 
 @app.route("/normal_distrib_R/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
 def R_normal(waferId, sessions, structures, coords):
+    """
+        Used for plotting the normal plots of R.
+        We first refactor received information and then call the function
+    """
     sessions = sessions.split(',')
     structures = structures.split(',')
     coords = coords.replace("),(", ") (")
@@ -344,6 +447,10 @@ def R_normal(waferId, sessions, structures, coords):
 
 @app.route("/normal_distrib_Leak/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
 def Leak_normal(waferId, sessions, structures, coords):
+    """
+        Used for plotting the normal plots of Leak.
+        We first refactor received information and then call the function
+    """
     sessions = sessions.split(',')
     structures = structures.split(',')
     coords = coords.replace("),(", ") (")
@@ -354,6 +461,10 @@ def Leak_normal(waferId, sessions, structures, coords):
 
 @app.route("/normal_distrib_C/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
 def C_normal(waferId, sessions, structures, coords):
+    """
+        Used for plotting the normal plots of C.
+        We first refactor received information and then call the function
+    """
     sessions = sessions.split(',')
     structures = structures.split(',')
     coords = coords.replace("),(", ") (")
@@ -364,6 +475,10 @@ def C_normal(waferId, sessions, structures, coords):
 
 @app.route("/normal_distrib_Cmes/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
 def Cmes_normal(waferId, sessions, structures, coords):
+    """
+        Used for plotting the normal plots of Cmes.
+        We first refactor received information and then call the function
+    """
     sessions = sessions.split(',')
     structures = structures.split(',')
     coords = coords.replace("),(", ") (")
@@ -373,6 +488,9 @@ def Cmes_normal(waferId, sessions, structures, coords):
 
 @app.route("/get_normal_values/<waferId>", methods=["GET"])
 def get_normal_values(waferId):
+    """
+        Used for getting all extracted values in a wafer (Leak, R, C, Cmes and/or VBD)
+    """
     return jsonify(get_values(waferId))
 
 if __name__ == '__main__':

@@ -7,14 +7,22 @@ import probscale
 from scipy.stats import norm, probplot
 
 
-from getter import get_wafer, get_map_structures, get_coords, get_structures, get_sessions
+from getter import get_wafer, get_structures, get_sessions
 from VBD import fig_to_base64
 
+
 def VBD_normal_distrib_pos(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of positive values of VBD inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     VBDs = []
     wafer = get_wafer(wafer_id)
-
-
 
     for session in sessions:
         for structure in structures:
@@ -66,6 +74,15 @@ def VBD_normal_distrib_pos(wafer_id, sessions, structures, dies):
 
 
 def VBD_normal_distrib_neg(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of negative values of VBD inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     VBDs = []
     wafer = get_wafer(wafer_id)
 
@@ -119,6 +136,15 @@ def VBD_normal_distrib_neg(wafer_id, sessions, structures, dies):
 
 
 def Leakage_normal_distrib_pos(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of positive values of Leakage inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     Leaks = []
     wafer = get_wafer(wafer_id)
 
@@ -174,6 +200,15 @@ def Leakage_normal_distrib_pos(wafer_id, sessions, structures, dies):
 
 
 def Leakage_normal_distrib_neg(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of negative values of Leakage inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     Leaks = []
     wafer = get_wafer(wafer_id)
 
@@ -228,6 +263,15 @@ def Leakage_normal_distrib_neg(wafer_id, sessions, structures, dies):
 
 
 def C_normal_distrib_neg(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of negatives values of C inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     Cs = []
     wafer = get_wafer(wafer_id)
 
@@ -280,6 +324,15 @@ def C_normal_distrib_neg(wafer_id, sessions, structures, dies):
 
 
 def C_normal_distrib_pos(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of positive values of C inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     Cs = []
     wafer = get_wafer(wafer_id)
 
@@ -331,6 +384,15 @@ def C_normal_distrib_pos(wafer_id, sessions, structures, dies):
 
 
 def Cmes_normal_distrib_neg(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of negative values of Cmes inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     Cmes = []
     wafer = get_wafer(wafer_id)
 
@@ -383,6 +445,15 @@ def Cmes_normal_distrib_neg(wafer_id, sessions, structures, dies):
 
 
 def Cmes_normal_distrib_pos(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of positive values of Cmes inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     Cmes = []
     wafer = get_wafer(wafer_id)
 
@@ -434,6 +505,15 @@ def Cmes_normal_distrib_pos(wafer_id, sessions, structures, dies):
 
 
 def R_normal_distrib_pos(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of positive values of R inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     Rs = []
     wafer = get_wafer(wafer_id)
 
@@ -485,6 +565,15 @@ def R_normal_distrib_pos(wafer_id, sessions, structures, dies):
 
 
 def R_normal_distrib_neg(wafer_id, sessions, structures, dies):
+    """
+    Used to plot the normal distribution of negative values of R inside a wafer, following selected filters.
+    We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+    :param wafer_id: ID of the wafer
+    :param sessions: Selected sessions
+    :param structures: Selected structures
+    :param dies: Selected dies
+    :return: The plot, converted into base64
+    """
     Rs = []
     wafer = get_wafer(wafer_id)
 
@@ -538,6 +627,11 @@ def R_normal_distrib_neg(wafer_id, sessions, structures, dies):
 
 
 def get_values(wafer_id):
+    """
+    Used to know which extracted value is inside a given wafer, so we display only available options to the user
+    :param wafer_id: ID of the wafer
+    :return: list of all Extracted values inside the wafer
+    """
     values = set()
     wafer = get_wafer(wafer_id)
     for session in get_sessions(wafer_id):
@@ -562,37 +656,3 @@ def get_values(wafer_id):
                     return list(values)
 
     return list(values)
-
-
-
-'''Leakage_normal_distrib_neg("AL678901_D24", ["D24-BR-CapResLeak-t1 Mar 7 2023"],
-                   get_structures("AL678901_D24", "D24-BR-CapResLeak-t1 Mar 7 2023"), get_coords("AL678901_D24"))
-
-
-Leakage_normal_distrib_pos("AL678901_D24", ["D24-BR-CapResLeak-t1 Mar 7 2023"],
-                   get_structures("AL678901_D24", "D24-BR-CapResLeak-t1 Mar 7 2023"), get_coords("AL678901_D24"))
-
-
-C_normal_distrib_neg("AL678901_D24", ["D24-BR-CapResLeak-t1 Mar 7 2023"],
-                   get_structures("AL678901_D24", "D24-BR-CapResLeak-t1 Mar 7 2023"), get_coords("AL678901_D24"))
-
-
-C_normal_distrib_pos("AL678901_D24", ["D24-BR-CapResLeak-t1 Mar 7 2023"],
-                   get_structures("AL678901_D24", "D24-BR-CapResLeak-t1 Mar 7 2023"), get_coords("AL678901_D24"))
-
-
-Cmes_normal_distrib_neg("AL678901_D24", ["D24-BR-CapResLeak-t1 Mar 7 2023"],
-                   get_structures("AL678901_D24", "D24-BR-CapResLeak-t1 Mar 7 2023"), get_coords("AL678901_D24"))
-
-
-Cmes_normal_distrib_pos("AL678901_D24", ["D24-BR-CapResLeak-t1 Mar 7 2023"],
-                   get_structures("AL678901_D24", "D24-BR-CapResLeak-t1 Mar 7 2023"), get_coords("AL678901_D24"))
-
-
-R_normal_distrib_neg("AL678901_D24", ["D24-BR-CapResLeak-t1 Mar 7 2023"],
-                   get_structures("AL678901_D24", "D24-BR-CapResLeak-t1 Mar 7 2023"), get_coords("AL678901_D24"))
-
-
-R_normal_distrib_pos("AL678901_D24", ["D24-BR-CapResLeak-t1 Mar 7 2023"],
-                   get_structures("AL678901_D24", "D24-BR-CapResLeak-t1 Mar 7 2023"), get_coords("AL678901_D24"))
-'''

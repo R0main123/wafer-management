@@ -2,7 +2,6 @@ import os
 import patoolib
 
 
-
 def handle_file(file_path):
     """
     This function takes the path of a file and uncompress and convert it into a txt file.
@@ -30,6 +29,12 @@ def handle_file(file_path):
 
 
 def traducer(line):
+    """
+    Used for converting tbl files into txt files. Parse a line and returns information into the format used in txt files.
+    This function is called in tbl_to_txt.
+    :param <str> line: Line to be parsed
+    :return: Line converted to the format used in the txt files
+    """
     if 'date' in line:
         info = ''.join(line.split('" ')[0].replace('"', '').replace('(', '').split())
         value = line.split('" ')[1].replace('"', '').replace(')', '')
@@ -40,7 +45,12 @@ def traducer(line):
 
     return f"{info} : {value}"
 
+
 def tbl_to_txt(path):
+    """
+    Converts a tbl file into a txt file. The file is read, all information is converted and saved in a list and then we write all at once in an empty txt file.
+    :param path: Path of the file to be converted
+    """
     if not os.path.exists("Converted Files\\"):
         os.makedirs("Converted Files\\")
 
@@ -181,6 +191,4 @@ def tbl_to_txt(path):
             output.write(line)
 
 
-#tbl_to_txt("Test Files\\tAL213656_D02.tbl")
-#tbl_to_txt("Test Files\\tAL213656_D02_IV.tbl")
 

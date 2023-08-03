@@ -10,12 +10,13 @@ from split_data import spliter, dataSpliter, C_spliter, converter_split, convert
 from VBD import calculate_breakdown, get_vectors_in_matrix
 
 
-def create_db(path=str, is_JV=bool):
-
+def create_db(path, is_JV):
     """
-    This function create a database or open it if it already exists, and fill it with measurement information
-    We put all the file's information in a dictionary and then we write all the dictionary in the database, so we just call the db once>
-    This is much faster
+    Used to get information from .txt files.
+    This function creates a database or open it if it already exists, and fill it with measurement information
+    We put all the file's information in a dictionary, and then we write all the dictionary in the database, so we just call the db once.
+    This is much faster.
+    Also, indexes are created if they don't already exist, so searching in the database in faster
 
     :param <str> path: path of the file
     :param <bool> is_JV: True if the user wants to register J-V measurements, False otherwise
@@ -293,6 +294,16 @@ def create_db(path=str, is_JV=bool):
 
 
 def create_db_it(path):
+    """
+    Used to get information from .txt files that contain data for It measurements.
+    This function creates a database or open it if it already exists, and fill it with measurement information
+    We put all the file's information in a dictionary, and then we write all the dictionary in the database, so we just call the db once.
+    This is much faster.
+    Also, indexes are created if they don't already exist, so searching in the database in faster
+
+    :param <str> path: path of the file
+    :return <list>: a list containing all wafers that have been registered
+    """
     client = MongoClient('mongodb://localhost:27017/')
     db = client['Measurements']
     db_name = get_db_name()
@@ -482,6 +493,17 @@ def setCompliance(waferId, session, compliance):
 
 
 def create_db_tbl(path, is_JV):
+    """
+    Used to get information from .tbl files.
+    This function creates a database or open it if it already exists, and fill it with measurement information
+    We put all the file's information in a dictionary, and then we write all the dictionary in the database, so we just call the db once.
+    This is much faster.
+    Also, indexes are created if they don't already exist, so searching in the database in faster
+
+    :param <str> path: path of the file
+    :param <bool> is_JV: True if the user wants to register J-V measurements, False otherwise
+    :return <list>: a list containing all wafers that have been registered
+    """
     client = MongoClient('mongodb://localhost:27017/')
     db = client['Measurements']
     db_name = get_db_name()
@@ -609,7 +631,7 @@ def create_db_tbl(path, is_JV):
 
                 if JV:
                     currents_densities = [float(current) / area for current in currents]
-                    result_2 = [{"V": float(voltages[i]), "I": float(currents_densities[i])} for i in range(len(voltages))]
+                    result_2 = [{"V": float(voltages[i]), "J": float(currents_densities[i])} for i in range(len(voltages))]
 
             elif CV:
                 line = next((l for l in file if '"sweepValue" ' in l), None)
@@ -753,6 +775,14 @@ def create_db_tbl(path, is_JV):
 
 
 def create_db_lim(path):
+    """
+    Used to get information from .lim files.
+    First, we read the lim file and get all information from it in a list.
+    Then, we read the file without extension and merge information from both files.
+    Finally, we write it in the database.
+
+    :param <str> path: path of the file
+    """
     client = MongoClient('mongodb://localhost:27017/')
     db = client['Measurements']
     db_name = get_db_name()

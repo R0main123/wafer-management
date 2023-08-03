@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import axios from 'axios';
 import {DialogActions, DialogContent, DialogTitle} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import {ChoiceButton} from "./FinishedTheme";
 
 function RegisterNewMeasures() {
   const navigate = useNavigate();
@@ -121,7 +122,17 @@ function RegisterNewMeasures() {
   return (
     <ThemeProvider theme={registertheme}>
       <CssBaseline />
+
       <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" className="app">
+        <ChoiceButton variant="contained" color="primary" sx={{
+                    width: 120,
+                    height: 40,
+                    fontSize: 10,
+                  }} onClick={() => {
+                    navigate("/");
+                }}>
+                    Return home
+                </ChoiceButton>
         <div>
           <Infos>Please drag and drop data files below:</Infos>
           <FormatInfos>(Format .txt, .tbl, .tbl.Z or .lim)</FormatInfos>
@@ -158,9 +169,9 @@ function RegisterNewMeasures() {
               </StyledDialogButton>
             </DialogActions>
           </StyledDialog>
-
         </div>
       </Box>
+
     </ThemeProvider>
   )
 }

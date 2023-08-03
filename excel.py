@@ -1,13 +1,29 @@
 import math
 import os
-import timeit
 
 import pandas as pd
 from openpyxl.reader.excel import load_workbook
-from getter import get_wafer, get_structures, get_temps, get_filenames, get_coords, get_map_structures, get_map_sessions
+from getter import get_wafer
 
 
 def wanted_excel(wafer_id, sessions, structures, types, Temps, Files, coords, file_name):
+    """
+    This function creates an Excel file with given information and register it in a folder named following the concerned wafer.
+    We first get all information from the database into a Pandas' DataFrame, and then we write the DataFrame into an Excel.
+    One column is: [name of the session, name of the structure, Unit of the Measure, [Measures]]
+    One sheet is created per die and one file is created per type of measure
+    Size of columns are automatically adjusted for better readability.
+
+    :param wafer_id: ID of the Wafer
+    :param sessions: All sessions that we want to write
+    :param structures: All structures that we want to write
+    :param types: All types that we want to write
+    :param Temps: All temperatures that we want to write
+    :param Files: All files that we want to write
+    :param coords: All coordinates that we want to write
+    :param file_name: Name under which the file will be registered
+
+    """
     if not os.path.exists(wafer_id):
         os.makedirs(wafer_id)
     wafer = get_wafer(wafer_id)
@@ -66,8 +82,10 @@ def wanted_excel(wafer_id, sessions, structures, types, Temps, Files, coords, fi
                                 J = [session, matrix["results"][type]["Temperature"],
                                      matrix["results"][type]["Filename"], 'J (A/cm^2)']
                                 for double in matrix["results"][type]["Values"]:
+                                    print(f"{session}, {structure_id}: {matrix['coordinates']}: {double}")
                                     voltages.append(double["V"])
                                     J.append(double["J"])
+
 
                                 new_df = pd.DataFrame(list(zip(voltages, J)), columns=columns)
                                 df_dict["J"][coord] = df_dict["J"][coord].merge(new_df, left_index=True,
@@ -153,6 +171,18 @@ def wanted_excel(wafer_id, sessions, structures, types, Temps, Files, coords, fi
 
 
 def excel_VBD(wafer_id, sessions, structures, Temps, Files, coords, file_name):
+    """
+    An Excel file is created with all VBDs inside the wafer, following selected filters.
+    3 sheets are created: one for positive values, one for negatives and one for NaN
+    :param wafer_id: ID of the wafer
+    :param sessions: Filtered sessions
+    :param structures: Filtered structures
+    :param Temps: Filtered temperatures
+    :param Files: Filtered files
+    :param coords: Filtered coordinates
+    :param file_name: Name under which the file will be registered
+    :return:
+    """
     if not os.path.exists(wafer_id):
         os.makedirs(wafer_id)
 
@@ -220,6 +250,11 @@ def excel_VBD(wafer_id, sessions, structures, Temps, Files, coords, file_name):
 
 
 def classify_row(row):
+    """
+    Used to know in which sheet the corresponding row has to go
+    :param row: Row of the DataFrame
+    :return: A str : 'Positives', 'Negatives' or 'NaN'
+    """
     for value in row.values:
         numeric_value = pd.to_numeric(value, errors='coerce')
         if pd.notna(numeric_value):

@@ -3,7 +3,6 @@ import math
 import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib.colors as colors
-import seaborn as sns
 import base64
 import io
 from getter import get_wafer
@@ -11,7 +10,7 @@ from getter import get_wafer
 
 def get_compliance(wafer_id, session):
     """
-        This function finds the compliance from the specified structure in the database
+        This function finds the compliance from the specified session in the database
         Returns None if the structure has no compliance registered
         :param <str> wafer_id: name of the wafer_id
         :param <str> session: name of the session
@@ -84,8 +83,8 @@ def calculate_breakdown(X, Y, compliance):
 def get_all_x(wafer_id, session, structure_id):
     """
     This function gets all coordinates x in a structure. Used to create the wafer map.
-    :param <str> session: name of the session
     :param <str> wafer_id: the name of the wafer
+    :param <str> session: name of the session
     :param <str> structure_id: the name of the structure
 
     :return <list>: List of x in the structure
@@ -105,6 +104,7 @@ def get_all_y(wafer_id, session, structure_id):
     """
     This function gets all coordinates y in a structure. Used to create the wafer map.
     :param <str> wafer_id: the name of the wafer
+    :param <str> session: Selected session
     :param <str> structure_id: the name of the structure
 
     :return <list>: List of y in the structure
@@ -124,6 +124,7 @@ def get_vectors_in_matrix(wafer_id, session, structure_id, x, y):
     """
     This function is used to get the values of voltages and current in a matrix. This function is always in parameters for calculate_breakdown
     :param <str> wafer_id: the name of the wafer
+    :param <str> session: Selected session
     :param <str> structure_id: the name of the structure
     :param <str> x: the horizontal coordinate of the matrix
     :param <str> y: the vertical coordinate of the matrix
@@ -155,12 +156,13 @@ def get_vectors_in_matrix(wafer_id, session, structure_id, x, y):
 
 def create_wafer_map(wafer_id, session, structure_id):
     """
-    This function displays a wafer map from a wafer, a structure and a compliance. Zeros are display in white and other values are from Blue to red, like a heatmap
-    By default, compliance is the one registered in the database. If there is not or if tis compliance is never reached, default value is 1e-3.
+    This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on VBD.
+    VBD are taken from the database. If a VBD is 'NaN', it's colored in black.
     :param <str> wafer_id: the name of the wafer
+    :param <str> session: Selected session
     :param <str> structure_id: the name of the structure
 
-    :return <list>: List of x in the structure
+    :return <list>: Plot converted to base64
     """
     compliance = get_compliance(wafer_id, session)
 
@@ -176,15 +178,14 @@ def create_wafer_map(wafer_id, session, structure_id):
 
     wafer = get_wafer(wafer_id)
     for matrix in wafer[session][structure_id]['matrices']:
-        vec_X, vec_Y = get_vectors_in_matrix(wafer_id, session, structure_id, matrix["coordinates"]["x"], matrix["coordinates"]["y"])
-        VBD = calculate_breakdown(vec_X, vec_Y, compliance)[0]
+        VBD = matrix["VBD"]
 
 
         if not (np.isnan(VBD)):
             VBDs[int(float(matrix["coordinates"]["y"]) - min_y), int(float(matrix["coordinates"]["x"]) - min_x)] = VBD
 
         else:
-            VBDs[int(float(matrix["coordinates"]["y"]) - min_y), int(float(matrix["coordinates"]["x"]) - min_x)] = 0
+            VBDs[int(float(matrix["coordinates"]["y"]) - min_y), int(float(matrix["coordinates"]["x"]) - min_x)] = np.inf
 
 
     VBDs[VBDs == 0] = np.nan
@@ -192,11 +193,32 @@ def create_wafer_map(wafer_id, session, structure_id):
     x_ticks = np.linspace(min_x, max_x, VBDs.shape[1])
     y_ticks = np.linspace(min_y, max_y, VBDs.shape[0])
 
-    cmap = colors.LinearSegmentedColormap.from_list(
-        "mycmap", [(0, "blue"), (1, "red")]
-    )
+    if np.all(~np.isfinite(VBDs)):
+        color_matrix = np.zeros(VBDs.shape + (3,))
 
-    sns.heatmap(VBDs, cmap=cmap)
+        color_matrix[np.isnan(VBDs)] = [1, 1, 1]
+        color_matrix[np.isinf(VBDs)] = [0, 0, 0]
+
+        plt.imshow(color_matrix)
+        fig = plt.gcf()
+
+        base64_str = fig_to_base64(fig)
+
+        plt.close(fig)
+
+        return base64_str
+
+    cmap = plt.cm.coolwarm
+    cmap.set_bad(color='white')
+    cmap.set_over(color='black')
+
+
+    vmin = np.min(VBDs[np.isfinite(VBDs)])
+    vmax = np.max(VBDs[np.isfinite(VBDs)])
+    norm = colors.Normalize(vmin=vmin, vmax=vmax)
+
+    max_abs_val = max(abs(np.min(VBDs[np.isfinite(VBDs)])), abs(np.max(VBDs[np.isfinite(VBDs)])))
+    VBDs[VBDs == np.inf] = max_abs_val + math.ceil(max_abs_val * 0.1)
 
     x_interval = max(1, int(len_x/5))
     y_interval = max(1, int(len_y/5))
@@ -205,6 +227,13 @@ def create_wafer_map(wafer_id, session, structure_id):
     plt.yticks(np.arange(0, VBDs.shape[0], y_interval), y_ticks[::y_interval])
 
     plt.title(f"{structure_id} in {wafer_id}. Compliance: {compliance}", pad=30)
+    plt.imshow(VBDs, cmap=cmap, norm=norm, interpolation="none")
+    plt.xlim(min_x, max_x)
+    plt.ylim(min_y, max_y)
+    plt.colorbar()
+    plt.axis('equal')
+
+
 
     fig = plt.gcf()
 

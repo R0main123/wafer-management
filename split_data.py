@@ -1,8 +1,8 @@
 def spliter(line):
     """
     This function takes a line of a header from a .txt file in argument and returns the relevant information in this line
-    :param <str> line: The line you want to extract the information
-    :return: the information needed
+    :param <str> line: The line you want to extract information
+    :return: Information needed
     :rtype: str
     """
     return line.split(' : ')[-1][:-1]
@@ -30,6 +30,11 @@ def C_spliter(line):
 
 
 def converter_split(line):
+    """
+    Used to handle lines when getting data from a tbl file
+    :param <str> line: Line to be handled
+    :return: Line handled
+    """
     line = line.replace('"', '')
     line = line.replace('(', '')
     line = line.replace(')', '')
@@ -40,6 +45,11 @@ def converter_split(line):
 
 
 def converter_split_session(line):
+    """
+    Used to get the name of the session when getting data from a tbl file.
+    :param line: Line to be handled
+    :return: Line handled
+    """
     line = line.replace('"', '')
     line = line.replace('(', '')
     line = line.replace(')', '')
