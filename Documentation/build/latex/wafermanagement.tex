@@ -56,7 +56,6 @@
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
 
-\addto\captionsenglish{\renewcommand{\contentsname}{Contents:}}
 
 \usepackage{sphinxmessages}
 \setcounter{tocdepth}{1}
@@ -85,6 +84,1855 @@
 \phantomsection\label{\detokenize{index::doc}}
 
 
+\sphinxstepscope
+
+
+\chapter{VBD module}
+\label{\detokenize{VBD:module-VBD}}\label{\detokenize{VBD:vbd-module}}\label{\detokenize{VBD::doc}}\index{module@\spxentry{module}!VBD@\spxentry{VBD}}\index{VBD@\spxentry{VBD}!module@\spxentry{module}}\index{calculate\_breakdown() (in module VBD)@\spxentry{calculate\_breakdown()}\spxextra{in module VBD}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VBD:VBD.calculate_breakdown}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{VBD.}}\sphinxbfcode{\sphinxupquote{calculate\_breakdown}}}{\sphinxparam{\DUrole{n,n}{X}}, \sphinxparam{\DUrole{n,n}{Y}}, \sphinxparam{\DUrole{n,n}{compliance}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This functions calculates Voltage breakdown for two vectors given, and a compliance. Default value of the compliance is set to 1e\sphinxhyphen{}3
+:param \textless{}list\textgreater{} X: Values of voltage. Will be converted to a np.array
+:param \textless{}list\textgreater{} Y: Values of current. Will be converted to a np.array and we will take the absolute value of the values
+:param \textless{}float\textgreater{} compliance: Value of compliance. By default is set to 1e\sphinxhyphen{}3
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}float\textgreater{} Breakd\_Volt}
+\sphinxAtStartPar
+Voltage Breakdown. Can be Nan
+
+\sphinxlineitem{Return \textless{}float\textgreater{} Breakd\_Leak}
+\sphinxAtStartPar
+Leakage Breakdown. Can be Nan
+
+\sphinxlineitem{Return \textless{}bool\textgreater{} reached\_compl}
+\sphinxAtStartPar
+True if the current reached compliance, False otherwise. If it’s False, Breakd\_Volt will be Nan
+
+\sphinxlineitem{Return \textless{}float\textgreater{} high\_leak}
+\sphinxAtStartPar
+Compliance if compliance is reached, highest value of the current otherwise
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{create\_wafer\_map() (in module VBD)@\spxentry{create\_wafer\_map()}\spxextra{in module VBD}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VBD:VBD.create_wafer_map}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{VBD.}}\sphinxbfcode{\sphinxupquote{create\_wafer\_map}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on VBD.
+VBD are taken from the database. If a VBD is ‘NaN’, it’s colored in black.
+:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
+:param \textless{}str\textgreater{} session: Selected session
+:param \textless{}str\textgreater{} structure\_id: the name of the structure
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+Plot converted to base64
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{fig\_to\_base64() (in module VBD)@\spxentry{fig\_to\_base64()}\spxextra{in module VBD}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VBD:VBD.fig_to_base64}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{VBD.}}\sphinxbfcode{\sphinxupquote{fig\_to\_base64}}}{\sphinxparam{\DUrole{n,n}{fig}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Function used to convert a png to base64 to help communication between server and User. Used in ppt\_matrix.
+:param \textless{}png\textgreater{} fig: a figure in png format
+:return \textless{}base64\textgreater{}: The converted figure
+
+\end{fulllineitems}
+
+\index{get\_all\_x() (in module VBD)@\spxentry{get\_all\_x()}\spxextra{in module VBD}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VBD:VBD.get_all_x}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{VBD.}}\sphinxbfcode{\sphinxupquote{get\_all\_x}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function gets all coordinates x in a structure. Used to create the wafer map.
+:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
+:param \textless{}str\textgreater{} session: name of the session
+:param \textless{}str\textgreater{} structure\_id: the name of the structure
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of x in the structure
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_all\_y() (in module VBD)@\spxentry{get\_all\_y()}\spxextra{in module VBD}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VBD:VBD.get_all_y}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{VBD.}}\sphinxbfcode{\sphinxupquote{get\_all\_y}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function gets all coordinates y in a structure. Used to create the wafer map.
+:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
+:param \textless{}str\textgreater{} session: Selected session
+:param \textless{}str\textgreater{} structure\_id: the name of the structure
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of y in the structure
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_compliance() (in module VBD)@\spxentry{get\_compliance()}\spxextra{in module VBD}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VBD:VBD.get_compliance}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{VBD.}}\sphinxbfcode{\sphinxupquote{get\_compliance}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function finds the compliance from the specified session in the database
+Returns None if the structure has no compliance registered
+:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
+:param \textless{}str\textgreater{} session: name of the session
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}str\textgreater{}}
+\sphinxAtStartPar
+the compliance in the wafer
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_vectors\_in\_matrix() (in module VBD)@\spxentry{get\_vectors\_in\_matrix()}\spxextra{in module VBD}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VBD:VBD.get_vectors_in_matrix}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{VBD.}}\sphinxbfcode{\sphinxupquote{get\_vectors\_in\_matrix}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure\_id}}, \sphinxparam{\DUrole{n,n}{x}}, \sphinxparam{\DUrole{n,n}{y}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function is used to get the values of voltages and current in a matrix. This function is always in parameters for calculate\_breakdown
+:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
+:param \textless{}str\textgreater{} session: Selected session
+:param \textless{}str\textgreater{} structure\_id: the name of the structure
+:param \textless{}str\textgreater{} x: the horizontal coordinate of the matrix
+:param \textless{}str\textgreater{} y: the vertical coordinate of the matrix
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{} X}
+\sphinxAtStartPar
+The values of voltage
+
+\sphinxlineitem{Return \textless{}list\textgreater{} Y}
+\sphinxAtStartPar
+The values of current
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\chapter{WaferMaps module}
+\label{\detokenize{WaferMaps:module-WaferMaps}}\label{\detokenize{WaferMaps:wafermaps-module}}\label{\detokenize{WaferMaps::doc}}\index{module@\spxentry{module}!WaferMaps@\spxentry{WaferMaps}}\index{WaferMaps@\spxentry{WaferMaps}!module@\spxentry{module}}\index{C\_wafer\_map() (in module WaferMaps)@\spxentry{C\_wafer\_map()}\spxextra{in module WaferMaps}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{WaferMaps:WaferMaps.C_wafer_map}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{WaferMaps.}}\sphinxbfcode{\sphinxupquote{C\_wafer\_map}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on C.
+C are taken from the database.
+:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
+:param \textless{}str\textgreater{} session: Selected session
+:param \textless{}str\textgreater{} structure\_id: the name of the structure
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+Plot converted to base64
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{Cmes\_wafer\_map() (in module WaferMaps)@\spxentry{Cmes\_wafer\_map()}\spxextra{in module WaferMaps}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{WaferMaps:WaferMaps.Cmes_wafer_map}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{WaferMaps.}}\sphinxbfcode{\sphinxupquote{Cmes\_wafer\_map}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on Cmes.
+Cmes are taken from the database.
+:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
+:param \textless{}str\textgreater{} session: Selected session
+:param \textless{}str\textgreater{} structure\_id: the name of the structure
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+Plot converted to base64
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{Leak\_wafer\_map() (in module WaferMaps)@\spxentry{Leak\_wafer\_map()}\spxextra{in module WaferMaps}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{WaferMaps:WaferMaps.Leak_wafer_map}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{WaferMaps.}}\sphinxbfcode{\sphinxupquote{Leak\_wafer\_map}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on Leak.
+Leak are taken from the database.
+:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
+:param \textless{}str\textgreater{} session: Selected session
+:param \textless{}str\textgreater{} structure\_id: the name of the structure
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+Plot converted to base64
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{R\_wafer\_map() (in module WaferMaps)@\spxentry{R\_wafer\_map()}\spxextra{in module WaferMaps}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{WaferMaps:WaferMaps.R_wafer_map}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{WaferMaps.}}\sphinxbfcode{\sphinxupquote{R\_wafer\_map}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on R.
+R are taken from the database. If an R is a broken value, like 999999 or 999997, it’s colored in black.
+:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
+:param \textless{}str\textgreater{} session: Selected session
+:param \textless{}str\textgreater{} structure\_id: the name of the structure
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+Plot converted to base64
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\chapter{app module}
+\label{\detokenize{app:module-app}}\label{\detokenize{app:app-module}}\label{\detokenize{app::doc}}\index{module@\spxentry{module}!app@\spxentry{app}}\index{app@\spxentry{app}!module@\spxentry{module}}\index{C\_normal() (in module app)@\spxentry{C\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.C_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{C\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for plotting the normal plots of C.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{Cmes\_normal() (in module app)@\spxentry{Cmes\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.Cmes_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{Cmes\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for plotting the normal plots of Cmes.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{Leak\_normal() (in module app)@\spxentry{Leak\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.Leak_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{Leak\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for plotting the normal plots of Leak.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{R\_normal() (in module app)@\spxentry{R\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.R_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{R\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for plotting the normal plots of R.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{VBD\_normal() (in module app)@\spxentry{VBD\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.VBD_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{VBD\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for plotting the normal plots of selected VBD.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{delete\_wafer() (in module app)@\spxentry{delete\_wafer()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.delete_wafer}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{delete\_wafer}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for deleting a wafer
+
+\end{fulllineitems}
+
+\index{excel\_structure\_route() (in module app)@\spxentry{excel\_structure\_route()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.excel_structure_route}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{excel\_structure\_route}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{types}}, \sphinxparam{\DUrole{n,n}{temps}}, \sphinxparam{\DUrole{n,n}{files}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for creating an Excel with selected parameters. We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{filter\_by\_Coords() (in module app)@\spxentry{filter\_by\_Coords()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.filter_by_Coords}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{filter\_by\_Coords}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{selectedMeasurement}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for displaying all structures that contain the selected coordinates inside the given wafer.
+
+\end{fulllineitems}
+
+\index{filter\_by\_Filenames() (in module app)@\spxentry{filter\_by\_Filenames()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.filter_by_Filenames}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{filter\_by\_Filenames}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{selectedMeasurement}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for displaying all structures that contain the selected filename inside the given wafer.
+
+\end{fulllineitems}
+
+\index{filter\_by\_Meas() (in module app)@\spxentry{filter\_by\_Meas()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.filter_by_Meas}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{filter\_by\_Meas}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{selectedMeasurement}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for displaying all structures that contain the selected type of measure inside the given wafer.
+
+\end{fulllineitems}
+
+\index{filter\_by\_Session() (in module app)@\spxentry{filter\_by\_Session()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.filter_by_Session}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{filter\_by\_Session}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{selectedMeasurement}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for displaying all structures that contain the selected session inside the given wafer.
+
+\end{fulllineitems}
+
+\index{filter\_by\_Temps() (in module app)@\spxentry{filter\_by\_Temps()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.filter_by_Temps}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{filter\_by\_Temps}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{selectedMeasurement}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for displaying all structures that contain the selected temperature inside the given wafer.
+
+\end{fulllineitems}
+
+\index{get\_all\_coords() (in module app)@\spxentry{get\_all\_coords()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_all_coords}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_all\_coords}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all coordinates inside a given wafer.
+
+\end{fulllineitems}
+
+\index{get\_all\_filenames() (in module app)@\spxentry{get\_all\_filenames()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_all_filenames}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_all\_filenames}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all filenames inside a given wafer.
+
+\end{fulllineitems}
+
+\index{get\_all\_structures() (in module app)@\spxentry{get\_all\_structures()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_all_structures}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_all\_structures}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all structures in all sessions in a wafer.
+
+\end{fulllineitems}
+
+\index{get\_all\_temps() (in module app)@\spxentry{get\_all\_temps()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_all_temps}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_all\_temps}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all temperatures inside a given wafer.
+
+\end{fulllineitems}
+
+\index{get\_all\_types() (in module app)@\spxentry{get\_all\_types()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_all_types}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_all\_types}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all types of measures inside a given wafer.
+
+\end{fulllineitems}
+
+\index{get\_compl() (in module app)@\spxentry{get\_compl()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_compl}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_compl}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting the compliance of the selected session
+
+\end{fulllineitems}
+
+\index{get\_map\_sessions\_server() (in module app)@\spxentry{get\_map\_sessions\_server()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_map_sessions_server}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_map\_sessions\_server}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all sessions that contain I\sphinxhyphen{}V measurements (for the wafer map)
+
+\end{fulllineitems}
+
+\index{get\_map\_structures\_server() (in module app)@\spxentry{get\_map\_structures\_server()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_map_structures_server}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_map\_structures\_server}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all structures that contain I\sphinxhyphen{}V measurements (for the wafer map)
+
+\end{fulllineitems}
+
+\index{get\_matrices() (in module app)@\spxentry{get\_matrices()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_matrices}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_matrices}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{structure\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all dies in the structure selected
+
+\end{fulllineitems}
+
+\index{get\_normal\_values() (in module app)@\spxentry{get\_normal\_values()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_normal_values}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_normal\_values}}}{\sphinxparam{\DUrole{n,n}{waferId}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all extracted values in a wafer (Leak, R, C, Cmes and/or VBD)
+
+\end{fulllineitems}
+
+\index{get\_sessions\_server() (in module app)@\spxentry{get\_sessions\_server()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_sessions_server}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_sessions\_server}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all sessions inside a given wafer.
+
+\end{fulllineitems}
+
+\index{get\_structures\_json() (in module app)@\spxentry{get\_structures\_json()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_structures_json}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_structures\_json}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all structures inside a given session in a wafer.
+
+\end{fulllineitems}
+
+\index{index() (in module app)@\spxentry{index()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.index}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{index}}}{}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for set up the app
+
+\end{fulllineitems}
+
+\index{open() (in module app)@\spxentry{open()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.open}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{open}}}{}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for displaying all registered wafers.
+
+\end{fulllineitems}
+
+\index{options() (in module app)@\spxentry{options()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.options}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{options}}}{\sphinxparam{\DUrole{n,n}{checkbox\_checked}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for registering data in the database. We check if the user wants to register J\sphinxhyphen{}V measures.
+Then, we use the correct function for each type of file (txt, tbl or lim)
+tbl files are converted into txt.
+Finally, Upload Folder is cleared
+
+\end{fulllineitems}
+
+\index{personal\_wafer\_map() (in module app)@\spxentry{personal\_wafer\_map()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.personal_wafer_map}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{personal\_wafer\_map}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for plotting the wafer map of the selected structure
+
+\end{fulllineitems}
+
+\index{plot\_we\_want() (in module app)@\spxentry{plot\_we\_want()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.plot_we_want}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{plot\_we\_want}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{types}}, \sphinxparam{\DUrole{n,n}{temps}}, \sphinxparam{\DUrole{n,n}{files}}, \sphinxparam{\DUrole{n,n}{coords}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for plotting the dies selected with selected parameters. We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{ppt\_structure\_route() (in module app)@\spxentry{ppt\_structure\_route()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.ppt_structure_route}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{ppt\_structure\_route}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{types}}, \sphinxparam{\DUrole{n,n}{temps}}, \sphinxparam{\DUrole{n,n}{files}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for creating a Powerpoint with selected parameters. We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{reg\_excel\_VBD() (in module app)@\spxentry{reg\_excel\_VBD()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.reg_excel_VBD}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{reg\_excel\_VBD}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{temps}}, \sphinxparam{\DUrole{n,n}{files}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for saving selected VBDs in an excel file.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{send\_css() (in module app)@\spxentry{send\_css()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.send_css}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{send\_css}}}{\sphinxparam{\DUrole{n,n}{path}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for set up the app
+
+\end{fulllineitems}
+
+\index{send\_js() (in module app)@\spxentry{send\_js()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.send_js}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{send\_js}}}{\sphinxparam{\DUrole{n,n}{path}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for set up the app
+
+\end{fulllineitems}
+
+\index{send\_static\_files() (in module app)@\spxentry{send\_static\_files()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.send_static_files}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{send\_static\_files}}}{\sphinxparam{\DUrole{n,n}{path}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for set up the app
+
+\end{fulllineitems}
+
+\index{serve() (in module app)@\spxentry{serve()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.serve}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{serve}}}{\sphinxparam{\DUrole{n,n}{path}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for set up the app
+
+\end{fulllineitems}
+
+\index{set\_compl() (in module app)@\spxentry{set\_compl()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.set_compl}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{set\_compl}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{compliance}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for setting the compliance of the selected session
+
+\end{fulllineitems}
+
+\index{upload() (in module app)@\spxentry{upload()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.upload}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{upload}}}{}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for collect files dropped by user. We create an Upload Folder and then handle each file:
+Step 1: uncompress file if it is a compressed file
+Step 2: Manage lim files and file without extension
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\chapter{converter module}
+\label{\detokenize{converter:module-converter}}\label{\detokenize{converter:converter-module}}\label{\detokenize{converter::doc}}\index{module@\spxentry{module}!converter@\spxentry{converter}}\index{converter@\spxentry{converter}!module@\spxentry{module}}\index{handle\_file() (in module converter)@\spxentry{handle\_file()}\spxextra{in module converter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{converter:converter.handle_file}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{converter.}}\sphinxbfcode{\sphinxupquote{handle\_file}}}{\sphinxparam{\DUrole{n,n}{file\_path}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function takes the path of a file and uncompress and convert it into a txt file.
+Files that can be handled: .tbl.Z, .tbl and .txt
+After conversion, the original file is deleted from the DataFiles folder
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file\_path}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} path of the file to be converted
+
+\sphinxlineitem{Return \textless{}str\textgreater{}}
+\sphinxAtStartPar
+path of the converted file
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{tbl\_to\_txt() (in module converter)@\spxentry{tbl\_to\_txt()}\spxextra{in module converter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{converter:converter.tbl_to_txt}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{converter.}}\sphinxbfcode{\sphinxupquote{tbl\_to\_txt}}}{\sphinxparam{\DUrole{n,n}{path}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Converts a tbl file into a txt file. The file is read, all information is converted and saved in a list and then we write all at once in an empty txt file.
+:param path: Path of the file to be converted
+
+\end{fulllineitems}
+
+\index{traducer() (in module converter)@\spxentry{traducer()}\spxextra{in module converter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{converter:converter.traducer}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{converter.}}\sphinxbfcode{\sphinxupquote{traducer}}}{\sphinxparam{\DUrole{n,n}{line}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for converting tbl files into txt files. Parse a line and returns information into the format used in txt files.
+This function is called in tbl\_to\_txt.
+:param \textless{}str\textgreater{} line: Line to be parsed
+:return: Line converted to the format used in the txt files
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\chapter{excel module}
+\label{\detokenize{excel:module-excel}}\label{\detokenize{excel:excel-module}}\label{\detokenize{excel::doc}}\index{module@\spxentry{module}!excel@\spxentry{excel}}\index{excel@\spxentry{excel}!module@\spxentry{module}}\index{classify\_row() (in module excel)@\spxentry{classify\_row()}\spxextra{in module excel}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{excel:excel.classify_row}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{excel.}}\sphinxbfcode{\sphinxupquote{classify\_row}}}{\sphinxparam{\DUrole{n,n}{row}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to know in which sheet the corresponding row has to go
+:param row: Row of the DataFrame
+:return: A str : ‘Positives’, ‘Negatives’ or ‘NaN’
+
+\end{fulllineitems}
+
+\index{excel\_VBD() (in module excel)@\spxentry{excel\_VBD()}\spxextra{in module excel}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{excel:excel.excel_VBD}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{excel.}}\sphinxbfcode{\sphinxupquote{excel\_VBD}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{Temps}}, \sphinxparam{\DUrole{n,n}{Files}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+An Excel file is created with all VBDs inside the wafer, following selected filters.
+3 sheets are created: one for positive values, one for negatives and one for NaN
+:param wafer\_id: ID of the wafer
+:param sessions: Filtered sessions
+:param structures: Filtered structures
+:param Temps: Filtered temperatures
+:param Files: Filtered files
+:param coords: Filtered coordinates
+:param file\_name: Name under which the file will be registered
+:return:
+
+\end{fulllineitems}
+
+\index{wanted\_excel() (in module excel)@\spxentry{wanted\_excel()}\spxextra{in module excel}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{excel:excel.wanted_excel}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{excel.}}\sphinxbfcode{\sphinxupquote{wanted\_excel}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{types}}, \sphinxparam{\DUrole{n,n}{Temps}}, \sphinxparam{\DUrole{n,n}{Files}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function creates an Excel file with given information and register it in a folder named following the concerned wafer.
+We first get all information from the database into a Pandas’ DataFrame, and then we write the DataFrame into an Excel.
+One column is: {[}name of the session, name of the structure, Unit of the Measure, {[}Measures{]}{]}
+One sheet is created per die and one file is created per type of measure
+Size of columns are automatically adjusted for better readability.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the Wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} All sessions that we want to write
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} All structures that we want to write
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{types}} \textendash{} All types that we want to write
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{Temps}} \textendash{} All temperatures that we want to write
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{Files}} \textendash{} All files that we want to write
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} \textendash{} All coordinates that we want to write
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file\_name}} \textendash{} Name under which the file will be registered
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\chapter{filter module}
+\label{\detokenize{filter:module-filter}}\label{\detokenize{filter:filter-module}}\label{\detokenize{filter::doc}}\index{module@\spxentry{module}!filter@\spxentry{filter}}\index{filter@\spxentry{filter}!module@\spxentry{module}}\index{filter\_by\_coord() (in module filter)@\spxentry{filter\_by\_coord()}\spxextra{in module filter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{filter:filter.filter_by_coord}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{filter.}}\sphinxbfcode{\sphinxupquote{filter\_by\_coord}}}{\sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function browse the database to find all structures that have a matrix with the couple of coordinates specified.
+:param \textless{}list\textgreater{} coords: List of str, contains all couples of coordinates that want to be matched
+:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+A list of structures that contains the specified coordinates
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{filter\_by\_filename() (in module filter)@\spxentry{filter\_by\_filename()}\spxextra{in module filter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{filter:filter.filter_by_filename}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{filter.}}\sphinxbfcode{\sphinxupquote{filter\_by\_filename}}}{\sphinxparam{\DUrole{n,n}{file=\textless{}class \textquotesingle{}str\textquotesingle{}\textgreater{}}}, \sphinxparam{\DUrole{n,n}{wafer\_id=\textless{}class \textquotesingle{}str\textquotesingle{}\textgreater{}}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function browse the database to find all structures that have measurements from thr file specified.
+:param \textless{}list\textgreater{} files: List of str, contains all files that wants to be matched
+:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+A list of structures that contains the specified files
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{filter\_by\_meas() (in module filter)@\spxentry{filter\_by\_meas()}\spxextra{in module filter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{filter:filter.filter_by_meas}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{filter.}}\sphinxbfcode{\sphinxupquote{filter\_by\_meas}}}{\sphinxparam{\DUrole{n,n}{meas}}, \sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function browse the database to find all structures that have the types of measurements specified.
+:param \textless{}list\textgreater{} meas: List of str, contains all Measurements that wants to be matched
+:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+A list of structures that contains the specified measurements
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{filter\_by\_session() (in module filter)@\spxentry{filter\_by\_session()}\spxextra{in module filter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{filter:filter.filter_by_session}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{filter.}}\sphinxbfcode{\sphinxupquote{filter\_by\_session}}}{\sphinxparam{\DUrole{n,n}{session=\textless{}class \textquotesingle{}str\textquotesingle{}\textgreater{}}}, \sphinxparam{\DUrole{n,n}{wafer\_id=\textless{}class \textquotesingle{}str\textquotesingle{}\textgreater{}}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function browse the database to find all structures that have measurements from thr file specified.
+:param \textless{}list\textgreater{} files: List of str, contains all files that wants to be matched
+:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+A list of structures that contains the specified files
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{filter\_by\_temp() (in module filter)@\spxentry{filter\_by\_temp()}\spxextra{in module filter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{filter:filter.filter_by_temp}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{filter.}}\sphinxbfcode{\sphinxupquote{filter\_by\_temp}}}{\sphinxparam{\DUrole{n,n}{temps}}, \sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function browse the database to find all structures that have the temperature specified.
+:param \textless{}list\textgreater{} temps: List of str, contains all temperatures that wants to be matched
+:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+A list of structures that contains the specified temperatures
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\chapter{getter module}
+\label{\detokenize{getter:module-getter}}\label{\detokenize{getter:getter-module}}\label{\detokenize{getter::doc}}\index{module@\spxentry{module}!getter@\spxentry{getter}}\index{getter@\spxentry{getter}!module@\spxentry{module}}\index{connexion() (in module getter)@\spxentry{connexion()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.connexion}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{connexion}}}{}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to connect to the database, so we can manipulate data. /!Only use to read data, not to write data in the DB /!    :return: The collection.
+
+\end{fulllineitems}
+
+\index{get\_C\_sessions() (in module getter)@\spxentry{get\_C\_sessions()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_C_sessions}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_C\_sessions}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all sessions that contain C values (for wafer maps)
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:return \textless{}list\textgreater{}: List of all sessions that contain C values
+
+\end{fulllineitems}
+
+\index{get\_C\_structures() (in module getter)@\spxentry{get\_C\_structures()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_C_structures}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_C\_structures}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain C values (for wafer maps)
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:param \textless{}str\textgreater{} session: Name of the session
+:return \textless{}list\textgreater{}: List of all structures that contain C values
+
+\end{fulllineitems}
+
+\index{get\_Cmes\_sessions() (in module getter)@\spxentry{get\_Cmes\_sessions()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_Cmes_sessions}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_Cmes\_sessions}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all sessions that contain Cmes values (for wafer maps)
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:return \textless{}list\textgreater{}: List of all sessions that contain Cmes values
+
+\end{fulllineitems}
+
+\index{get\_Cmes\_structures() (in module getter)@\spxentry{get\_Cmes\_structures()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_Cmes_structures}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_Cmes\_structures}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain Cmes values (for wafer maps)
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:param \textless{}str\textgreater{} session: Name of the session
+:return \textless{}list\textgreater{}: List of all structures that contain Cmes values
+
+\end{fulllineitems}
+
+\index{get\_Leak\_sessions() (in module getter)@\spxentry{get\_Leak\_sessions()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_Leak_sessions}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_Leak\_sessions}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all sessions that contain Leak values (for wafer maps)
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:return \textless{}list\textgreater{}: List of all sessions that contain Leak values
+
+\end{fulllineitems}
+
+\index{get\_Leak\_structures() (in module getter)@\spxentry{get\_Leak\_structures()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_Leak_structures}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_Leak\_structures}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain Leak values (for wafer maps)
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:param \textless{}str\textgreater{} session: Name of the session
+:return \textless{}list\textgreater{}: List of all structures that contain Leak values
+
+\end{fulllineitems}
+
+\index{get\_R\_sessions() (in module getter)@\spxentry{get\_R\_sessions()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_R_sessions}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_R\_sessions}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all sessions that contain R values (for wafer maps)
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:return \textless{}list\textgreater{}: List of all sessions that contain R values
+
+\end{fulllineitems}
+
+\index{get\_R\_structures() (in module getter)@\spxentry{get\_R\_structures()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_R_structures}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_R\_structures}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain R values (for wafer maps)
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:param \textless{}str\textgreater{} session: Name of the session
+:return \textless{}list\textgreater{}: List of all structures that contain R values
+
+\end{fulllineitems}
+
+\index{get\_compliance() (in module getter)@\spxentry{get\_compliance()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_compliance}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_compliance}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function finds the compliance from the specified structure in the database
+Returns None if the structure has no compliance registered
+:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
+:param \textless{}str\textgreater{} session: name of the session
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}str\textgreater{}}
+\sphinxAtStartPar
+the compliance in the wafer
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_coords() (in module getter)@\spxentry{get\_coords()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_coords}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_coords}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function finds all the coordinates from the specified wafer in the database
+:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
+:return \textless{}list\textgreater{}: the list of coordinates in the wafer
+
+\end{fulllineitems}
+
+\index{get\_db\_name() (in module getter)@\spxentry{get\_db\_name()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_db_name}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_db\_name}}}{\sphinxparam{\DUrole{n,n}{db\_name}\DUrole{o,o}{=}\DUrole{default_value}{\textquotesingle{}New Wafers\textquotesingle{}}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to know which database has to be opened. Default parameter can be changed manually, so a new database will be created if it doesn’t exist yet.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{db\_name}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the database. Please change it to create a new database or switch to another existing
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Name of the database
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_filenames() (in module getter)@\spxentry{get\_filenames()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_filenames}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_filenames}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function finds all the filenames in the specified wafer in the database
+:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
+:return \textless{}list\textgreater{}: the list of filenames in the wafer
+
+\end{fulllineitems}
+
+\index{get\_map\_sessions() (in module getter)@\spxentry{get\_map\_sessions()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_map_sessions}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_map\_sessions}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all sessions that contain I\sphinxhyphen{}V measurements (for wafer maps) inside a wafer.
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:return \textless{}list of str\textgreater{}: All sessions with I\sphinxhyphen{}V measurements inside the wafer
+
+\end{fulllineitems}
+
+\index{get\_map\_structures() (in module getter)@\spxentry{get\_map\_structures()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_map_structures}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_map\_structures}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain I\sphinxhyphen{}V measurements (for wafer maps) inside the given session of a wafer.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list of str\textgreater{}}
+\sphinxAtStartPar
+All structures that contain I\sphinxhyphen{}V measurements inside the session
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_matrices\_with\_I() (in module getter)@\spxentry{get\_matrices\_with\_I()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_matrices_with_I}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_matrices\_with\_I}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{structure\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function finds all matrices that contain I\sphinxhyphen{}V measurements. Used to display buttons in the right place in the UI
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structure\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the structure
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of matrices that contains I\sphinxhyphen{}V measurements
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_sessions() (in module getter)@\spxentry{get\_sessions()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_sessions}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_sessions}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all sessions inside a given wafer.
+:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
+:return \textless{}list of str\textgreater{}: All sessions inside the wafer
+
+\end{fulllineitems}
+
+\index{get\_structures() (in module getter)@\spxentry{get\_structures()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_structures}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_structures}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures  inside the given session of a wafer.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list of str\textgreater{}}
+\sphinxAtStartPar
+All structures inside the session
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_temps() (in module getter)@\spxentry{get\_temps()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_temps}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_temps}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function finds all the temperatures from the specified wafer in the database
+:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
+:return \textless{}list\textgreater{}: the list of temperatures in the wafer
+
+\end{fulllineitems}
+
+\index{get\_types() (in module getter)@\spxentry{get\_types()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_types}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_types}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function finds all the types of measurements from the specified wafer in the database
+:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
+:return \textless{}list\textgreater{}: the list of types in the wafer
+
+\end{fulllineitems}
+
+\index{get\_wafer() (in module getter)@\spxentry{get\_wafer()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_wafer}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_wafer}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function finds the wafer specified in the database. /!Only use to read data, not to write data in the DB /!
+:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
+:return \textless{}dict\textgreater{}: the wafer
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\chapter{wafer\sphinxhyphen{}management}
+\label{\detokenize{modules:wafer-management}}\label{\detokenize{modules::doc}}
+\sphinxstepscope
+
+
+\section{new\_manage\_DB module}
+\label{\detokenize{new_manage_DB:module-new_manage_DB}}\label{\detokenize{new_manage_DB:new-manage-db-module}}\label{\detokenize{new_manage_DB::doc}}\index{module@\spxentry{module}!new\_manage\_DB@\spxentry{new\_manage\_DB}}\index{new\_manage\_DB@\spxentry{new\_manage\_DB}!module@\spxentry{module}}\index{create\_db() (in module new\_manage\_DB)@\spxentry{create\_db()}\spxextra{in module new\_manage\_DB}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{new_manage_DB:new_manage_DB.create_db}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{new\_manage\_DB.}}\sphinxbfcode{\sphinxupquote{create\_db}}}{\sphinxparam{\DUrole{n,n}{path}}, \sphinxparam{\DUrole{n,n}{is\_JV}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get information from .txt files.
+This function creates a database or open it if it already exists, and fill it with measurement information
+We put all the file’s information in a dictionary, and then we write all the dictionary in the database, so we just call the db once.
+This is much faster.
+Also, indexes are created if they don’t already exist, so searching in the database in faster
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} path of the file
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{is\_JV}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}bool\textgreater{}}}) \textendash{} True if the user wants to register J\sphinxhyphen{}V measurements, False otherwise
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+a list containing all wafers that have been registered
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{create\_db\_it() (in module new\_manage\_DB)@\spxentry{create\_db\_it()}\spxextra{in module new\_manage\_DB}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{new_manage_DB:new_manage_DB.create_db_it}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{new\_manage\_DB.}}\sphinxbfcode{\sphinxupquote{create\_db\_it}}}{\sphinxparam{\DUrole{n,n}{path}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get information from .txt files that contain data for It measurements.
+This function creates a database or open it if it already exists, and fill it with measurement information
+We put all the file’s information in a dictionary, and then we write all the dictionary in the database, so we just call the db once.
+This is much faster.
+Also, indexes are created if they don’t already exist, so searching in the database in faster
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} path of the file
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+a list containing all wafers that have been registered
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{create\_db\_lim() (in module new\_manage\_DB)@\spxentry{create\_db\_lim()}\spxextra{in module new\_manage\_DB}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{new_manage_DB:new_manage_DB.create_db_lim}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{new\_manage\_DB.}}\sphinxbfcode{\sphinxupquote{create\_db\_lim}}}{\sphinxparam{\DUrole{n,n}{path}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get information from .lim files.
+First, we read the lim file and get all information from it in a list.
+Then, we read the file without extension and merge information from both files.
+Finally, we write it in the database.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} path of the file
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{create\_db\_tbl() (in module new\_manage\_DB)@\spxentry{create\_db\_tbl()}\spxextra{in module new\_manage\_DB}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{new_manage_DB:new_manage_DB.create_db_tbl}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{new\_manage\_DB.}}\sphinxbfcode{\sphinxupquote{create\_db\_tbl}}}{\sphinxparam{\DUrole{n,n}{path}}, \sphinxparam{\DUrole{n,n}{is\_JV}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get information from .tbl files.
+This function creates a database or open it if it already exists, and fill it with measurement information
+We put all the file’s information in a dictionary, and then we write all the dictionary in the database, so we just call the db once.
+This is much faster.
+Also, indexes are created if they don’t already exist, so searching in the database in faster
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} path of the file
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{is\_JV}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}bool\textgreater{}}}) \textendash{} True if the user wants to register J\sphinxhyphen{}V measurements, False otherwise
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+a list containing all wafers that have been registered
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{setCompliance() (in module new\_manage\_DB)@\spxentry{setCompliance()}\spxextra{in module new\_manage\_DB}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{new_manage_DB:new_manage_DB.setCompliance}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{new\_manage\_DB.}}\sphinxbfcode{\sphinxupquote{setCompliance}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{compliance}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\section{normal\_plots module}
+\label{\detokenize{normal_plots:module-normal_plots}}\label{\detokenize{normal_plots:normal-plots-module}}\label{\detokenize{normal_plots::doc}}\index{module@\spxentry{module}!normal\_plots@\spxentry{normal\_plots}}\index{normal\_plots@\spxentry{normal\_plots}!module@\spxentry{module}}\index{C\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{C\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.C_normal_distrib_neg}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{C\_normal\_distrib\_neg}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of negatives values of C inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{C\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{C\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.C_normal_distrib_pos}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{C\_normal\_distrib\_pos}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of positive values of C inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{Cmes\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{Cmes\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.Cmes_normal_distrib_neg}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{Cmes\_normal\_distrib\_neg}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of negative values of Cmes inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{Cmes\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{Cmes\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.Cmes_normal_distrib_pos}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{Cmes\_normal\_distrib\_pos}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of positive values of Cmes inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{Leakage\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{Leakage\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.Leakage_normal_distrib_neg}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{Leakage\_normal\_distrib\_neg}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of negative values of Leakage inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{Leakage\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{Leakage\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.Leakage_normal_distrib_pos}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{Leakage\_normal\_distrib\_pos}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of positive values of Leakage inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{R\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{R\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.R_normal_distrib_neg}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{R\_normal\_distrib\_neg}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of negative values of R inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{R\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{R\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.R_normal_distrib_pos}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{R\_normal\_distrib\_pos}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of positive values of R inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{VBD\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{VBD\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.VBD_normal_distrib_neg}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{VBD\_normal\_distrib\_neg}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of negative values of VBD inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{VBD\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{VBD\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.VBD_normal_distrib_pos}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{VBD\_normal\_distrib\_pos}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{dies}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the normal distribution of positive values of VBD inside a wafer, following selected filters.
+We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param dies: Selected dies
+:return: The plot, converted into base64
+
+\end{fulllineitems}
+
+\index{get\_values() (in module normal\_plots)@\spxentry{get\_values()}\spxextra{in module normal\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{normal_plots:normal_plots.get_values}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{normal\_plots.}}\sphinxbfcode{\sphinxupquote{get\_values}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to know which extracted value is inside a given wafer, so we display only available options to the user
+:param wafer\_id: ID of the wafer
+:return: list of all Extracted values inside the wafer
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\section{plot\_and\_powerpoint module}
+\label{\detokenize{plot_and_powerpoint:module-plot_and_powerpoint}}\label{\detokenize{plot_and_powerpoint:plot-and-powerpoint-module}}\label{\detokenize{plot_and_powerpoint::doc}}\index{module@\spxentry{module}!plot\_and\_powerpoint@\spxentry{plot\_and\_powerpoint}}\index{plot\_and\_powerpoint@\spxentry{plot\_and\_powerpoint}!module@\spxentry{module}}\index{fig\_to\_base64() (in module plot\_and\_powerpoint)@\spxentry{fig\_to\_base64()}\spxextra{in module plot\_and\_powerpoint}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plot_and_powerpoint:plot_and_powerpoint.fig_to_base64}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{plot\_and\_powerpoint.}}\sphinxbfcode{\sphinxupquote{fig\_to\_base64}}}{\sphinxparam{\DUrole{n,n}{fig}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Function used to convert a png to base64 to help communication between server and User. Used in ppt\_matrix.
+:param \textless{}png\textgreater{} fig: a figure in png format
+:return \textless{}base64\textgreater{}: The converted figure
+
+\end{fulllineitems}
+
+\index{get\_wafer() (in module plot\_and\_powerpoint)@\spxentry{get\_wafer()}\spxextra{in module plot\_and\_powerpoint}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plot_and_powerpoint:plot_and_powerpoint.get_wafer}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{plot\_and\_powerpoint.}}\sphinxbfcode{\sphinxupquote{get\_wafer}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function finds the wafer specified in the database
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the wafer\_id
+
+\sphinxlineitem{Return \textless{}dict\textgreater{}}
+\sphinxAtStartPar
+the wafer
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{plot\_wanted\_matrices() (in module plot\_and\_powerpoint)@\spxentry{plot\_wanted\_matrices()}\spxextra{in module plot\_and\_powerpoint}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plot_and_powerpoint:plot_and_powerpoint.plot_wanted_matrices}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{plot\_and\_powerpoint.}}\sphinxbfcode{\sphinxupquote{plot\_wanted\_matrices}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{types}}, \sphinxparam{\DUrole{n,n}{Temps}}, \sphinxparam{\DUrole{n,n}{Files}}, \sphinxparam{\DUrole{n,n}{coords}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot only selected dies following selected filters. These plots won’t be registered but will be displayed for the user.
+One plot is created per type of Measurement.
+A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated.
+You can add a color in this list if you want (Line 41 to 57) but don’t forget to change the number in line 106 (color\_index \% \textless{}this number\textgreater{})
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param types: Selected types
+:param Temps: Selected temperatures
+:param Files: Selected files
+:param coords: Selected coordinates
+:return: One plot per type of measurements, converted to base64
+
+\end{fulllineitems}
+
+\index{wanted\_ppt() (in module plot\_and\_powerpoint)@\spxentry{wanted\_ppt()}\spxextra{in module plot\_and\_powerpoint}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plot_and_powerpoint:plot_and_powerpoint.wanted_ppt}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{plot\_and\_powerpoint.}}\sphinxbfcode{\sphinxupquote{wanted\_ppt}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{types}}, \sphinxparam{\DUrole{n,n}{Temps}}, \sphinxparam{\DUrole{n,n}{Files}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to create a PowerPoint (registered in a folder named after the concerned wafer) with only selected dies following selected filters. These plots will be registered in a folder named ‘plots’.
+One plot is created per type of Measurement.
+A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated on the plot.
+You can add a color in this list if you want (Line 155 to 171) but don’t forget to change the number in line 222 (color\_index \% \textless{}this number\textgreater{})
+:param wafer\_id: ID of the wafer
+:param sessions: Selected sessions
+:param structures: Selected structures
+:param types: Selected types
+:param Temps: Selected temperatures
+:param Files: Selected files
+:param coords: Selected coordinates
+:param file\_name: Name given to the file
+:return: One plot per type of measurements, converted to base64
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\section{split\_data module}
+\label{\detokenize{split_data:module-split_data}}\label{\detokenize{split_data:split-data-module}}\label{\detokenize{split_data::doc}}\index{module@\spxentry{module}!split\_data@\spxentry{split\_data}}\index{split\_data@\spxentry{split\_data}!module@\spxentry{module}}\index{C\_spliter() (in module split\_data)@\spxentry{C\_spliter()}\spxextra{in module split\_data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{split_data:split_data.C_spliter}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{split\_data.}}\sphinxbfcode{\sphinxupquote{C\_spliter}}}{\sphinxparam{\DUrole{n,n}{line}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function takes a line of datas from a .txt file containing C\sphinxhyphen{}V measurements in argument and returns a list with voltage in first position, RS in second position and CS in third position
+:param \textless{}str\textgreater{} line: The line you want to extract information
+:return: information needed
+:rtype: list of str
+
+\end{fulllineitems}
+
+\index{converter\_split() (in module split\_data)@\spxentry{converter\_split()}\spxextra{in module split\_data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{split_data:split_data.converter_split}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{split\_data.}}\sphinxbfcode{\sphinxupquote{converter\_split}}}{\sphinxparam{\DUrole{n,n}{line}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to handle lines when getting data from a tbl file
+:param \textless{}str\textgreater{} line: Line to be handled
+:return: Line handled
+
+\end{fulllineitems}
+
+\index{converter\_split\_session() (in module split\_data)@\spxentry{converter\_split\_session()}\spxextra{in module split\_data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{split_data:split_data.converter_split_session}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{split\_data.}}\sphinxbfcode{\sphinxupquote{converter\_split\_session}}}{\sphinxparam{\DUrole{n,n}{line}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get the name of the session when getting data from a tbl file.
+:param line: Line to be handled
+:return: Line handled
+
+\end{fulllineitems}
+
+\index{dataSpliter() (in module split\_data)@\spxentry{dataSpliter()}\spxextra{in module split\_data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{split_data:split_data.dataSpliter}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{split\_data.}}\sphinxbfcode{\sphinxupquote{dataSpliter}}}{\sphinxparam{\DUrole{n,n}{line}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function takes a line of datas from a .txt file in argument and returns a list with voltage in first position and current in second position
+:param \textless{}str\textgreater{} line: The line you want to extract the information
+:return: the information needed
+:rtype: list of str
+
+\end{fulllineitems}
+
+\index{spliter() (in module split\_data)@\spxentry{spliter()}\spxextra{in module split\_data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{split_data:split_data.spliter}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{split\_data.}}\sphinxbfcode{\sphinxupquote{spliter}}}{\sphinxparam{\DUrole{n,n}{line}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+This function takes a line of a header from a .txt file in argument and returns the relevant information in this line
+:param \textless{}str\textgreater{} line: The line you want to extract information
+:return: Information needed
+:rtype: str
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\section{test\_DataExtraction module}
+\label{\detokenize{test_DataExtraction:module-test_DataExtraction}}\label{\detokenize{test_DataExtraction:test-dataextraction-module}}\label{\detokenize{test_DataExtraction::doc}}\index{module@\spxentry{module}!test\_DataExtraction@\spxentry{test\_DataExtraction}}\index{test\_DataExtraction@\spxentry{test\_DataExtraction}!module@\spxentry{module}}\index{test\_filter() (in module test\_DataExtraction)@\spxentry{test\_filter()}\spxextra{in module test\_DataExtraction}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{test_DataExtraction:test_DataExtraction.test_filter}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{test\_DataExtraction.}}\sphinxbfcode{\sphinxupquote{test\_filter}}}{}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\chapter{test module}
+\label{\detokenize{test:module-test}}\label{\detokenize{test:test-module}}\label{\detokenize{test::doc}}\index{module@\spxentry{module}!test@\spxentry{test}}\index{test@\spxentry{test}!module@\spxentry{module}}
 
 \chapter{Indices and tables}
 \label{\detokenize{index:indices-and-tables}}\begin{itemize}
@@ -103,6 +1951,44 @@
 \end{itemize}
 
 
+\renewcommand{\indexname}{Python Module Index}
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\bigletter{a}
+\item\relax\sphinxstyleindexentry{app}\sphinxstyleindexpageref{app:\detokenize{module-app}}
+\indexspace
+\bigletter{c}
+\item\relax\sphinxstyleindexentry{converter}\sphinxstyleindexpageref{converter:\detokenize{module-converter}}
+\indexspace
+\bigletter{e}
+\item\relax\sphinxstyleindexentry{excel}\sphinxstyleindexpageref{excel:\detokenize{module-excel}}
+\indexspace
+\bigletter{f}
+\item\relax\sphinxstyleindexentry{filter}\sphinxstyleindexpageref{filter:\detokenize{module-filter}}
+\indexspace
+\bigletter{g}
+\item\relax\sphinxstyleindexentry{getter}\sphinxstyleindexpageref{getter:\detokenize{module-getter}}
+\indexspace
+\bigletter{n}
+\item\relax\sphinxstyleindexentry{new\_manage\_DB}\sphinxstyleindexpageref{new_manage_DB:\detokenize{module-new_manage_DB}}
+\item\relax\sphinxstyleindexentry{normal\_plots}\sphinxstyleindexpageref{normal_plots:\detokenize{module-normal_plots}}
+\indexspace
+\bigletter{p}
+\item\relax\sphinxstyleindexentry{plot\_and\_powerpoint}\sphinxstyleindexpageref{plot_and_powerpoint:\detokenize{module-plot_and_powerpoint}}
+\indexspace
+\bigletter{s}
+\item\relax\sphinxstyleindexentry{split\_data}\sphinxstyleindexpageref{split_data:\detokenize{module-split_data}}
+\indexspace
+\bigletter{t}
+\item\relax\sphinxstyleindexentry{test}\sphinxstyleindexpageref{test:\detokenize{module-test}}
+\item\relax\sphinxstyleindexentry{test\_DataExtraction}\sphinxstyleindexpageref{test_DataExtraction:\detokenize{module-test_DataExtraction}}
+\indexspace
+\bigletter{v}
+\item\relax\sphinxstyleindexentry{VBD}\sphinxstyleindexpageref{VBD:\detokenize{module-VBD}}
+\indexspace
+\bigletter{w}
+\item\relax\sphinxstyleindexentry{WaferMaps}\sphinxstyleindexpageref{WaferMaps:\detokenize{module-WaferMaps}}
+\end{sphinxtheindex}
 
 \renewcommand{\indexname}{Index}
 \printindex
