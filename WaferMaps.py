@@ -10,6 +10,7 @@ def R_wafer_map(wafer_id, session, structure_id):
     """
     This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on R.
     R are taken from the database. If an R is a broken value, like 999999 or 999997, it's colored in black.
+
     :param <str> wafer_id: the name of the wafer
     :param <str> session: Selected session
     :param <str> structure_id: the name of the structure
@@ -98,6 +99,7 @@ def Leak_wafer_map(wafer_id, session, structure_id):
     """
     This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on Leak.
     Leak are taken from the database.
+
     :param <str> wafer_id: the name of the wafer
     :param <str> session: Selected session
     :param <str> structure_id: the name of the structure
@@ -162,6 +164,7 @@ def C_wafer_map(wafer_id, session, structure_id):
     """
     This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on C.
     C are taken from the database.
+
     :param <str> wafer_id: the name of the wafer
     :param <str> session: Selected session
     :param <str> structure_id: the name of the structure
@@ -226,6 +229,7 @@ def Cmes_wafer_map(wafer_id, session, structure_id):
     """
     This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on Cmes.
     Cmes are taken from the database.
+
     :param <str> wafer_id: the name of the wafer
     :param <str> session: Selected session
     :param <str> structure_id: the name of the structure

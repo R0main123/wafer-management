@@ -63,7 +63,7 @@
 
 
 \title{Wafer Management}
-\date{Aug 03, 2023}
+\date{Aug 04, 2023}
 \release{1.0.0}
 \author{Romain LAUP}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -97,10 +97,22 @@
 \pysigstopsignatures
 \sphinxAtStartPar
 This functions calculates Voltage breakdown for two vectors given, and a compliance. Default value of the compliance is set to 1e\sphinxhyphen{}3
-:param \textless{}list\textgreater{} X: Values of voltage. Will be converted to a np.array
-:param \textless{}list\textgreater{} Y: Values of current. Will be converted to a np.array and we will take the absolute value of the values
-:param \textless{}float\textgreater{} compliance: Value of compliance. By default is set to 1e\sphinxhyphen{}3
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{X}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}list\textgreater{}}}) \textendash{} Values of voltage. Will be converted to a np.array
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{Y}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}list\textgreater{}}}) \textendash{} Values of current. Will be converted to a np.array and we will take the absolute value of the values
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{compliance}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}float\textgreater{}}}) \textendash{} Value of compliance. By default is set to 1e\sphinxhyphen{}3
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}float\textgreater{} Breakd\_Volt}
 \sphinxAtStartPar
 Voltage Breakdown. Can be Nan
@@ -131,10 +143,22 @@ Compliance if compliance is reached, highest value of the current otherwise
 \sphinxAtStartPar
 This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on VBD.
 VBD are taken from the database. If a VBD is ‘NaN’, it’s colored in black.
-:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
-:param \textless{}str\textgreater{} session: Selected session
-:param \textless{}str\textgreater{} structure\_id: the name of the structure
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structure\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the structure
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 Plot converted to base64
@@ -152,8 +176,16 @@ Plot converted to base64
 \pysigstopsignatures
 \sphinxAtStartPar
 Function used to convert a png to base64 to help communication between server and User. Used in ppt\_matrix.
-:param \textless{}png\textgreater{} fig: a figure in png format
-:return \textless{}base64\textgreater{}: The converted figure
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{fig}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}png\textgreater{}}}) \textendash{} a figure in png format
+
+\sphinxlineitem{Return \textless{}base64\textgreater{}}
+\sphinxAtStartPar
+The converted figure
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -166,10 +198,22 @@ Function used to convert a png to base64 to help communication between server an
 \pysigstopsignatures
 \sphinxAtStartPar
 This function gets all coordinates x in a structure. Used to create the wafer map.
-:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
-:param \textless{}str\textgreater{} session: name of the session
-:param \textless{}str\textgreater{} structure\_id: the name of the structure
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the session
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structure\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the structure
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 List of x in the structure
@@ -187,10 +231,22 @@ List of x in the structure
 \pysigstopsignatures
 \sphinxAtStartPar
 This function gets all coordinates y in a structure. Used to create the wafer map.
-:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
-:param \textless{}str\textgreater{} session: Selected session
-:param \textless{}str\textgreater{} structure\_id: the name of the structure
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structure\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the structure
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 List of y in the structure
@@ -209,9 +265,18 @@ List of y in the structure
 \sphinxAtStartPar
 This function finds the compliance from the specified session in the database
 Returns None if the structure has no compliance registered
-:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
-:param \textless{}str\textgreater{} session: name of the session
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the wafer\_id
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the session
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}str\textgreater{}}
 \sphinxAtStartPar
 the compliance in the wafer
@@ -229,12 +294,30 @@ the compliance in the wafer
 \pysigstopsignatures
 \sphinxAtStartPar
 This function is used to get the values of voltages and current in a matrix. This function is always in parameters for calculate\_breakdown
-:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
-:param \textless{}str\textgreater{} session: Selected session
-:param \textless{}str\textgreater{} structure\_id: the name of the structure
-:param \textless{}str\textgreater{} x: the horizontal coordinate of the matrix
-:param \textless{}str\textgreater{} y: the vertical coordinate of the matrix
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structure\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the structure
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{x}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the horizontal coordinate of the matrix
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{y}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the vertical coordinate of the matrix
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{} X}
 \sphinxAtStartPar
 The values of voltage
@@ -262,10 +345,22 @@ The values of current
 \sphinxAtStartPar
 This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on C.
 C are taken from the database.
-:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
-:param \textless{}str\textgreater{} session: Selected session
-:param \textless{}str\textgreater{} structure\_id: the name of the structure
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structure\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the structure
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 Plot converted to base64
@@ -284,10 +379,22 @@ Plot converted to base64
 \sphinxAtStartPar
 This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on Cmes.
 Cmes are taken from the database.
-:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
-:param \textless{}str\textgreater{} session: Selected session
-:param \textless{}str\textgreater{} structure\_id: the name of the structure
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structure\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the structure
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 Plot converted to base64
@@ -306,10 +413,22 @@ Plot converted to base64
 \sphinxAtStartPar
 This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on Leak.
 Leak are taken from the database.
-:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
-:param \textless{}str\textgreater{} session: Selected session
-:param \textless{}str\textgreater{} structure\_id: the name of the structure
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structure\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the structure
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 Plot converted to base64
@@ -328,10 +447,22 @@ Plot converted to base64
 \sphinxAtStartPar
 This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on R.
 R are taken from the database. If an R is a broken value, like 999999 or 999997, it’s colored in black.
-:param \textless{}str\textgreater{} wafer\_id: the name of the wafer
-:param \textless{}str\textgreater{} session: Selected session
-:param \textless{}str\textgreater{} structure\_id: the name of the structure
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structure\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} the name of the structure
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 Plot converted to base64
@@ -838,7 +969,12 @@ path of the converted file
 \pysigstopsignatures
 \sphinxAtStartPar
 Converts a tbl file into a txt file. The file is read, all information is converted and saved in a list and then we write all at once in an empty txt file.
-:param path: Path of the file to be converted
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{path}} \textendash{} Path of the file to be converted
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -852,8 +988,16 @@ Converts a tbl file into a txt file. The file is read, all information is conver
 \sphinxAtStartPar
 Used for converting tbl files into txt files. Parse a line and returns information into the format used in txt files.
 This function is called in tbl\_to\_txt.
-:param \textless{}str\textgreater{} line: Line to be parsed
-:return: Line converted to the format used in the txt files
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{line}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Line to be parsed
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Line converted to the format used in the txt files
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -871,8 +1015,16 @@ This function is called in tbl\_to\_txt.
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to know in which sheet the corresponding row has to go
-:param row: Row of the DataFrame
-:return: A str : ‘Positives’, ‘Negatives’ or ‘NaN’
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{row}} \textendash{} Row of the DataFrame
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+A str : ‘Positives’, ‘Negatives’ or ‘NaN’
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -886,14 +1038,39 @@ Used to know in which sheet the corresponding row has to go
 \sphinxAtStartPar
 An Excel file is created with all VBDs inside the wafer, following selected filters.
 3 sheets are created: one for positive values, one for negatives and one for NaN
-:param wafer\_id: ID of the wafer
-:param sessions: Filtered sessions
-:param structures: Filtered structures
-:param Temps: Filtered temperatures
-:param Files: Filtered files
-:param coords: Filtered coordinates
-:param file\_name: Name under which the file will be registered
-:return:
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Filtered sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Filtered structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{Temps}} \textendash{} Filtered temperatures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{Files}} \textendash{} Filtered files
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} \textendash{} Filtered coordinates
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file\_name}} \textendash{} Name under which the file will be registered
+
+\end{itemize}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -964,9 +1141,18 @@ Size of columns are automatically adjusted for better readability.
 \pysigstopsignatures
 \sphinxAtStartPar
 This function browse the database to find all structures that have a matrix with the couple of coordinates specified.
-:param \textless{}list\textgreater{} coords: List of str, contains all couples of coordinates that want to be matched
-:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}list\textgreater{}}}) \textendash{} List of str, contains all couples of coordinates that want to be matched
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the wafer\_id
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 A list of structures that contains the specified coordinates
@@ -984,9 +1170,18 @@ A list of structures that contains the specified coordinates
 \pysigstopsignatures
 \sphinxAtStartPar
 This function browse the database to find all structures that have measurements from thr file specified.
-:param \textless{}list\textgreater{} files: List of str, contains all files that wants to be matched
-:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}list\textgreater{}}}) \textendash{} List of str, contains all files that wants to be matched
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the wafer\_id
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 A list of structures that contains the specified files
@@ -1004,9 +1199,18 @@ A list of structures that contains the specified files
 \pysigstopsignatures
 \sphinxAtStartPar
 This function browse the database to find all structures that have the types of measurements specified.
-:param \textless{}list\textgreater{} meas: List of str, contains all Measurements that wants to be matched
-:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{meas}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}list\textgreater{}}}) \textendash{} List of str, contains all Measurements that wants to be matched
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the wafer\_id
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 A list of structures that contains the specified measurements
@@ -1024,12 +1228,21 @@ A list of structures that contains the specified measurements
 \pysigstopsignatures
 \sphinxAtStartPar
 This function browse the database to find all structures that have measurements from thr file specified.
-:param \textless{}list\textgreater{} files: List of str, contains all files that wants to be matched
-:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}list\textgreater{}}}) \textendash{} List of str, contains all files that wants to be matched
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the wafer\_id
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
-A list of structures that contains the specified files
+A list of structures that contains the specified session
 
 \end{description}\end{quote}
 
@@ -1044,9 +1257,18 @@ A list of structures that contains the specified files
 \pysigstopsignatures
 \sphinxAtStartPar
 This function browse the database to find all structures that have the temperature specified.
-:param \textless{}list\textgreater{} temps: List of str, contains all temperatures that wants to be matched
-:param \textless{}str\textgreater{} wafer\_id: Name of the wafer\_id
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{temps}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}list\textgreater{}}}) \textendash{} List of str, contains all temperatures that wants to be matched
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the wafer\_id
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}list\textgreater{}}
 \sphinxAtStartPar
 A list of structures that contains the specified temperatures
@@ -1068,7 +1290,8 @@ A list of structures that contains the specified temperatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{connexion}}}{}{}
 \pysigstopsignatures
 \sphinxAtStartPar
-Used to connect to the database, so we can manipulate data. /!Only use to read data, not to write data in the DB /!    :return: The collection.
+Used to connect to the database, so we can manipulate data. /! Only use to read data, not to write data in the DB /!
+:return: The collection.
 
 \end{fulllineitems}
 
@@ -1081,8 +1304,16 @@ Used to connect to the database, so we can manipulate data. /!Only use to read d
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all sessions that contain C values (for wafer maps)
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:return \textless{}list\textgreater{}: List of all sessions that contain C values
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of all sessions that contain C values
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1095,9 +1326,23 @@ Used to get all sessions that contain C values (for wafer maps)
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all structures that contain C values (for wafer maps)
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:param \textless{}str\textgreater{} session: Name of the session
-:return \textless{}list\textgreater{}: List of all structures that contain C values
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the session
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of all structures that contain C values
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1110,8 +1355,16 @@ Used to get all structures that contain C values (for wafer maps)
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all sessions that contain Cmes values (for wafer maps)
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:return \textless{}list\textgreater{}: List of all sessions that contain Cmes values
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of all sessions that contain Cmes values
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1124,9 +1377,23 @@ Used to get all sessions that contain Cmes values (for wafer maps)
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all structures that contain Cmes values (for wafer maps)
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:param \textless{}str\textgreater{} session: Name of the session
-:return \textless{}list\textgreater{}: List of all structures that contain Cmes values
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the session
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of all structures that contain Cmes values
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1139,8 +1406,16 @@ Used to get all structures that contain Cmes values (for wafer maps)
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all sessions that contain Leak values (for wafer maps)
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:return \textless{}list\textgreater{}: List of all sessions that contain Leak values
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of all sessions that contain Leak values
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1153,9 +1428,23 @@ Used to get all sessions that contain Leak values (for wafer maps)
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all structures that contain Leak values (for wafer maps)
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:param \textless{}str\textgreater{} session: Name of the session
-:return \textless{}list\textgreater{}: List of all structures that contain Leak values
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the session
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of all structures that contain Leak values
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1168,8 +1457,16 @@ Used to get all structures that contain Leak values (for wafer maps)
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all sessions that contain R values (for wafer maps)
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:return \textless{}list\textgreater{}: List of all sessions that contain R values
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of all sessions that contain R values
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1182,9 +1479,23 @@ Used to get all sessions that contain R values (for wafer maps)
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all structures that contain R values (for wafer maps)
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:param \textless{}str\textgreater{} session: Name of the session
-:return \textless{}list\textgreater{}: List of all structures that contain R values
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Name of the session
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+List of all structures that contain R values
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1198,9 +1509,18 @@ Used to get all structures that contain R values (for wafer maps)
 \sphinxAtStartPar
 This function finds the compliance from the specified structure in the database
 Returns None if the structure has no compliance registered
-:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
-:param \textless{}str\textgreater{} session: name of the session
 \begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the wafer\_id
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the session
+
+\end{itemize}
+
 \sphinxlineitem{Return \textless{}str\textgreater{}}
 \sphinxAtStartPar
 the compliance in the wafer
@@ -1218,8 +1538,16 @@ the compliance in the wafer
 \pysigstopsignatures
 \sphinxAtStartPar
 This function finds all the coordinates from the specified wafer in the database
-:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
-:return \textless{}list\textgreater{}: the list of coordinates in the wafer
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the wafer\_id
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+the list of coordinates in the wafer
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1254,8 +1582,16 @@ Name of the database
 \pysigstopsignatures
 \sphinxAtStartPar
 This function finds all the filenames in the specified wafer in the database
-:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
-:return \textless{}list\textgreater{}: the list of filenames in the wafer
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the wafer\_id
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+the list of filenames in the wafer
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1268,8 +1604,16 @@ This function finds all the filenames in the specified wafer in the database
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all sessions that contain I\sphinxhyphen{}V measurements (for wafer maps) inside a wafer.
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:return \textless{}list of str\textgreater{}: All sessions with I\sphinxhyphen{}V measurements inside the wafer
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\sphinxlineitem{Return \textless{}list of str\textgreater{}}
+\sphinxAtStartPar
+All sessions with I\sphinxhyphen{}V measurements inside the wafer
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1340,8 +1684,16 @@ List of matrices that contains I\sphinxhyphen{}V measurements
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get all sessions inside a given wafer.
-:param \textless{}str\textgreater{} wafer\_id: ID of the wafer
-:return \textless{}list of str\textgreater{}: All sessions inside the wafer
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\sphinxlineitem{Return \textless{}list of str\textgreater{}}
+\sphinxAtStartPar
+All sessions inside the wafer
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1383,8 +1735,16 @@ All structures inside the session
 \pysigstopsignatures
 \sphinxAtStartPar
 This function finds all the temperatures from the specified wafer in the database
-:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
-:return \textless{}list\textgreater{}: the list of temperatures in the wafer
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the wafer\_id
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+the list of temperatures in the wafer
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1397,8 +1757,16 @@ This function finds all the temperatures from the specified wafer in the databas
 \pysigstopsignatures
 \sphinxAtStartPar
 This function finds all the types of measurements from the specified wafer in the database
-:param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
-:return \textless{}list\textgreater{}: the list of types in the wafer
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} name of the wafer\_id
+
+\sphinxlineitem{Return \textless{}list\textgreater{}}
+\sphinxAtStartPar
+the list of types in the wafer
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1412,7 +1780,12 @@ This function finds all the types of measurements from the specified wafer in th
 \sphinxAtStartPar
 This function finds the wafer specified in the database. /!Only use to read data, not to write data in the DB /!
 :param \textless{}str\textgreater{} wafer\_id: name of the wafer\_id
-:return \textless{}dict\textgreater{}: the wafer
+\begin{quote}\begin{description}
+\sphinxlineitem{Return \textless{}dict\textgreater{}}
+\sphinxAtStartPar
+the wafer
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1563,11 +1936,31 @@ a list containing all wafers that have been registered
 \sphinxAtStartPar
 Used to plot the normal distribution of negatives values of C inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1581,11 +1974,31 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \sphinxAtStartPar
 Used to plot the normal distribution of positive values of C inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1599,11 +2012,31 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \sphinxAtStartPar
 Used to plot the normal distribution of negative values of Cmes inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1617,11 +2050,31 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \sphinxAtStartPar
 Used to plot the normal distribution of positive values of Cmes inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1635,11 +2088,31 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \sphinxAtStartPar
 Used to plot the normal distribution of negative values of Leakage inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1653,11 +2126,31 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \sphinxAtStartPar
 Used to plot the normal distribution of positive values of Leakage inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1671,11 +2164,31 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \sphinxAtStartPar
 Used to plot the normal distribution of negative values of R inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1689,11 +2202,31 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \sphinxAtStartPar
 Used to plot the normal distribution of positive values of R inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1707,11 +2240,31 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \sphinxAtStartPar
 Used to plot the normal distribution of negative values of VBD inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1725,11 +2278,31 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \sphinxAtStartPar
 Used to plot the normal distribution of positive values of VBD inside a wafer, following selected filters.
 We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90\% confidence interval
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param dies: Selected dies
-:return: The plot, converted into base64
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{dies}} \textendash{} Selected dies
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The plot, converted into base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1742,8 +2315,16 @@ We first get data inside the database and then plot it in a figure. We use a pro
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to know which extracted value is inside a given wafer, so we display only available options to the user
-:param wafer\_id: ID of the wafer
-:return: list of all Extracted values inside the wafer
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+list of all Extracted values inside the wafer
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1761,8 +2342,16 @@ Used to know which extracted value is inside a given wafer, so we display only a
 \pysigstopsignatures
 \sphinxAtStartPar
 Function used to convert a png to base64 to help communication between server and User. Used in ppt\_matrix.
-:param \textless{}png\textgreater{} fig: a figure in png format
-:return \textless{}base64\textgreater{}: The converted figure
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{fig}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}png\textgreater{}}}) \textendash{} a figure in png format
+
+\sphinxlineitem{Return \textless{}base64\textgreater{}}
+\sphinxAtStartPar
+The converted figure
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1799,15 +2388,44 @@ the wafer
 Used to plot only selected dies following selected filters. These plots won’t be registered but will be displayed for the user.
 One plot is created per type of Measurement.
 A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated.
-You can add a color in this list if you want (Line 41 to 57) but don’t forget to change the number in line 106 (color\_index \% \textless{}this number\textgreater{})
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param types: Selected types
-:param Temps: Selected temperatures
-:param Files: Selected files
-:param coords: Selected coordinates
-:return: One plot per type of measurements, converted to base64
+You can add a color in this list if you want (Line 44 to 60) but don’t forget to change the number in line 109 (color\_index \% \textless{}this number\textgreater{})
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{types}} \textendash{} Selected types
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{Temps}} \textendash{} Selected temperatures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{Files}} \textendash{} Selected files
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} \textendash{} Selected coordinates
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+One plot per type of measurements, converted to base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1822,16 +2440,48 @@ You can add a color in this list if you want (Line 41 to 57) but don’t forget 
 Used to create a PowerPoint (registered in a folder named after the concerned wafer) with only selected dies following selected filters. These plots will be registered in a folder named ‘plots’.
 One plot is created per type of Measurement.
 A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated on the plot.
-You can add a color in this list if you want (Line 155 to 171) but don’t forget to change the number in line 222 (color\_index \% \textless{}this number\textgreater{})
-:param wafer\_id: ID of the wafer
-:param sessions: Selected sessions
-:param structures: Selected structures
-:param types: Selected types
-:param Temps: Selected temperatures
-:param Files: Selected files
-:param coords: Selected coordinates
-:param file\_name: Name given to the file
-:return: One plot per type of measurements, converted to base64
+You can add a color in this list if you want (Line 160 to 176) but don’t forget to change the number in line 227 (color\_index \% \textless{}this number\textgreater{})
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} Selected sessions
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} Selected structures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{types}} \textendash{} Selected types
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{Temps}} \textendash{} Selected temperatures
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{Files}} \textendash{} Selected files
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} \textendash{} Selected coordinates
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file\_name}} \textendash{} Name given to the file
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+One plot per type of measurements, converted to base64
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1849,9 +2499,20 @@ You can add a color in this list if you want (Line 155 to 171) but don’t forge
 \pysigstopsignatures
 \sphinxAtStartPar
 This function takes a line of datas from a .txt file containing C\sphinxhyphen{}V measurements in argument and returns a list with voltage in first position, RS in second position and CS in third position
-:param \textless{}str\textgreater{} line: The line you want to extract information
-:return: information needed
-:rtype: list of str
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{line}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} The line you want to extract information
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+information needed
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+list of str
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1864,8 +2525,16 @@ This function takes a line of datas from a .txt file containing C\sphinxhyphen{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to handle lines when getting data from a tbl file
-:param \textless{}str\textgreater{} line: Line to be handled
-:return: Line handled
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{line}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Line to be handled
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Line handled
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1878,8 +2547,16 @@ Used to handle lines when getting data from a tbl file
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to get the name of the session when getting data from a tbl file.
-:param line: Line to be handled
-:return: Line handled
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{line}} \textendash{} Line to be handled
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Line handled
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1892,9 +2569,20 @@ Used to get the name of the session when getting data from a tbl file.
 \pysigstopsignatures
 \sphinxAtStartPar
 This function takes a line of datas from a .txt file in argument and returns a list with voltage in first position and current in second position
-:param \textless{}str\textgreater{} line: The line you want to extract the information
-:return: the information needed
-:rtype: list of str
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{line}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} The line you want to extract the information
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+the information needed
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+list of str
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1907,9 +2595,20 @@ This function takes a line of datas from a .txt file in argument and returns a l
 \pysigstopsignatures
 \sphinxAtStartPar
 This function takes a line of a header from a .txt file in argument and returns the relevant information in this line
-:param \textless{}str\textgreater{} line: The line you want to extract information
-:return: Information needed
-:rtype: str
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{line}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} The line you want to extract information
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Information needed
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+str
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1932,7 +2631,7 @@ This function takes a line of a header from a .txt file in argument and returns 
 
 
 \chapter{test module}
-\label{\detokenize{test:module-test}}\label{\detokenize{test:test-module}}\label{\detokenize{test::doc}}\index{module@\spxentry{module}!test@\spxentry{test}}\index{test@\spxentry{test}!module@\spxentry{module}}
+\label{\detokenize{test:test-module}}\label{\detokenize{test::doc}}
 
 \chapter{Indices and tables}
 \label{\detokenize{index:indices-and-tables}}\begin{itemize}
@@ -1980,7 +2679,6 @@ This function takes a line of a header from a .txt file in argument and returns 
 \item\relax\sphinxstyleindexentry{split\_data}\sphinxstyleindexpageref{split_data:\detokenize{module-split_data}}
 \indexspace
 \bigletter{t}
-\item\relax\sphinxstyleindexentry{test}\sphinxstyleindexpageref{test:\detokenize{module-test}}
 \item\relax\sphinxstyleindexentry{test\_DataExtraction}\sphinxstyleindexpageref{test_DataExtraction:\detokenize{module-test_DataExtraction}}
 \indexspace
 \bigletter{v}

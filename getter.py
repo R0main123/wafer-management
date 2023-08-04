@@ -13,7 +13,8 @@ def get_db_name(db_name="New Wafers"):
 
 def connexion():
     """
-    Used to connect to the database, so we can manipulate data. /!\ Only use to read data, not to write data in the DB /!\
+    Used to connect to the database, so we can manipulate data. /!\  Only use to read data, not to write data in the DB /!\
+
     :return: The collection.
     """
     client = MongoClient('mongodb://localhost:27017/')
@@ -27,6 +28,7 @@ def get_wafer(wafer_id):
     This function finds the wafer specified in the database. /!\ Only use to read data, not to write data in the DB /!\
 
     :param <str> wafer_id: name of the wafer_id
+
     :return <dict>: the wafer
     """
     collection = connexion()
@@ -36,7 +38,9 @@ def get_wafer(wafer_id):
 def get_types(wafer_id):
     """
         This function finds all the types of measurements from the specified wafer in the database
+
         :param <str> wafer_id: name of the wafer_id
+
         :return <list>: the list of types in the wafer
     """
     wafer = get_wafer(wafer_id)
@@ -58,7 +62,9 @@ def get_types(wafer_id):
 def get_temps(wafer_id):
     """
         This function finds all the temperatures from the specified wafer in the database
+
         :param <str> wafer_id: name of the wafer_id
+
         :return <list>: the list of temperatures in the wafer
     """
     wafer = get_wafer(wafer_id)
@@ -78,7 +84,9 @@ def get_temps(wafer_id):
 def get_coords(wafer_id):
     """
         This function finds all the coordinates from the specified wafer in the database
+
         :param <str> wafer_id: name of the wafer_id
+
         :return <list>: the list of coordinates in the wafer
     """
     wafer = get_wafer(wafer_id)
@@ -97,7 +105,9 @@ def get_coords(wafer_id):
 def get_filenames(wafer_id):
     """
         This function finds all the filenames in the specified wafer in the database
+
         :param <str> wafer_id: name of the wafer_id
+
         :return <list>: the list of filenames in the wafer
     """
     wafer = get_wafer(wafer_id)
@@ -118,6 +128,7 @@ def get_compliance(wafer_id, session):
     """
         This function finds the compliance from the specified structure in the database
         Returns None if the structure has no compliance registered
+
         :param <str> wafer_id: name of the wafer_id
         :param <str> session: name of the session
 
@@ -151,7 +162,9 @@ def get_matrices_with_I(wafer_id, structure_id):
 def get_sessions(wafer_id):
     """
     Used to get all sessions inside a given wafer.
+
     :param <str> wafer_id: ID of the wafer
+
     :return <list of str>: All sessions inside the wafer
     """
     wafer = get_wafer(wafer_id)
@@ -168,7 +181,9 @@ def get_sessions(wafer_id):
 def get_map_sessions(wafer_id):
     """
     Used to get all sessions that contain I-V measurements (for wafer maps) inside a wafer.
+
     :param <str> wafer_id: ID of the wafer
+
     :return <list of str>: All sessions with I-V measurements inside the wafer
     """
     wafer = get_wafer(wafer_id)
@@ -192,6 +207,7 @@ def get_map_structures(wafer_id, session):
 
     :param <str> wafer_id: ID of the wafer
     :param <str> session: Selected session
+
     :return <list of str>: All structures that contain I-V measurements inside the session
     """
     wafer = get_wafer(wafer_id)
@@ -213,6 +229,7 @@ def get_structures(wafer_id, session):
 
     :param <str> wafer_id: ID of the wafer
     :param <str> session: Selected session
+
     :return <list of str>: All structures inside the session
     """
     structures = [structure for structure in get_wafer(wafer_id)[session]]
@@ -226,7 +243,9 @@ def get_structures(wafer_id, session):
 def get_R_sessions(wafer_id):
     """
     Used to get all sessions that contain R values (for wafer maps)
+
     :param <str> wafer_id: ID of the wafer
+
     :return <list>: List of all sessions that contain R values
     """
     wafer = get_wafer(wafer_id)
@@ -247,7 +266,9 @@ def get_R_sessions(wafer_id):
 def get_Leak_sessions(wafer_id):
     """
     Used to get all sessions that contain Leak values (for wafer maps)
+
     :param <str> wafer_id: ID of the wafer
+
     :return <list>: List of all sessions that contain Leak values
     """
     wafer = get_wafer(wafer_id)
@@ -268,7 +289,9 @@ def get_Leak_sessions(wafer_id):
 def get_C_sessions(wafer_id):
     """
     Used to get all sessions that contain C values (for wafer maps)
+
     :param <str> wafer_id: ID of the wafer
+
     :return <list>: List of all sessions that contain C values
     """
     wafer = get_wafer(wafer_id)
@@ -290,7 +313,9 @@ def get_C_sessions(wafer_id):
 def get_Cmes_sessions(wafer_id):
     """
     Used to get all sessions that contain Cmes values (for wafer maps)
+
     :param <str> wafer_id: ID of the wafer
+
     :return <list>: List of all sessions that contain Cmes values
     """
     wafer = get_wafer(wafer_id)
@@ -310,8 +335,10 @@ def get_Cmes_sessions(wafer_id):
 def get_R_structures(wafer_id, session):
     """
     Used to get all structures that contain R values (for wafer maps)
+
     :param <str> wafer_id: ID of the wafer
     :param <str> session: Name of the session
+
     :return <list>: List of all structures that contain R values
     """
     wafer = get_wafer(wafer_id)
@@ -331,8 +358,10 @@ def get_R_structures(wafer_id, session):
 def get_Leak_structures(wafer_id, session):
     """
     Used to get all structures that contain Leak values (for wafer maps)
+
     :param <str> wafer_id: ID of the wafer
     :param <str> session: Name of the session
+
     :return <list>: List of all structures that contain Leak values
     """
     wafer = get_wafer(wafer_id)
@@ -352,8 +381,10 @@ def get_Leak_structures(wafer_id, session):
 def get_C_structures(wafer_id, session):
     """
     Used to get all structures that contain C values (for wafer maps)
+
     :param <str> wafer_id: ID of the wafer
     :param <str> session: Name of the session
+
     :return <list>: List of all structures that contain C values
     """
     wafer = get_wafer(wafer_id)
@@ -374,8 +405,10 @@ def get_C_structures(wafer_id, session):
 def get_Cmes_structures(wafer_id, session):
     """
     Used to get all structures that contain Cmes values (for wafer maps)
+
     :param <str> wafer_id: ID of the wafer
     :param <str> session: Name of the session
+
     :return <list>: List of all structures that contain Cmes values
     """
     wafer = get_wafer(wafer_id)

@@ -13,6 +13,7 @@ def get_wafer(wafer_id):
     This function finds the wafer specified in the database
 
     :param <str> wafer_id: name of the wafer_id
+
     :return <dict>: the wafer
     """
     collection = connexion()
@@ -24,7 +25,8 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
     Used to plot only selected dies following selected filters. These plots won't be registered but will be displayed for the user.
     One plot is created per type of Measurement.
     A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated.
-    You can add a color in this list if you want (Line 41 to 57) but don't forget to change the number in line 106 (color_index % <this number>)
+    You can add a color in this list if you want (Line 44 to 60) but don't forget to change the number in line 109 (color_index % <this number>)
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
@@ -32,6 +34,7 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
     :param Temps: Selected temperatures
     :param Files: Selected files
     :param coords: Selected coordinates
+
     :return: One plot per type of measurements, converted to base64
     """
     wafer = get_wafer(wafer_id)
@@ -133,7 +136,8 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
     Used to create a PowerPoint (registered in a folder named after the concerned wafer) with only selected dies following selected filters. These plots will be registered in a folder named 'plots'.
     One plot is created per type of Measurement.
     A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated on the plot.
-    You can add a color in this list if you want (Line 155 to 171) but don't forget to change the number in line 222 (color_index % <this number>)
+    You can add a color in this list if you want (Line 160 to 176) but don't forget to change the number in line 227 (color_index % <this number>)
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
@@ -142,6 +146,7 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
     :param Files: Selected files
     :param coords: Selected coordinates
     :param file_name: Name given to the file
+
     :return: One plot per type of measurements, converted to base64
     """
     if not os.path.exists("plots"):
@@ -253,7 +258,9 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
 def fig_to_base64(fig):
     """
     Function used to convert a png to base64 to help communication between server and User. Used in ppt_matrix.
+
     :param <png> fig: a figure in png format
+
     :return <base64>: The converted figure
     """
     fig_file = io.BytesIO()

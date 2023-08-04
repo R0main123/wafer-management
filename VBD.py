@@ -12,6 +12,7 @@ def get_compliance(wafer_id, session):
     """
         This function finds the compliance from the specified session in the database
         Returns None if the structure has no compliance registered
+
         :param <str> wafer_id: name of the wafer_id
         :param <str> session: name of the session
 
@@ -24,6 +25,7 @@ def get_compliance(wafer_id, session):
 def calculate_breakdown(X, Y, compliance):
     """
     This functions calculates Voltage breakdown for two vectors given, and a compliance. Default value of the compliance is set to 1e-3
+
     :param <list> X: Values of voltage. Will be converted to a np.array
     :param <list> Y: Values of current. Will be converted to a np.array and we will take the absolute value of the values
     :param <float> compliance: Value of compliance. By default is set to 1e-3
@@ -83,6 +85,7 @@ def calculate_breakdown(X, Y, compliance):
 def get_all_x(wafer_id, session, structure_id):
     """
     This function gets all coordinates x in a structure. Used to create the wafer map.
+
     :param <str> wafer_id: the name of the wafer
     :param <str> session: name of the session
     :param <str> structure_id: the name of the structure
@@ -103,6 +106,7 @@ def get_all_x(wafer_id, session, structure_id):
 def get_all_y(wafer_id, session, structure_id):
     """
     This function gets all coordinates y in a structure. Used to create the wafer map.
+
     :param <str> wafer_id: the name of the wafer
     :param <str> session: Selected session
     :param <str> structure_id: the name of the structure
@@ -123,6 +127,7 @@ def get_all_y(wafer_id, session, structure_id):
 def get_vectors_in_matrix(wafer_id, session, structure_id, x, y):
     """
     This function is used to get the values of voltages and current in a matrix. This function is always in parameters for calculate_breakdown
+
     :param <str> wafer_id: the name of the wafer
     :param <str> session: Selected session
     :param <str> structure_id: the name of the structure
@@ -158,6 +163,7 @@ def create_wafer_map(wafer_id, session, structure_id):
     """
     This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on VBD.
     VBD are taken from the database. If a VBD is 'NaN', it's colored in black.
+
     :param <str> wafer_id: the name of the wafer
     :param <str> session: Selected session
     :param <str> structure_id: the name of the structure
@@ -247,7 +253,9 @@ def create_wafer_map(wafer_id, session, structure_id):
 def fig_to_base64(fig):
     """
     Function used to convert a png to base64 to help communication between server and User. Used in ppt_matrix.
+
     :param <png> fig: a figure in png format
+
     :return <base64>: The converted figure
     """
     fig_file = io.BytesIO()

@@ -174,6 +174,7 @@ def excel_VBD(wafer_id, sessions, structures, Temps, Files, coords, file_name):
     """
     An Excel file is created with all VBDs inside the wafer, following selected filters.
     3 sheets are created: one for positive values, one for negatives and one for NaN
+
     :param wafer_id: ID of the wafer
     :param sessions: Filtered sessions
     :param structures: Filtered structures
@@ -181,7 +182,7 @@ def excel_VBD(wafer_id, sessions, structures, Temps, Files, coords, file_name):
     :param Files: Filtered files
     :param coords: Filtered coordinates
     :param file_name: Name under which the file will be registered
-    :return:
+
     """
     if not os.path.exists(wafer_id):
         os.makedirs(wafer_id)
@@ -252,7 +253,9 @@ def excel_VBD(wafer_id, sessions, structures, Temps, Files, coords, file_name):
 def classify_row(row):
     """
     Used to know in which sheet the corresponding row has to go
+
     :param row: Row of the DataFrame
+
     :return: A str : 'Positives', 'Negatives' or 'NaN'
     """
     for value in row.values:

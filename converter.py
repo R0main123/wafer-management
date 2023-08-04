@@ -32,7 +32,9 @@ def traducer(line):
     """
     Used for converting tbl files into txt files. Parse a line and returns information into the format used in txt files.
     This function is called in tbl_to_txt.
+
     :param <str> line: Line to be parsed
+
     :return: Line converted to the format used in the txt files
     """
     if 'date' in line:
@@ -49,6 +51,7 @@ def traducer(line):
 def tbl_to_txt(path):
     """
     Converts a tbl file into a txt file. The file is read, all information is converted and saved in a list and then we write all at once in an empty txt file.
+
     :param path: Path of the file to be converted
     """
     if not os.path.exists("Converted Files\\"):

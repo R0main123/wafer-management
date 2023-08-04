@@ -15,10 +15,12 @@ def VBD_normal_distrib_pos(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of positive values of VBD inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     VBDs = []
@@ -77,10 +79,12 @@ def VBD_normal_distrib_neg(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of negative values of VBD inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     VBDs = []
@@ -139,10 +143,12 @@ def Leakage_normal_distrib_pos(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of positive values of Leakage inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     Leaks = []
@@ -203,10 +209,12 @@ def Leakage_normal_distrib_neg(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of negative values of Leakage inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     Leaks = []
@@ -266,10 +274,12 @@ def C_normal_distrib_neg(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of negatives values of C inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     Cs = []
@@ -327,10 +337,12 @@ def C_normal_distrib_pos(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of positive values of C inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     Cs = []
@@ -387,10 +399,12 @@ def Cmes_normal_distrib_neg(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of negative values of Cmes inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     Cmes = []
@@ -448,10 +462,12 @@ def Cmes_normal_distrib_pos(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of positive values of Cmes inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     Cmes = []
@@ -508,10 +524,12 @@ def R_normal_distrib_pos(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of positive values of R inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     Rs = []
@@ -568,10 +586,12 @@ def R_normal_distrib_neg(wafer_id, sessions, structures, dies):
     """
     Used to plot the normal distribution of negative values of R inside a wafer, following selected filters.
     We first get data inside the database and then plot it in a figure. We use a probability scale, and plot the reference line and the 90% confidence interval
+
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
     :param structures: Selected structures
     :param dies: Selected dies
+
     :return: The plot, converted into base64
     """
     Rs = []
@@ -629,7 +649,9 @@ def R_normal_distrib_neg(wafer_id, sessions, structures, dies):
 def get_values(wafer_id):
     """
     Used to know which extracted value is inside a given wafer, so we display only available options to the user
+
     :param wafer_id: ID of the wafer
+
     :return: list of all Extracted values inside the wafer
     """
     values = set()

@@ -4,6 +4,7 @@ from getter import get_sessions, get_structures, get_wafer
 def filter_by_meas(meas, wafer_id):
     """
     This function browse the database to find all structures that have the types of measurements specified.
+
     :param <list> meas: List of str, contains all Measurements that wants to be matched
     :param <str> wafer_id: Name of the wafer_id
 
@@ -29,6 +30,7 @@ def filter_by_meas(meas, wafer_id):
 def filter_by_temp(temps, wafer_id):
     """
         This function browse the database to find all structures that have the temperature specified.
+
         :param <list> temps: List of str, contains all temperatures that wants to be matched
         :param <str> wafer_id: Name of the wafer_id
 
@@ -56,6 +58,7 @@ def filter_by_temp(temps, wafer_id):
 def filter_by_coord(coords, wafer_id):
     """
         This function browse the database to find all structures that have a matrix with the couple of coordinates specified.
+
         :param <list> coords: List of str, contains all couples of coordinates that want to be matched
         :param <str> wafer_id: Name of the wafer_id
 
@@ -79,7 +82,8 @@ def filter_by_coord(coords, wafer_id):
 def filter_by_filename(file=str, wafer_id=str):
     """
         This function browse the database to find all structures that have measurements from thr file specified.
-        :param <list> files: List of str, contains all files that wants to be matched
+
+        :param <list> file: List of str, contains all files that wants to be matched
         :param <str> wafer_id: Name of the wafer_id
 
         :return <list>: A list of structures that contains the specified files
@@ -102,9 +106,10 @@ def filter_by_filename(file=str, wafer_id=str):
 def filter_by_session(session=str, wafer_id=str):
     """
         This function browse the database to find all structures that have measurements from thr file specified.
-        :param <list> files: List of str, contains all files that wants to be matched
+
+        :param <list> session: List of str, contains all files that wants to be matched
         :param <str> wafer_id: Name of the wafer_id
 
-        :return <list>: A list of structures that contains the specified files
+        :return <list>: A list of structures that contains the specified session
         """
     return get_structures(wafer_id, session)

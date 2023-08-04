@@ -20,6 +20,7 @@ def create_db(path, is_JV):
 
     :param <str> path: path of the file
     :param <bool> is_JV: True if the user wants to register J-V measurements, False otherwise
+
     :return <list>: a list containing all wafers that have been registered
     """
 
@@ -302,6 +303,7 @@ def create_db_it(path):
     Also, indexes are created if they don't already exist, so searching in the database in faster
 
     :param <str> path: path of the file
+
     :return <list>: a list containing all wafers that have been registered
     """
     client = MongoClient('mongodb://localhost:27017/')
@@ -502,6 +504,7 @@ def create_db_tbl(path, is_JV):
 
     :param <str> path: path of the file
     :param <bool> is_JV: True if the user wants to register J-V measurements, False otherwise
+
     :return <list>: a list containing all wafers that have been registered
     """
     client = MongoClient('mongodb://localhost:27017/')
