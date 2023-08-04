@@ -476,7 +476,19 @@ Plot converted to base64
 
 
 \chapter{app module}
-\label{\detokenize{app:module-app}}\label{\detokenize{app:app-module}}\label{\detokenize{app::doc}}\index{module@\spxentry{module}!app@\spxentry{app}}\index{app@\spxentry{app}!module@\spxentry{module}}\index{C\_normal() (in module app)@\spxentry{C\_normal()}\spxextra{in module app}}
+\label{\detokenize{app:module-app}}\label{\detokenize{app:app-module}}\label{\detokenize{app::doc}}\index{module@\spxentry{module}!app@\spxentry{app}}\index{app@\spxentry{app}!module@\spxentry{module}}\index{C\_WM() (in module app)@\spxentry{C\_WM()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.C_WM}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{C\_WM}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the wafer map based on Capacitance values
+
+\end{fulllineitems}
+
+\index{C\_normal() (in module app)@\spxentry{C\_normal()}\spxextra{in module app}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{app:app.C_normal}}
@@ -486,6 +498,18 @@ Plot converted to base64
 \sphinxAtStartPar
 Used for plotting the normal plots of C.
 We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{Cmes\_WM() (in module app)@\spxentry{Cmes\_WM()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.Cmes_WM}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{Cmes\_WM}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the wafer map based on Measured Capacitance values
 
 \end{fulllineitems}
 
@@ -502,6 +526,18 @@ We first refactor received information and then call the function
 
 \end{fulllineitems}
 
+\index{Leak\_WM() (in module app)@\spxentry{Leak\_WM()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.Leak_WM}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{Leak\_WM}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the wafer map based on Leakage values
+
+\end{fulllineitems}
+
 \index{Leak\_normal() (in module app)@\spxentry{Leak\_normal()}\spxextra{in module app}}
 
 \begin{fulllineitems}
@@ -512,6 +548,18 @@ We first refactor received information and then call the function
 \sphinxAtStartPar
 Used for plotting the normal plots of Leak.
 We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{R\_WM() (in module app)@\spxentry{R\_WM()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.R_WM}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{R\_WM}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}, \sphinxparam{\DUrole{n,n}{structure}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to plot the wafer map based on resistance values
 
 \end{fulllineitems}
 
@@ -622,6 +670,102 @@ Used for displaying all structures that contain the selected session inside the 
 \pysigstopsignatures
 \sphinxAtStartPar
 Used for displaying all structures that contain the selected temperature inside the given wafer.
+
+\end{fulllineitems}
+
+\index{getCSess() (in module app)@\spxentry{getCSess()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.getCSess}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{getCSess}}}{\sphinxparam{\DUrole{n,n}{waferId}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all session that contain Capacitance values
+
+\end{fulllineitems}
+
+\index{getCStruct() (in module app)@\spxentry{getCStruct()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.getCStruct}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{getCStruct}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain Capacitance values
+
+\end{fulllineitems}
+
+\index{getCmesSess() (in module app)@\spxentry{getCmesSess()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.getCmesSess}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{getCmesSess}}}{\sphinxparam{\DUrole{n,n}{waferId}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all session that contain Measured Capacitance values
+
+\end{fulllineitems}
+
+\index{getCmesStruct() (in module app)@\spxentry{getCmesStruct()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.getCmesStruct}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{getCmesStruct}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain Measured Capacitance values
+
+\end{fulllineitems}
+
+\index{getLeakSess() (in module app)@\spxentry{getLeakSess()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.getLeakSess}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{getLeakSess}}}{\sphinxparam{\DUrole{n,n}{waferId}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all session that contain Leakage values
+
+\end{fulllineitems}
+
+\index{getLeakStruct() (in module app)@\spxentry{getLeakStruct()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.getLeakStruct}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{getLeakStruct}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain Leakage values
+
+\end{fulllineitems}
+
+\index{getRSess() (in module app)@\spxentry{getRSess()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.getRSess}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{getRSess}}}{\sphinxparam{\DUrole{n,n}{waferId}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all session that contain Resistance values
+
+\end{fulllineitems}
+
+\index{getRStruct() (in module app)@\spxentry{getRStruct()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.getRStruct}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{getRStruct}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain Resistance values
 
 \end{fulllineitems}
 

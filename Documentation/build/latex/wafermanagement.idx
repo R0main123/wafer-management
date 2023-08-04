@@ -4,8 +4,8 @@
 \indexentry{create\_wafer\_map() (in module VBD)@\spxentry{create\_wafer\_map()}\spxextra{in module VBD}|hyperpage}{1}
 \indexentry{fig\_to\_base64() (in module VBD)@\spxentry{fig\_to\_base64()}\spxextra{in module VBD}|hyperpage}{1}
 \indexentry{get\_all\_x() (in module VBD)@\spxentry{get\_all\_x()}\spxextra{in module VBD}|hyperpage}{1}
-\indexentry{get\_all\_y() (in module VBD)@\spxentry{get\_all\_y()}\spxextra{in module VBD}|hyperpage}{1}
-\indexentry{get\_compliance() (in module VBD)@\spxentry{get\_compliance()}\spxextra{in module VBD}|hyperpage}{1}
+\indexentry{get\_all\_y() (in module VBD)@\spxentry{get\_all\_y()}\spxextra{in module VBD}|hyperpage}{2}
+\indexentry{get\_compliance() (in module VBD)@\spxentry{get\_compliance()}\spxextra{in module VBD}|hyperpage}{2}
 \indexentry{get\_vectors\_in\_matrix() (in module VBD)@\spxentry{get\_vectors\_in\_matrix()}\spxextra{in module VBD}|hyperpage}{2}
 \indexentry{module@\spxentry{module}!WaferMaps@\spxentry{WaferMaps}|hyperpage}{3}
 \indexentry{WaferMaps@\spxentry{WaferMaps}!module@\spxentry{module}|hyperpage}{3}
@@ -15,9 +15,13 @@
 \indexentry{R\_wafer\_map() (in module WaferMaps)@\spxentry{R\_wafer\_map()}\spxextra{in module WaferMaps}|hyperpage}{3}
 \indexentry{module@\spxentry{module}!app@\spxentry{app}|hyperpage}{5}
 \indexentry{app@\spxentry{app}!module@\spxentry{module}|hyperpage}{5}
+\indexentry{C\_WM() (in module app)@\spxentry{C\_WM()}\spxextra{in module app}|hyperpage}{5}
 \indexentry{C\_normal() (in module app)@\spxentry{C\_normal()}\spxextra{in module app}|hyperpage}{5}
+\indexentry{Cmes\_WM() (in module app)@\spxentry{Cmes\_WM()}\spxextra{in module app}|hyperpage}{5}
 \indexentry{Cmes\_normal() (in module app)@\spxentry{Cmes\_normal()}\spxextra{in module app}|hyperpage}{5}
+\indexentry{Leak\_WM() (in module app)@\spxentry{Leak\_WM()}\spxextra{in module app}|hyperpage}{5}
 \indexentry{Leak\_normal() (in module app)@\spxentry{Leak\_normal()}\spxextra{in module app}|hyperpage}{5}
+\indexentry{R\_WM() (in module app)@\spxentry{R\_WM()}\spxextra{in module app}|hyperpage}{5}
 \indexentry{R\_normal() (in module app)@\spxentry{R\_normal()}\spxextra{in module app}|hyperpage}{5}
 \indexentry{VBD\_normal() (in module app)@\spxentry{VBD\_normal()}\spxextra{in module app}|hyperpage}{5}
 \indexentry{delete\_wafer() (in module app)@\spxentry{delete\_wafer()}\spxextra{in module app}|hyperpage}{5}
@@ -26,10 +30,18 @@
 \indexentry{filter\_by\_Filenames() (in module app)@\spxentry{filter\_by\_Filenames()}\spxextra{in module app}|hyperpage}{5}
 \indexentry{filter\_by\_Meas() (in module app)@\spxentry{filter\_by\_Meas()}\spxextra{in module app}|hyperpage}{5}
 \indexentry{filter\_by\_Session() (in module app)@\spxentry{filter\_by\_Session()}\spxextra{in module app}|hyperpage}{5}
-\indexentry{filter\_by\_Temps() (in module app)@\spxentry{filter\_by\_Temps()}\spxextra{in module app}|hyperpage}{5}
-\indexentry{get\_all\_coords() (in module app)@\spxentry{get\_all\_coords()}\spxextra{in module app}|hyperpage}{5}
-\indexentry{get\_all\_filenames() (in module app)@\spxentry{get\_all\_filenames()}\spxextra{in module app}|hyperpage}{5}
-\indexentry{get\_all\_structures() (in module app)@\spxentry{get\_all\_structures()}\spxextra{in module app}|hyperpage}{5}
+\indexentry{filter\_by\_Temps() (in module app)@\spxentry{filter\_by\_Temps()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{getCSess() (in module app)@\spxentry{getCSess()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{getCStruct() (in module app)@\spxentry{getCStruct()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{getCmesSess() (in module app)@\spxentry{getCmesSess()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{getCmesStruct() (in module app)@\spxentry{getCmesStruct()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{getLeakSess() (in module app)@\spxentry{getLeakSess()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{getLeakStruct() (in module app)@\spxentry{getLeakStruct()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{getRSess() (in module app)@\spxentry{getRSess()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{getRStruct() (in module app)@\spxentry{getRStruct()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{get\_all\_coords() (in module app)@\spxentry{get\_all\_coords()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{get\_all\_filenames() (in module app)@\spxentry{get\_all\_filenames()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{get\_all\_structures() (in module app)@\spxentry{get\_all\_structures()}\spxextra{in module app}|hyperpage}{6}
 \indexentry{get\_all\_temps() (in module app)@\spxentry{get\_all\_temps()}\spxextra{in module app}|hyperpage}{6}
 \indexentry{get\_all\_types() (in module app)@\spxentry{get\_all\_types()}\spxextra{in module app}|hyperpage}{6}
 \indexentry{get\_compl() (in module app)@\spxentry{get\_compl()}\spxextra{in module app}|hyperpage}{6}
@@ -37,17 +49,17 @@
 \indexentry{get\_map\_structures\_server() (in module app)@\spxentry{get\_map\_structures\_server()}\spxextra{in module app}|hyperpage}{6}
 \indexentry{get\_matrices() (in module app)@\spxentry{get\_matrices()}\spxextra{in module app}|hyperpage}{6}
 \indexentry{get\_normal\_values() (in module app)@\spxentry{get\_normal\_values()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{get\_sessions\_server() (in module app)@\spxentry{get\_sessions\_server()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{get\_structures\_json() (in module app)@\spxentry{get\_structures\_json()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{index() (in module app)@\spxentry{index()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{open() (in module app)@\spxentry{open()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{options() (in module app)@\spxentry{options()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{personal\_wafer\_map() (in module app)@\spxentry{personal\_wafer\_map()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{plot\_we\_want() (in module app)@\spxentry{plot\_we\_want()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{ppt\_structure\_route() (in module app)@\spxentry{ppt\_structure\_route()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{reg\_excel\_VBD() (in module app)@\spxentry{reg\_excel\_VBD()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{send\_css() (in module app)@\spxentry{send\_css()}\spxextra{in module app}|hyperpage}{6}
-\indexentry{send\_js() (in module app)@\spxentry{send\_js()}\spxextra{in module app}|hyperpage}{6}
+\indexentry{get\_sessions\_server() (in module app)@\spxentry{get\_sessions\_server()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{get\_structures\_json() (in module app)@\spxentry{get\_structures\_json()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{index() (in module app)@\spxentry{index()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{open() (in module app)@\spxentry{open()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{options() (in module app)@\spxentry{options()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{personal\_wafer\_map() (in module app)@\spxentry{personal\_wafer\_map()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{plot\_we\_want() (in module app)@\spxentry{plot\_we\_want()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{ppt\_structure\_route() (in module app)@\spxentry{ppt\_structure\_route()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{reg\_excel\_VBD() (in module app)@\spxentry{reg\_excel\_VBD()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{send\_css() (in module app)@\spxentry{send\_css()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{send\_js() (in module app)@\spxentry{send\_js()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{send\_static\_files() (in module app)@\spxentry{send\_static\_files()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{serve() (in module app)@\spxentry{serve()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{set\_compl() (in module app)@\spxentry{set\_compl()}\spxextra{in module app}|hyperpage}{7}
@@ -77,21 +89,21 @@
 \indexentry{get\_Cmes\_sessions() (in module getter)@\spxentry{get\_Cmes\_sessions()}\spxextra{in module getter}|hyperpage}{15}
 \indexentry{get\_Cmes\_structures() (in module getter)@\spxentry{get\_Cmes\_structures()}\spxextra{in module getter}|hyperpage}{15}
 \indexentry{get\_Leak\_sessions() (in module getter)@\spxentry{get\_Leak\_sessions()}\spxextra{in module getter}|hyperpage}{15}
-\indexentry{get\_Leak\_structures() (in module getter)@\spxentry{get\_Leak\_structures()}\spxextra{in module getter}|hyperpage}{15}
-\indexentry{get\_R\_sessions() (in module getter)@\spxentry{get\_R\_sessions()}\spxextra{in module getter}|hyperpage}{15}
-\indexentry{get\_R\_structures() (in module getter)@\spxentry{get\_R\_structures()}\spxextra{in module getter}|hyperpage}{15}
-\indexentry{get\_compliance() (in module getter)@\spxentry{get\_compliance()}\spxextra{in module getter}|hyperpage}{15}
-\indexentry{get\_coords() (in module getter)@\spxentry{get\_coords()}\spxextra{in module getter}|hyperpage}{15}
+\indexentry{get\_Leak\_structures() (in module getter)@\spxentry{get\_Leak\_structures()}\spxextra{in module getter}|hyperpage}{16}
+\indexentry{get\_R\_sessions() (in module getter)@\spxentry{get\_R\_sessions()}\spxextra{in module getter}|hyperpage}{16}
+\indexentry{get\_R\_structures() (in module getter)@\spxentry{get\_R\_structures()}\spxextra{in module getter}|hyperpage}{16}
+\indexentry{get\_compliance() (in module getter)@\spxentry{get\_compliance()}\spxextra{in module getter}|hyperpage}{16}
+\indexentry{get\_coords() (in module getter)@\spxentry{get\_coords()}\spxextra{in module getter}|hyperpage}{16}
 \indexentry{get\_db\_name() (in module getter)@\spxentry{get\_db\_name()}\spxextra{in module getter}|hyperpage}{16}
-\indexentry{get\_filenames() (in module getter)@\spxentry{get\_filenames()}\spxextra{in module getter}|hyperpage}{16}
-\indexentry{get\_map\_sessions() (in module getter)@\spxentry{get\_map\_sessions()}\spxextra{in module getter}|hyperpage}{16}
-\indexentry{get\_map\_structures() (in module getter)@\spxentry{get\_map\_structures()}\spxextra{in module getter}|hyperpage}{16}
-\indexentry{get\_matrices\_with\_I() (in module getter)@\spxentry{get\_matrices\_with\_I()}\spxextra{in module getter}|hyperpage}{16}
-\indexentry{get\_sessions() (in module getter)@\spxentry{get\_sessions()}\spxextra{in module getter}|hyperpage}{16}
-\indexentry{get\_structures() (in module getter)@\spxentry{get\_structures()}\spxextra{in module getter}|hyperpage}{16}
-\indexentry{get\_temps() (in module getter)@\spxentry{get\_temps()}\spxextra{in module getter}|hyperpage}{16}
-\indexentry{get\_types() (in module getter)@\spxentry{get\_types()}\spxextra{in module getter}|hyperpage}{17}
-\indexentry{get\_wafer() (in module getter)@\spxentry{get\_wafer()}\spxextra{in module getter}|hyperpage}{17}
+\indexentry{get\_filenames() (in module getter)@\spxentry{get\_filenames()}\spxextra{in module getter}|hyperpage}{17}
+\indexentry{get\_map\_sessions() (in module getter)@\spxentry{get\_map\_sessions()}\spxextra{in module getter}|hyperpage}{17}
+\indexentry{get\_map\_structures() (in module getter)@\spxentry{get\_map\_structures()}\spxextra{in module getter}|hyperpage}{17}
+\indexentry{get\_matrices\_with\_I() (in module getter)@\spxentry{get\_matrices\_with\_I()}\spxextra{in module getter}|hyperpage}{17}
+\indexentry{get\_sessions() (in module getter)@\spxentry{get\_sessions()}\spxextra{in module getter}|hyperpage}{17}
+\indexentry{get\_structures() (in module getter)@\spxentry{get\_structures()}\spxextra{in module getter}|hyperpage}{17}
+\indexentry{get\_temps() (in module getter)@\spxentry{get\_temps()}\spxextra{in module getter}|hyperpage}{18}
+\indexentry{get\_types() (in module getter)@\spxentry{get\_types()}\spxextra{in module getter}|hyperpage}{18}
+\indexentry{get\_wafer() (in module getter)@\spxentry{get\_wafer()}\spxextra{in module getter}|hyperpage}{18}
 \indexentry{module@\spxentry{module}!new\_manage\_DB@\spxentry{new\_manage\_DB}|hyperpage}{19}
 \indexentry{new\_manage\_DB@\spxentry{new\_manage\_DB}!module@\spxentry{module}|hyperpage}{19}
 \indexentry{create\_db() (in module new\_manage\_DB)@\spxentry{create\_db()}\spxextra{in module new\_manage\_DB}|hyperpage}{19}
@@ -105,28 +117,26 @@
 \indexentry{C\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{C\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}|hyperpage}{20}
 \indexentry{Cmes\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{Cmes\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}|hyperpage}{20}
 \indexentry{Cmes\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{Cmes\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}|hyperpage}{20}
-\indexentry{Leakage\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{Leakage\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}|hyperpage}{20}
-\indexentry{Leakage\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{Leakage\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}|hyperpage}{20}
-\indexentry{R\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{R\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}|hyperpage}{20}
-\indexentry{R\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{R\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}|hyperpage}{20}
-\indexentry{VBD\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{VBD\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}|hyperpage}{21}
-\indexentry{VBD\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{VBD\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}|hyperpage}{21}
-\indexentry{get\_values() (in module normal\_plots)@\spxentry{get\_values()}\spxextra{in module normal\_plots}|hyperpage}{21}
-\indexentry{module@\spxentry{module}!plot\_and\_powerpoint@\spxentry{plot\_and\_powerpoint}|hyperpage}{21}
-\indexentry{plot\_and\_powerpoint@\spxentry{plot\_and\_powerpoint}!module@\spxentry{module}|hyperpage}{21}
-\indexentry{fig\_to\_base64() (in module plot\_and\_powerpoint)@\spxentry{fig\_to\_base64()}\spxextra{in module plot\_and\_powerpoint}|hyperpage}{21}
-\indexentry{get\_wafer() (in module plot\_and\_powerpoint)@\spxentry{get\_wafer()}\spxextra{in module plot\_and\_powerpoint}|hyperpage}{21}
-\indexentry{plot\_wanted\_matrices() (in module plot\_and\_powerpoint)@\spxentry{plot\_wanted\_matrices()}\spxextra{in module plot\_and\_powerpoint}|hyperpage}{21}
-\indexentry{wanted\_ppt() (in module plot\_and\_powerpoint)@\spxentry{wanted\_ppt()}\spxextra{in module plot\_and\_powerpoint}|hyperpage}{21}
-\indexentry{module@\spxentry{module}!split\_data@\spxentry{split\_data}|hyperpage}{22}
-\indexentry{split\_data@\spxentry{split\_data}!module@\spxentry{module}|hyperpage}{22}
-\indexentry{C\_spliter() (in module split\_data)@\spxentry{C\_spliter()}\spxextra{in module split\_data}|hyperpage}{22}
-\indexentry{converter\_split() (in module split\_data)@\spxentry{converter\_split()}\spxextra{in module split\_data}|hyperpage}{22}
-\indexentry{converter\_split\_session() (in module split\_data)@\spxentry{converter\_split\_session()}\spxextra{in module split\_data}|hyperpage}{22}
-\indexentry{dataSpliter() (in module split\_data)@\spxentry{dataSpliter()}\spxextra{in module split\_data}|hyperpage}{22}
-\indexentry{spliter() (in module split\_data)@\spxentry{spliter()}\spxextra{in module split\_data}|hyperpage}{22}
-\indexentry{module@\spxentry{module}!test\_DataExtraction@\spxentry{test\_DataExtraction}|hyperpage}{22}
-\indexentry{test\_DataExtraction@\spxentry{test\_DataExtraction}!module@\spxentry{module}|hyperpage}{22}
-\indexentry{test\_filter() (in module test\_DataExtraction)@\spxentry{test\_filter()}\spxextra{in module test\_DataExtraction}|hyperpage}{22}
-\indexentry{module@\spxentry{module}!test@\spxentry{test}|hyperpage}{23}
-\indexentry{test@\spxentry{test}!module@\spxentry{module}|hyperpage}{23}
+\indexentry{Leakage\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{Leakage\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}|hyperpage}{21}
+\indexentry{Leakage\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{Leakage\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}|hyperpage}{21}
+\indexentry{R\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{R\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}|hyperpage}{21}
+\indexentry{R\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{R\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}|hyperpage}{22}
+\indexentry{VBD\_normal\_distrib\_neg() (in module normal\_plots)@\spxentry{VBD\_normal\_distrib\_neg()}\spxextra{in module normal\_plots}|hyperpage}{22}
+\indexentry{VBD\_normal\_distrib\_pos() (in module normal\_plots)@\spxentry{VBD\_normal\_distrib\_pos()}\spxextra{in module normal\_plots}|hyperpage}{22}
+\indexentry{get\_values() (in module normal\_plots)@\spxentry{get\_values()}\spxextra{in module normal\_plots}|hyperpage}{22}
+\indexentry{module@\spxentry{module}!plot\_and\_powerpoint@\spxentry{plot\_and\_powerpoint}|hyperpage}{23}
+\indexentry{plot\_and\_powerpoint@\spxentry{plot\_and\_powerpoint}!module@\spxentry{module}|hyperpage}{23}
+\indexentry{fig\_to\_base64() (in module plot\_and\_powerpoint)@\spxentry{fig\_to\_base64()}\spxextra{in module plot\_and\_powerpoint}|hyperpage}{23}
+\indexentry{get\_wafer() (in module plot\_and\_powerpoint)@\spxentry{get\_wafer()}\spxextra{in module plot\_and\_powerpoint}|hyperpage}{23}
+\indexentry{plot\_wanted\_matrices() (in module plot\_and\_powerpoint)@\spxentry{plot\_wanted\_matrices()}\spxextra{in module plot\_and\_powerpoint}|hyperpage}{23}
+\indexentry{wanted\_ppt() (in module plot\_and\_powerpoint)@\spxentry{wanted\_ppt()}\spxextra{in module plot\_and\_powerpoint}|hyperpage}{23}
+\indexentry{module@\spxentry{module}!split\_data@\spxentry{split\_data}|hyperpage}{24}
+\indexentry{split\_data@\spxentry{split\_data}!module@\spxentry{module}|hyperpage}{24}
+\indexentry{C\_spliter() (in module split\_data)@\spxentry{C\_spliter()}\spxextra{in module split\_data}|hyperpage}{24}
+\indexentry{converter\_split() (in module split\_data)@\spxentry{converter\_split()}\spxextra{in module split\_data}|hyperpage}{24}
+\indexentry{converter\_split\_session() (in module split\_data)@\spxentry{converter\_split\_session()}\spxextra{in module split\_data}|hyperpage}{24}
+\indexentry{dataSpliter() (in module split\_data)@\spxentry{dataSpliter()}\spxextra{in module split\_data}|hyperpage}{24}
+\indexentry{spliter() (in module split\_data)@\spxentry{spliter()}\spxextra{in module split\_data}|hyperpage}{24}
+\indexentry{module@\spxentry{module}!test\_DataExtraction@\spxentry{test\_DataExtraction}|hyperpage}{25}
+\indexentry{test\_DataExtraction@\spxentry{test\_DataExtraction}!module@\spxentry{module}|hyperpage}{25}
+\indexentry{test\_filter() (in module test\_DataExtraction)@\spxentry{test\_filter()}\spxextra{in module test\_DataExtraction}|hyperpage}{25}
