@@ -541,8 +541,6 @@ def getRSess(waferId):
     """
     Used to get all session that contain Resistance values
     """
-    print(waferId)
-    print(get_R_sessions(waferId))
     return jsonify(get_R_sessions(waferId))
 
 @app.route("/get_R_structures/<waferId>/<session>", methods=["GET"])

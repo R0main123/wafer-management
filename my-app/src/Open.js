@@ -333,13 +333,16 @@ function Open() {
     }
 
     const handleChoosewhatMap = (waferId) => {
+        setIsLoading(true);
+        setOpenWhatWM(true);
         setSelectedWafer(waferId);
         fetch(`/get_normal_values/${waferId}`)
           .then(response => response.json())
           .then(data => {
             setValues(data);
           });
-        setOpenWhatWM(true);
+        setIsLoading(false);
+
     }
 
     const handleWaferMapClick = (waferId) => {
@@ -614,7 +617,7 @@ function Open() {
     const handleChooseWM = (item) => {
         setSelectedNormalMeasure(item);
         if(item == "VBD"){
-            setOpenWaferMapDialog(true);
+            handleWaferMapClick(selectedWafer);
         } else if(item == "Leak"){
             handleLeakSessionClick(selectedWafer);
         } else if(item == "R"){
@@ -1269,9 +1272,11 @@ function Open() {
               open={openWhatWM}
               onClose={() => {
                   setOpenWhatWM(false);
+                  setValues([]);
                   handleCloseDialog();
               }}
               onBackdropClick={() => {
+                  setValues([]);
                   setOpenWhatWM(false);
               }}
               aria-labelledby="alert-dialog-title"
@@ -1279,8 +1284,15 @@ function Open() {
             >
               <DialogTitle id="alert-dialog-title">{"Please select a Value"}</DialogTitle>
               <DialogContent>
-
-                  {values.length === 0 ? (
+                {isLoading ? (
+                      <>
+                        <Select>
+                            <CircularProgress />
+                            Processing...
+                        </Select>
+                    </>
+                  ) : (
+                  values.length === 0 ? (
                       <Typography>No values available in this wafer</Typography>
                   ) : (
                       values.map((item, index) => (
@@ -1294,12 +1306,13 @@ function Open() {
                               >{item}</Button>
 
                       ))
-                  )}
+                  ))}
 
               </DialogContent>
               <DialogActions>
                 <Button onClick={() => {
                   setOpenWhatWM(false);
+                  setValues([]);
                   handleCloseDialog();
               }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>

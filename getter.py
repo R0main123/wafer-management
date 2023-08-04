@@ -256,7 +256,6 @@ def get_R_sessions(wafer_id):
                 continue
             for matrix in wafer[session][structure]['matrices']:
                 if 'R' in matrix:
-                    print
                     sessions.append(session)
                     break
             if session in sessions:
@@ -346,7 +345,6 @@ def get_R_structures(wafer_id, session):
 
     :return <list>: List of all structures that contain R values
     """
-    print(session)
 
     wafer = get_wafer(wafer_id)
     structures = []

@@ -61,21 +61,40 @@ If you have any problems installing or configuring MongoDB, please consult the [
 
 
 ## 3. Getting started
-Please click on the `wafer-Management.bat` file to get started with the application. Then, choose `Register New Measures` and drag and drop the files you want to register. Please drag and drop only .txt files, not lim files.
+Please click on the `wafer-Management.bat` file to get started with the application. Then, choose `Register New Measures` and drag and drop the files you want to register. You can drop .txt files, lim files, .tbl files, or .tbl.Z.
+#### TXT Files:
+They are just uploaded in the folder DataFiles, read and register in the database. They are deleted after being processed.
+
+#### TBL files:
+They are uploaded, read, registered in the database and then converted into .txt files. Converted files are available in the folder Converted Files.
+
+#### TBL.Z files:
+They are uncompress and then treated as tbl files.
+
+#### LIM files:
+First, we check if their twin is present in the uploaded files. If it is, we process them. Else, we ignore it without raising any error.
+
+
+#
+
 Then, return to the home menu and go to `Open existing wafer`.
 Here, you have a view on all wafers you have registered. you can browse the list with a mouse or using the tactile screen. You can also use the trackpad but its usage is more delicate. 
-Once on the page of the wafers, you have two buttons on each: `Wafer Map` and `Delete wafer`. The first will ask you to select a session and a structure, and will plot the wafer Map of this structure.
+Once on the page of the wafers, you have three buttons on each: `Wafer Map`, `Normal plots` and `Delete wafer`. The first two will ask you to select a value (R, Leak, C, Cmes and/or VBD, depending on what is available in the wafer).
 
-**WARNING: Please ensure that the structure you select has I-V measurements in it.**
+Wafer Map will ask you to choose a session and a structure and will plot the wafer Map of the value inside this structure. 
 
-The second button allows you ti delete the wafer.
+Normal plots allows you to choose multiples structures and will display the normal distribution of the value.
+
+The application displays only values that are available in the wafer, and once you chose a value, it displays only sessions and structures that contains this value.
+
+The third button allows you to delete the wafer. It will **definitevely** disappear from the database and the application.
 
 By clicking on a card, you will be shown the list of all sessions in the wafer. A click on a session shows you all structures in the session. 
 ### Filter Menu:
 The Filter Menu allows you to choose parameters you want to select: temperature, session, die, filename and type of measurements. Once you have selected one or multiples parameters, choose one or more structure in the sessions. Then, you will be able to plot the data you have selected, register them into a PowerPoint or in an Excel file.
 
-**Don't forget to select structures.** By default, if you don't select a parameter in the filter menu, it will select all the parameters (For example if you don't chosoe any temeperature, it will take all data no matter the temperature of the measurements)
+**Don't forget to select structures.** By default, if you don't select a parameter in the filter menu, it will select all the parameters (For example if you don't choose any temperature, it will take all data no matter the temperature of the measurements)
 
 
 ## Change database
-If you want to create multiple databases, you can go to `new_manage_DB.py` file and change the name of default parameter in `connexion` (Line 242). From now, each time you will create and connect to a database, it is this one which will be taken. If you want to connect to an older DB, You will have to change this parameter to the name of the wanted database.
+If you want to create multiple databases, you can go to `getter.py` file and change the name of default parameter in `get_db_name` (Line 4). From now, each time you will create and connect to a database, it is this one which will be taken. If you want to connect to an older DB, You will have to change this parameter to the name of the wanted database.
