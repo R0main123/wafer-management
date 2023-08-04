@@ -254,7 +254,7 @@ def fig_to_base64(fig):
     """
     Function used to convert a png to base64 to help communication between server and User. Used in ppt_matrix.
 
-    :param <png> fig: a figure in png format
+    :param <png> fig: a figure in png format.
 
     :return <base64>: The converted figure
     """
