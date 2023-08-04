@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>getter module &#8212; Wafer Management 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="wafer-management" href="modules.html" />
+    <link rel="prev" title="filter module" href="filter.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="wafer-management"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="filter.html" title="filter module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Wafer Management 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">getter module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-getter">
+<span id="getter-module"></span><h1>getter module<a class="headerlink" href="#module-getter" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.connexion">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">connexion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getter.connexion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to connect to the database, so we can manipulate data. /! Only use to read data, not to write data in the DB /!
+:return: The collection.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_C_sessions">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_C_sessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_C_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all sessions that contain C values (for wafer maps)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of all sessions that contain C values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_C_structures">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_C_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_C_structures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain C values (for wafer maps)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Name of the session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of all structures that contain C values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_Cmes_sessions">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_Cmes_sessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_Cmes_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all sessions that contain Cmes values (for wafer maps)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of all sessions that contain Cmes values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_Cmes_structures">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_Cmes_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_Cmes_structures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain Cmes values (for wafer maps)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Name of the session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of all structures that contain Cmes values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_Leak_sessions">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_Leak_sessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_Leak_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all sessions that contain Leak values (for wafer maps)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of all sessions that contain Leak values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_Leak_structures">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_Leak_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_Leak_structures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain Leak values (for wafer maps)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Name of the session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of all structures that contain Leak values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_R_sessions">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_R_sessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_R_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all sessions that contain R values (for wafer maps)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of all sessions that contain R values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_R_structures">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_R_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_R_structures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain R values (for wafer maps)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Name of the session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of all structures that contain R values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_compliance">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_compliance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_compliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds the compliance from the specified structure in the database
+Returns None if the structure has no compliance registered</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – name of the wafer_id</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – name of the session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;str&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>the compliance in the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_coords">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_coords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds all the coordinates from the specified wafer in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – name of the wafer_id</p>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>the list of coordinates in the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_db_name">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_db_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'New</span> <span class="pre">Wafers'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_db_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to know which database has to be opened. Default parameter can be changed manually, so a new database will be created if it doesn’t exist yet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>db_name</strong> (<em>&lt;str&gt;</em>) – Name of the database. Please change it to create a new database or switch to another existing</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Name of the database</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_filenames">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_filenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_filenames" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds all the filenames in the specified wafer in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – name of the wafer_id</p>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>the list of filenames in the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_map_sessions">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_map_sessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_map_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all sessions that contain I-V measurements (for wafer maps) inside a wafer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p>
+</dd>
+<dt class="field-even">Return &lt;list of str&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>All sessions with I-V measurements inside the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_map_structures">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_map_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_map_structures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain I-V measurements (for wafer maps) inside the given session of a wafer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Selected session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list of str&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>All structures that contain I-V measurements inside the session</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_matrices_with_I">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_matrices_with_I</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_matrices_with_I" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds all matrices that contain I-V measurements. Used to display buttons in the right place in the UI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – the name of the wafer</p></li>
+<li><p><strong>structure_id</strong> (<em>&lt;str&gt;</em>) – the name of the structure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of matrices that contains I-V measurements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_sessions">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_sessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all sessions inside a given wafer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p>
+</dd>
+<dt class="field-even">Return &lt;list of str&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>All sessions inside the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_structures">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_structures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures  inside the given session of a wafer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Selected session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list of str&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>All structures inside the session</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_temps">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_temps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_temps" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds all the temperatures from the specified wafer in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – name of the wafer_id</p>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>the list of temperatures in the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_types">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds all the types of measurements from the specified wafer in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – name of the wafer_id</p>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>the list of types in the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_wafer">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_wafer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_wafer" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds the wafer specified in the database. /!Only use to read data, not to write data in the DB /!
+:param &lt;str&gt; wafer_id: name of the wafer_id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return &lt;dict&gt;<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">getter module</a><ul>
+<li><a class="reference internal" href="#getter.connexion"><code class="docutils literal notranslate"><span class="pre">connexion()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_C_sessions"><code class="docutils literal notranslate"><span class="pre">get_C_sessions()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_C_structures"><code class="docutils literal notranslate"><span class="pre">get_C_structures()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_Cmes_sessions"><code class="docutils literal notranslate"><span class="pre">get_Cmes_sessions()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_Cmes_structures"><code class="docutils literal notranslate"><span class="pre">get_Cmes_structures()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_Leak_sessions"><code class="docutils literal notranslate"><span class="pre">get_Leak_sessions()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_Leak_structures"><code class="docutils literal notranslate"><span class="pre">get_Leak_structures()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_R_sessions"><code class="docutils literal notranslate"><span class="pre">get_R_sessions()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_R_structures"><code class="docutils literal notranslate"><span class="pre">get_R_structures()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_compliance"><code class="docutils literal notranslate"><span class="pre">get_compliance()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_coords"><code class="docutils literal notranslate"><span class="pre">get_coords()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_db_name"><code class="docutils literal notranslate"><span class="pre">get_db_name()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_filenames"><code class="docutils literal notranslate"><span class="pre">get_filenames()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_map_sessions"><code class="docutils literal notranslate"><span class="pre">get_map_sessions()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_map_structures"><code class="docutils literal notranslate"><span class="pre">get_map_structures()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_matrices_with_I"><code class="docutils literal notranslate"><span class="pre">get_matrices_with_I()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_sessions"><code class="docutils literal notranslate"><span class="pre">get_sessions()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_structures"><code class="docutils literal notranslate"><span class="pre">get_structures()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_temps"><code class="docutils literal notranslate"><span class="pre">get_temps()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_types"><code class="docutils literal notranslate"><span class="pre">get_types()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_wafer"><code class="docutils literal notranslate"><span class="pre">get_wafer()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="filter.html"
+                          title="previous chapter">filter module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="modules.html"
+                          title="next chapter">wafer-management</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/getter.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="wafer-management"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="filter.html" title="filter module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Wafer Management 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">getter module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Romain LAUP.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>

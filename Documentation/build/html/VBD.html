@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>VBD module &#8212; Wafer Management 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="WaferMaps module" href="WaferMaps.html" />
+    <link rel="prev" title="Welcome to Wafer Management’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="WaferMaps.html" title="WaferMaps module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Wafer Management’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Wafer Management 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">VBD module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-VBD">
+<span id="vbd-module"></span><h1>VBD module<a class="headerlink" href="#module-VBD" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="VBD.calculate_breakdown">
+<span class="sig-prename descclassname"><span class="pre">VBD.</span></span><span class="sig-name descname"><span class="pre">calculate_breakdown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compliance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VBD.calculate_breakdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>This functions calculates Voltage breakdown for two vectors given, and a compliance. Default value of the compliance is set to 1e-3</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>&lt;list&gt;</em>) – Values of voltage. Will be converted to a np.array</p></li>
+<li><p><strong>Y</strong> (<em>&lt;list&gt;</em>) – Values of current. Will be converted to a np.array and we will take the absolute value of the values</p></li>
+<li><p><strong>compliance</strong> (<em>&lt;float&gt;</em>) – Value of compliance. By default is set to 1e-3</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;float&gt; Breakd_Volt<span class="colon">:</span></dt>
+<dd class="field-even"><p>Voltage Breakdown. Can be Nan</p>
+</dd>
+<dt class="field-odd">Return &lt;float&gt; Breakd_Leak<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Leakage Breakdown. Can be Nan</p>
+</dd>
+<dt class="field-even">Return &lt;bool&gt; reached_compl<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the current reached compliance, False otherwise. If it’s False, Breakd_Volt will be Nan</p>
+</dd>
+<dt class="field-odd">Return &lt;float&gt; high_leak<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Compliance if compliance is reached, highest value of the current otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="VBD.create_wafer_map">
+<span class="sig-prename descclassname"><span class="pre">VBD.</span></span><span class="sig-name descname"><span class="pre">create_wafer_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VBD.create_wafer_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns a plot converted to base64, so it can be sent to the User Interface. The plot shows the wafer map based on VBD.
+VBD are taken from the database. If a VBD is ‘NaN’, it’s colored in black.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – the name of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Selected session</p></li>
+<li><p><strong>structure_id</strong> (<em>&lt;str&gt;</em>) – the name of the structure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>Plot converted to base64</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="VBD.fig_to_base64">
+<span class="sig-prename descclassname"><span class="pre">VBD.</span></span><span class="sig-name descname"><span class="pre">fig_to_base64</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VBD.fig_to_base64" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to convert a png to base64 to help communication between server and User. Used in ppt_matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fig</strong> (<em>&lt;png&gt;</em>) – a figure in png format</p>
+</dd>
+<dt class="field-even">Return &lt;base64&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>The converted figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="VBD.get_all_x">
+<span class="sig-prename descclassname"><span class="pre">VBD.</span></span><span class="sig-name descname"><span class="pre">get_all_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VBD.get_all_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function gets all coordinates x in a structure. Used to create the wafer map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – the name of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – name of the session</p></li>
+<li><p><strong>structure_id</strong> (<em>&lt;str&gt;</em>) – the name of the structure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of x in the structure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="VBD.get_all_y">
+<span class="sig-prename descclassname"><span class="pre">VBD.</span></span><span class="sig-name descname"><span class="pre">get_all_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VBD.get_all_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function gets all coordinates y in a structure. Used to create the wafer map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – the name of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Selected session</p></li>
+<li><p><strong>structure_id</strong> (<em>&lt;str&gt;</em>) – the name of the structure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of y in the structure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="VBD.get_compliance">
+<span class="sig-prename descclassname"><span class="pre">VBD.</span></span><span class="sig-name descname"><span class="pre">get_compliance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VBD.get_compliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds the compliance from the specified session in the database
+Returns None if the structure has no compliance registered</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – name of the wafer_id</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – name of the session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;str&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>the compliance in the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="VBD.get_vectors_in_matrix">
+<span class="sig-prename descclassname"><span class="pre">VBD.</span></span><span class="sig-name descname"><span class="pre">get_vectors_in_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VBD.get_vectors_in_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to get the values of voltages and current in a matrix. This function is always in parameters for calculate_breakdown</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – the name of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Selected session</p></li>
+<li><p><strong>structure_id</strong> (<em>&lt;str&gt;</em>) – the name of the structure</p></li>
+<li><p><strong>x</strong> (<em>&lt;str&gt;</em>) – the horizontal coordinate of the matrix</p></li>
+<li><p><strong>y</strong> (<em>&lt;str&gt;</em>) – the vertical coordinate of the matrix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list&gt; X<span class="colon">:</span></dt>
+<dd class="field-even"><p>The values of voltage</p>
+</dd>
+<dt class="field-odd">Return &lt;list&gt; Y<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The values of current</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">VBD module</a><ul>
+<li><a class="reference internal" href="#VBD.calculate_breakdown"><code class="docutils literal notranslate"><span class="pre">calculate_breakdown()</span></code></a></li>
+<li><a class="reference internal" href="#VBD.create_wafer_map"><code class="docutils literal notranslate"><span class="pre">create_wafer_map()</span></code></a></li>
+<li><a class="reference internal" href="#VBD.fig_to_base64"><code class="docutils literal notranslate"><span class="pre">fig_to_base64()</span></code></a></li>
+<li><a class="reference internal" href="#VBD.get_all_x"><code class="docutils literal notranslate"><span class="pre">get_all_x()</span></code></a></li>
+<li><a class="reference internal" href="#VBD.get_all_y"><code class="docutils literal notranslate"><span class="pre">get_all_y()</span></code></a></li>
+<li><a class="reference internal" href="#VBD.get_compliance"><code class="docutils literal notranslate"><span class="pre">get_compliance()</span></code></a></li>
+<li><a class="reference internal" href="#VBD.get_vectors_in_matrix"><code class="docutils literal notranslate"><span class="pre">get_vectors_in_matrix()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to Wafer Management’s documentation!</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="WaferMaps.html"
+                          title="next chapter">WaferMaps module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/VBD.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="WaferMaps.html" title="WaferMaps module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Wafer Management’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Wafer Management 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">VBD module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Romain LAUP.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>
