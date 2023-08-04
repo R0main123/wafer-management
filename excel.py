@@ -187,9 +187,6 @@ def excel_VBD(wafer_id, sessions, structures, Temps, Files, coords, file_name):
     if not os.path.exists(wafer_id):
         os.makedirs(wafer_id)
 
-    positives_structures = []
-    negatives_structures = []
-
     file_name = wafer_id + '\\' + file_name + '.xlsx'
     wafer = get_wafer(wafer_id)
 
@@ -204,8 +201,6 @@ def excel_VBD(wafer_id, sessions, structures, Temps, Files, coords, file_name):
                             "Temperature"] in Temps:
                     temporary_df.loc[structure, (session, coordinates)] = matrix['VBD'] if not math.isnan(matrix['VBD']) else 'NaN'
         final_df = pd.concat([final_df, temporary_df], axis=1)
-
-
 
     final_df.to_excel(file_name, sheet_name=wafer_id, index=structures)
     final_df['Classification'] = final_df.apply(classify_row, axis=1)

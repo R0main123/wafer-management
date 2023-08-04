@@ -256,9 +256,11 @@ def get_R_sessions(wafer_id):
                 continue
             for matrix in wafer[session][structure]['matrices']:
                 if 'R' in matrix:
+                    print
                     sessions.append(session)
                     break
-            break
+            if session in sessions:
+                break
 
     return list(set(sessions))
 
@@ -281,7 +283,8 @@ def get_Leak_sessions(wafer_id):
                 if 'Leak' in matrix:
                     sessions.append(session)
                     break
-            break
+            if session in sessions:
+                break
 
     return list(set(sessions))
 
@@ -305,7 +308,8 @@ def get_C_sessions(wafer_id):
                     if 'C' in matrix['Cap']:
                         sessions.append(session)
                     break
-            break
+            if session in sessions:
+                break
 
     return list(set(sessions))
 
@@ -329,7 +333,8 @@ def get_Cmes_sessions(wafer_id):
                     if 'Cmes' in matrix['Cap']:
                         sessions.append(session)
                     break
-            break
+            if session in sessions:
+                break
 
 
 def get_R_structures(wafer_id, session):
@@ -341,6 +346,8 @@ def get_R_structures(wafer_id, session):
 
     :return <list>: List of all structures that contain R values
     """
+    print(session)
+
     wafer = get_wafer(wafer_id)
     structures = []
     for structure in wafer[session]:
@@ -350,7 +357,6 @@ def get_R_structures(wafer_id, session):
             if 'R' in matrix:
                 structures.append(structure)
                 break
-        break
 
     return list(set(structures))
 
@@ -373,7 +379,6 @@ def get_Leak_structures(wafer_id, session):
             if 'Leak' in matrix:
                 structures.append(structure)
                 break
-        break
 
     return list(set(structures))
 
@@ -397,7 +402,6 @@ def get_C_structures(wafer_id, session):
                 if 'C' in matrix['Cap']:
                     structures.append(structure)
                 break
-        break
 
     return list(set(structures))
 
@@ -421,6 +425,5 @@ def get_Cmes_structures(wafer_id, session):
                 if 'Cmes' in matrix['Cap']:
                     structures.append(structure)
                 break
-        break
 
     return list(set(structures))

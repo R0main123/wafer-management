@@ -45,6 +45,11 @@ function Open() {
     const [openAccordion, setOpenAccordion] = useState(false);
     const [openVBDExcel, setOpenVBDExcel] = useState(false);
     const [openChooseNormal, setOpenChooseNormal] = useState(false);
+    const [openChooseWM, setOpenChooseWM] = useState(false);
+    const [openChooseLeak, setOpenChooseLeak] = useState(false);
+    const [openChooseR, setOpenChooseR] = useState(false);
+    const [openChooseC, setOpenChooseC] = useState(false);
+    const [openChooseCmes, setOpenChooseCmes] = useState(false);
     const [openPlotsNormal, setOpenPlotsNormal] = useState(false);
     const [selectedWafer, setSelectedWafer] = useState(null);
     const [selectedStructure, setSelectedStructure] = useState(null);
@@ -56,6 +61,7 @@ function Open() {
     const [selectedNormalMeasure, setSelectedNormalMeasure] = useState(null);
     const [triplets, setTriplets] = useState([]);
     const [openWhatNormal, setOpenWhatNormal] = useState(false);
+    const [openWhatWM, setOpenWhatWM] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [currentWaferMap, setCurrentWaferMap] = useState(null);
     const [currentNormalPlots, setCurrentNormalPlots] = useState([])
@@ -63,6 +69,10 @@ function Open() {
     const [structures, setStructures] = useState([]);
     const [sessions, setSessions] = useState([]);
     const [mapSessions, setMapSessions] = useState([]);
+    const [leakSessions, setLeakSessions] = useState([]);
+    const [RSessions, setRSessions] = useState([]);
+    const [CSessions, setCSessions] = useState([]);
+    const [CmesSessions, setCmesSessions] = useState([]);
     const [values, setValues] = useState([])
     const [mapStructures, setMapStructures] = useState([]);
     const [allStructures, setAllStructures] = useState([]);
@@ -322,6 +332,16 @@ function Open() {
         setOpenDialog(false);
     }
 
+    const handleChoosewhatMap = (waferId) => {
+        setSelectedWafer(waferId);
+        fetch(`/get_normal_values/${waferId}`)
+          .then(response => response.json())
+          .then(data => {
+            setValues(data);
+          });
+        setOpenWhatWM(true);
+    }
+
     const handleWaferMapClick = (waferId) => {
         setSelectedWafer(waferId);
         fetch(`/get_map_sessions/${waferId}`)
@@ -463,6 +483,149 @@ function Open() {
         setOpenChooseNormal(true);
     }
 
+    const handleLeakSessionClick = (waferId) => {
+        setSelectedWafer(waferId);
+        fetch(`/get_Leak_sessions/${waferId}`)
+            .then(response => response.json())
+            .then(data => {
+                setLeakSessions(data);
+                setFilteredSessions(data);
+                console.log(selectedSession)
+        })
+        setOpenChooseLeak(true);
+    }
+
+    const handleRSessionClick = (waferId) => {
+        setSelectedWafer(waferId);
+        fetch(`/get_R_sessions/${waferId}`)
+            .then(response => response.json())
+            .then(data => {
+                setRSessions(data);
+                setFilteredSessions(data);
+                console.log(selectedSession)
+        })
+        setOpenChooseR(true);
+    }
+
+    const handleCSessionClick = (waferId) => {
+        setSelectedWafer(waferId);
+        fetch(`/get_C_sessions/${waferId}`)
+            .then(response => response.json())
+            .then(data => {
+                setCSessions(data);
+                setFilteredSessions(data);
+                console.log(selectedSession)
+        })
+        setOpenChooseC(true);
+    }
+
+    const handleCmesSessionClick = (waferId) => {
+        setSelectedWafer(waferId);
+        fetch(`/get_Cmes_sessions/${waferId}`)
+            .then(response => response.json())
+            .then(data => {
+                setCmesSessions(data);
+                setFilteredSessions(data);
+                console.log(selectedSession)
+        })
+        setOpenChooseCmes(true);
+    }
+
+    const manageLeakSessionClick = (session) => {
+        setSelectedSession(session);
+        fetch(`/get_Leak_structures/${selectedWafer}/${session}`)
+          .then(response => response.json())
+          .then(data => {
+            setStructures(data);
+          });
+    }
+
+    const manageRSessionClick = (session) => {
+        setSelectedSession(session);
+        fetch(`/get_R_structures/${selectedWafer}/${session}`)
+          .then(response => response.json())
+          .then(data => {
+            setStructures(data);
+          });
+    }
+
+    const manageCSessionClick = (session) => {
+        setSelectedSession(session);
+        fetch(`/get_C_structures/${selectedWafer}/${session}`)
+          .then(response => response.json())
+          .then(data => {
+            setStructures(data);
+          });
+    }
+
+    const manageCmesSessionClick = (session) => {
+        setSelectedSession(session);
+        fetch(`/get_Cmes_structures/${selectedWafer}/${session}`)
+          .then(response => response.json())
+          .then(data => {
+            setStructures(data);
+          });
+    }
+
+    const handleWaferMapLeakStructure = async (structureId) => {
+        setOpenShowWaferMapDialog(true);
+        setIsLoading(true);
+        fetch(`/Leak_wafer_map/${selectedWafer}/${selectedSession}/${structureId}`)
+        .then(response => response.json())
+                .then(data => {
+                    setCurrentWaferMap(data);
+                });
+        setIsLoading(false);
+    }
+
+    const handleWaferMapRStructure = async (structureId) => {
+        setOpenShowWaferMapDialog(true);
+        setIsLoading(true);
+        fetch(`/R_wafer_map/${selectedWafer}/${selectedSession}/${structureId}`)
+        .then(response => response.json())
+                .then(data => {
+                    setCurrentWaferMap(data);
+                });
+        setIsLoading(false);
+    }
+
+    const handleWaferMapCStructure = async (structureId) => {
+        setOpenShowWaferMapDialog(true);
+        setIsLoading(true);
+        fetch(`/C_wafer_map/${selectedWafer}/${selectedSession}/${structureId}`)
+        .then(response => response.json())
+                .then(data => {
+                    setCurrentWaferMap(data);
+                });
+        setIsLoading(false);
+    }
+
+    const handleWaferMapCmesStructure = async (structureId) => {
+        setOpenShowWaferMapDialog(true);
+        setIsLoading(true);
+        fetch(`/Cmes_wafer_map/${selectedWafer}/${selectedSession}/${structureId}`)
+        .then(response => response.json())
+                .then(data => {
+                    setCurrentWaferMap(data);
+                });
+        setIsLoading(false);
+    }
+
+    const handleChooseWM = (item) => {
+        setSelectedNormalMeasure(item);
+        if(item == "VBD"){
+            setOpenWaferMapDialog(true);
+        } else if(item == "Leak"){
+            handleLeakSessionClick(selectedWafer);
+        } else if(item == "R"){
+            handleRSessionClick(selectedWafer);
+        } else if(item == "C"){
+            handleCSessionClick(selectedWafer);
+        } else if(item == "Cmes"){
+            handleCmesSessionClick(selectedWafer);
+        }
+    }
+
     const handleNormalPlots = () => {
         setOpenPlotsNormal(true);
         setIsLoading(true);
@@ -546,7 +709,7 @@ function Open() {
                                     onCreateExcelClick={handleCreateExcelClick}
                                     onCreatePptClick={handleCreatePptClick}
                                     onDeleteClick={handleDeleteClick}
-                                    onWaferMapClick={handleWaferMapClick}
+                                    onWaferMapClick={handleChoosewhatMap}
                                     onNormalClick={handleNormalClick}
                                     className={selectedWafer === waferId ? 'selected' : ''}
                                     />
@@ -1103,6 +1266,47 @@ function Open() {
 
 
             <Dialog
+              open={openWhatWM}
+              onClose={() => {
+                  setOpenWhatWM(false);
+                  handleCloseDialog();
+              }}
+              onBackdropClick={() => {
+                  setOpenWhatWM(false);
+              }}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please select a Value"}</DialogTitle>
+              <DialogContent>
+
+                  {values.length === 0 ? (
+                      <Typography>No values available in this wafer</Typography>
+                  ) : (
+                      values.map((item, index) => (
+                              <Button
+                                  key={index}
+                                  variant='contained'
+                                  color="primary"
+                                  onClick={() => {
+                                      handleChooseWM(item)
+                                  }}
+                              >{item}</Button>
+
+                      ))
+                  )}
+
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => {
+                  setOpenWhatWM(false);
+                  handleCloseDialog();
+              }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
+
+
+            <Dialog
               open={openChooseNormal}
               onClose={() => {setOpenChooseNormal(false)}}
               onBackdropClick={handleCloseDialog}
@@ -1188,6 +1392,347 @@ function Open() {
               </DialogActions>
             </Dialog>
 
+
+            <Dialog
+              open={openChooseLeak}
+              onClose={() => {setOpenChooseLeak(false)}}
+              onBackdropClick={handleCloseDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please select your parameters"}</DialogTitle>
+              <DialogContent>
+                  {isLoading ? (
+                      <>
+                        <Select>
+                            <CircularProgress />
+                            Processing...
+                        </Select>
+                    </>
+                  ) : (
+                      <>
+                <Typography variant="h5">{selectedWafer} ({sessions.length} sessions)</Typography>
+                <FilterMenu selectedWafer={selectedWafer}
+                            setStructures={setStructures}
+                            structures={structures}
+                            allStructures={allStructures}
+                            style={{zIndex: 2}}
+                            filteredStructures={filteredStructures}
+                            setFilteredStructures={setFilteredStructures}
+                            session={selectedSession}
+                            filteredSessions={filteredSessions}
+                            setFilteredSessions={setFilteredSessions}
+                            filteredTypes={filteredTypes}
+                            setFilteredTypes={setFilteredTypes}
+                            filteredTemps={filteredTemps}
+                            setFilteredTemps={setFilteredTemps}
+                            filteredFiles={filteredFiles}
+                            setFilteredFiles={setFilteredFiles}
+                            filteredCoords={filteredCoords}
+                            setFilteredCoords={setFilteredCoords}
+                            setIsloading={setIsLoading}
+
+                />
+
+                <Grid container spacing={2}>
+                  {leakSessions.map((session, index) => (
+                  <Grid item xs={12} key={index}>
+                    <Accordion expanded={openAccordion === `panel${index}`}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls={`panel${index}-content`}
+                        id={`panel${index}-header`}
+                        onClick={() => {
+                          manageLeakSessionClick(session);
+                          setOpenAccordion(openAccordion === `panel${index}` ? false : `panel${index}`);
+                        }}
+                      >
+                        <Typography>{session}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Button style={{backgroundColor: "#4fbdff"}} onClick={handleSelectAll}>Select/Unselect All</Button>
+                        <Grid container spacing={2}>
+                          {structures.map((structure, index) => (
+                              <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
+                          'flex-start': 'flex-end'}}>
+                            <Chip
+                                key={`Selected ${index}`}
+                                label={`${structure}${selectedStructures.includes(structure) ? " \u2714" : ""}`}
+                                onClick={() => handleWaferMapLeakStructure(structure)}
+                                style={{margin: '5px', backgroundColor: selectedStructures.includes(structure) ? "#4fbdff" : "#888888"}}
+                            />
+                          </Grid>
+                          ))}
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Grid>
+                  ))}
+                </Grid>
+                </>
+                )}
+
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => {setOpenChooseLeak(false)}} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
+
+
+            <Dialog
+              open={openChooseR}
+              onClose={() => {setOpenChooseR(false)}}
+              onBackdropClick={handleCloseDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please select your parameters"}</DialogTitle>
+              <DialogContent>
+                  {isLoading ? (
+                      <>
+                        <Select>
+                            <CircularProgress />
+                            Processing...
+                        </Select>
+                    </>
+                  ) : (
+                      <>
+                <Typography variant="h5">{selectedWafer} ({sessions.length} sessions)</Typography>
+                <FilterMenu selectedWafer={selectedWafer}
+                            setStructures={setStructures}
+                            structures={structures}
+                            allStructures={allStructures}
+                            style={{zIndex: 2}}
+                            filteredStructures={filteredStructures}
+                            setFilteredStructures={setFilteredStructures}
+                            session={selectedSession}
+                            filteredSessions={filteredSessions}
+                            setFilteredSessions={setFilteredSessions}
+                            filteredTypes={filteredTypes}
+                            setFilteredTypes={setFilteredTypes}
+                            filteredTemps={filteredTemps}
+                            setFilteredTemps={setFilteredTemps}
+                            filteredFiles={filteredFiles}
+                            setFilteredFiles={setFilteredFiles}
+                            filteredCoords={filteredCoords}
+                            setFilteredCoords={setFilteredCoords}
+                            setIsloading={setIsLoading}
+
+                />
+
+                <Grid container spacing={2}>
+                  {RSessions.map((session, index) => (
+                  <Grid item xs={12} key={index}>
+                    <Accordion expanded={openAccordion === `panel${index}`}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls={`panel${index}-content`}
+                        id={`panel${index}-header`}
+                        onClick={() => {
+                          manageRSessionClick(session);
+                          setOpenAccordion(openAccordion === `panel${index}` ? false : `panel${index}`);
+                        }}
+                      >
+                        <Typography>{session}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Button style={{backgroundColor: "#4fbdff"}} onClick={handleSelectAll}>Select/Unselect All</Button>
+                        <Grid container spacing={2}>
+                          {structures.map((structure, index) => (
+                              <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
+                          'flex-start': 'flex-end'}}>
+                            <Chip
+                                key={`Selected ${index}`}
+                                label={`${structure}${selectedStructures.includes(structure) ? " \u2714" : ""}`}
+                                onClick={() => handleWaferMapRStructure(structure)}
+                                style={{margin: '5px', backgroundColor: selectedStructures.includes(structure) ? "#4fbdff" : "#888888"}}
+                            />
+                          </Grid>
+                          ))}
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Grid>
+                  ))}
+                </Grid>
+                </>
+                )}
+
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => {setOpenChooseR(false)}} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
+
+            <Dialog
+              open={openChooseC}
+              onClose={() => {setOpenChooseC(false)}}
+              onBackdropClick={handleCloseDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please select your parameters"}</DialogTitle>
+              <DialogContent>
+                  {isLoading ? (
+                      <>
+                        <Select>
+                            <CircularProgress />
+                            Processing...
+                        </Select>
+                    </>
+                  ) : (
+                      <>
+                <Typography variant="h5">{selectedWafer} ({sessions.length} sessions)</Typography>
+                <FilterMenu selectedWafer={selectedWafer}
+                            setStructures={setStructures}
+                            structures={structures}
+                            allStructures={allStructures}
+                            style={{zIndex: 2}}
+                            filteredStructures={filteredStructures}
+                            setFilteredStructures={setFilteredStructures}
+                            session={selectedSession}
+                            filteredSessions={filteredSessions}
+                            setFilteredSessions={setFilteredSessions}
+                            filteredTypes={filteredTypes}
+                            setFilteredTypes={setFilteredTypes}
+                            filteredTemps={filteredTemps}
+                            setFilteredTemps={setFilteredTemps}
+                            filteredFiles={filteredFiles}
+                            setFilteredFiles={setFilteredFiles}
+                            filteredCoords={filteredCoords}
+                            setFilteredCoords={setFilteredCoords}
+                            setIsloading={setIsLoading}
+
+                />
+
+                <Grid container spacing={2}>
+                  {CSessions.map((session, index) => (
+                  <Grid item xs={12} key={index}>
+                    <Accordion expanded={openAccordion === `panel${index}`}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls={`panel${index}-content`}
+                        id={`panel${index}-header`}
+                        onClick={() => {
+                          manageCSessionClick(session);
+                          setOpenAccordion(openAccordion === `panel${index}` ? false : `panel${index}`);
+                        }}
+                      >
+                        <Typography>{session}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Button style={{backgroundColor: "#4fbdff"}} onClick={handleSelectAll}>Select/Unselect All</Button>
+                        <Grid container spacing={2}>
+                          {structures.map((structure, index) => (
+                              <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
+                          'flex-start': 'flex-end'}}>
+                            <Chip
+                                key={`Selected ${index}`}
+                                label={`${structure}${selectedStructures.includes(structure) ? " \u2714" : ""}`}
+                                onClick={() => handleWaferMapCStructure(structure)}
+                                style={{margin: '5px', backgroundColor: selectedStructures.includes(structure) ? "#4fbdff" : "#888888"}}
+                            />
+                          </Grid>
+                          ))}
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Grid>
+                  ))}
+                </Grid>
+                </>
+                )}
+
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => {setOpenChooseC(false)}} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
+
+            <Dialog
+              open={openChooseCmes}
+              onClose={() => {setOpenChooseCmes(false)}}
+              onBackdropClick={handleCloseDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please select your parameters"}</DialogTitle>
+              <DialogContent>
+                  {isLoading ? (
+                      <>
+                        <Select>
+                            <CircularProgress />
+                            Processing...
+                        </Select>
+                    </>
+                  ) : (
+                      <>
+                <Typography variant="h5">{selectedWafer} ({sessions.length} sessions)</Typography>
+                <FilterMenu selectedWafer={selectedWafer}
+                            setStructures={setStructures}
+                            structures={structures}
+                            allStructures={allStructures}
+                            style={{zIndex: 2}}
+                            filteredStructures={filteredStructures}
+                            setFilteredStructures={setFilteredStructures}
+                            session={selectedSession}
+                            filteredSessions={filteredSessions}
+                            setFilteredSessions={setFilteredSessions}
+                            filteredTypes={filteredTypes}
+                            setFilteredTypes={setFilteredTypes}
+                            filteredTemps={filteredTemps}
+                            setFilteredTemps={setFilteredTemps}
+                            filteredFiles={filteredFiles}
+                            setFilteredFiles={setFilteredFiles}
+                            filteredCoords={filteredCoords}
+                            setFilteredCoords={setFilteredCoords}
+                            setIsloading={setIsLoading}
+
+                />
+
+                <Grid container spacing={2}>
+                  {CmesSessions.map((session, index) => (
+                  <Grid item xs={12} key={index}>
+                    <Accordion expanded={openAccordion === `panel${index}`}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls={`panel${index}-content`}
+                        id={`panel${index}-header`}
+                        onClick={() => {
+                          manageCmesSessionClick(session);
+                          setOpenAccordion(openAccordion === `panel${index}` ? false : `panel${index}`);
+                        }}
+                      >
+                        <Typography>{session}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Button style={{backgroundColor: "#4fbdff"}} onClick={handleSelectAll}>Select/Unselect All</Button>
+                        <Grid container spacing={2}>
+                          {structures.map((structure, index) => (
+                              <Grid item xs={6} key={index} sx={{display: 'flex', justifyContent: index % 2 === 0 ?
+                          'flex-start': 'flex-end'}}>
+                            <Chip
+                                key={`Selected ${index}`}
+                                label={`${structure}${selectedStructures.includes(structure) ? " \u2714" : ""}`}
+                                onClick={() => handleWaferMapCmesStructure(structure)}
+                                style={{margin: '5px', backgroundColor: selectedStructures.includes(structure) ? "#4fbdff" : "#888888"}}
+                            />
+                          </Grid>
+                          ))}
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Grid>
+                  ))}
+                </Grid>
+                </>
+                )}
+
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => {setOpenChooseCmes(false)}} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
 
             <Dialog
                 open={openPlotsNormal}

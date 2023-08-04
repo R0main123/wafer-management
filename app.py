@@ -14,11 +14,13 @@ from new_manage_DB import create_db, setCompliance, create_db_tbl, get_db_name, 
 from plot_and_powerpoint import plot_wanted_matrices, wanted_ppt
 from converter import handle_file, tbl_to_txt
 from getter import get_types, get_temps, get_filenames, get_coords, get_compliance, get_sessions, get_wafer, \
-    get_structures, get_map_sessions, connexion, get_map_structures
+    get_structures, get_map_sessions, connexion, get_map_structures, get_Leak_structures, get_Leak_sessions, \
+    get_R_sessions, get_R_structures, get_C_sessions, get_C_structures, get_Cmes_sessions, get_Cmes_structures
 
 from filter import filter_by_meas, filter_by_temp, filter_by_coord, filter_by_filename, filter_by_session
 from VBD import create_wafer_map
 from normal_plots import *
+from WaferMaps import *
 
 all_files = []
 
@@ -485,6 +487,100 @@ def Cmes_normal(waferId, sessions, structures, coords):
     coords = coords.split(" ")
 
     return jsonify([Cmes_normal_distrib_pos(waferId, sessions, structures, coords), Cmes_normal_distrib_neg(waferId, sessions, structures, coords)])
+
+
+
+@app.route("/R_wafer_map/<waferId>/<session>/<structure>", methods=["GET"])
+def R_WM(waferId, session, structure):
+    """
+    Used to plot the wafer map based on resistance values
+    """
+    return jsonify(R_wafer_map(waferId, session, structure))
+
+
+@app.route("/C_wafer_map/<waferId>/<session>/<structure>", methods=["GET"])
+def C_WM(waferId, session, structure):
+    """
+    Used to plot the wafer map based on Capacitance values
+    """
+    return jsonify(C_wafer_map(waferId, session, structure))
+
+
+@app.route("/Cmes_wafer_map/<waferId>/<session>/<structure>", methods=["GET"])
+def Cmes_WM(waferId, session, structure):
+    """
+    Used to plot the wafer map based on Measured Capacitance values
+    """
+    return jsonify(Cmes_wafer_map(waferId, session, structure))
+
+
+@app.route("/Leak_wafer_map/<waferId>/<session>/<structure>", methods=["GET"])
+def Leak_WM(waferId, session, structure):
+    """
+    Used to plot the wafer map based on Leakage values
+    """
+    return jsonify(Leak_wafer_map(waferId, session, structure))
+
+@app.route("/get_Leak_sessions/<waferId>", methods=["GET"])
+def getLeakSess(waferId):
+    """
+    Used to get all session that contain Leakage values
+    """
+    return jsonify(get_Leak_sessions(waferId))
+
+@app.route("/get_Leak_structures/<waferId>/<session>", methods=["GET"])
+def getLeakStruct(waferId, session):
+    """
+    Used to get all structures that contain Leakage values
+    """
+    return jsonify(get_Leak_structures(waferId, session))
+
+
+@app.route("/get_R_sessions/<waferId>", methods=["GET"])
+def getRSess(waferId):
+    """
+    Used to get all session that contain Resistance values
+    """
+    print(waferId)
+    print(get_R_sessions(waferId))
+    return jsonify(get_R_sessions(waferId))
+
+@app.route("/get_R_structures/<waferId>/<session>", methods=["GET"])
+def getRStruct(waferId, session):
+    """
+    Used to get all structures that contain Resistance values
+    """
+    return jsonify(get_R_structures(waferId, session))
+
+
+@app.route("/get_C_sessions/<waferId>", methods=["GET"])
+def getCSess(waferId):
+    """
+    Used to get all session that contain Capacitance values
+    """
+    return jsonify(get_C_sessions(waferId))
+
+@app.route("/get_C_structures/<waferId>/<session>", methods=["GET"])
+def getCStruct(waferId, session):
+    """
+    Used to get all structures that contain Capacitance values
+    """
+    return jsonify(get_C_structures(waferId, session))
+
+
+@app.route("/get_Cmes_sessions/<waferId>", methods=["GET"])
+def getCmesSess(waferId):
+    """
+    Used to get all session that contain Measured Capacitance values
+    """
+    return jsonify(get_Cmes_sessions(waferId))
+
+@app.route("/get_Cmes_structures/<waferId>/<session>", methods=["GET"])
+def getCmesStruct(waferId, session):
+    """
+    Used to get all structures that contain Measured Capacitance values
+    """
+    return jsonify(get_Cmes_structures(waferId, session))
 
 @app.route("/get_normal_values/<waferId>", methods=["GET"])
 def get_normal_values(waferId):

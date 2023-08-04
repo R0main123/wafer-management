@@ -1,0 +1,2288 @@
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL9A_11
+testdeviceID : TDDB-BEOL09A_11-100_100-BEOL9A
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : -30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : -3.73733e+08 V/m
+Ibd : 1.202e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:42:45 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+-0.304	0
+-0.606	0
+-0.91	5e-13
+-1.212	5e-13
+-1.516	1e-12
+-1.818	5e-13
+-2.122	0
+-2.424	5e-13
+-2.728	-5e-13
+-3.03	5e-13
+-3.334	-5e-13
+-3.636	5e-13
+-3.94	0
+-4.242	0
+-4.546	0
+-4.848	5e-13
+-5.152	5e-13
+-5.454	5e-13
+-5.758	5e-13
+-6.06	0
+-6.364	5e-13
+-6.666	0
+-6.97	-5e-13
+-7.272	5e-13
+-7.576	0
+-7.878	0
+-8.182	5e-13
+-8.484	0
+-8.788	5e-13
+-9.09	-5e-13
+-9.394	-5e-13
+-9.696	5e-13
+-10	5e-13
+-10.304	-5e-13
+-10.606	0
+-10.91	0
+-11.212	-5e-13
+-11.516	5e-13
+-11.818	0
+-12.122	0
+-12.424	0
+-12.728	0
+-13.03	-5e-13
+-13.334	0
+-13.636	1e-12
+-13.94	0
+-14.242	-5e-13
+-14.546	5e-13
+-14.848	-5e-13
+-15.152	0
+-15.454	0
+-15.758	0
+-16.06	0
+-16.364	1e-12
+-16.666	1e-12
+-16.97	1e-12
+-17.272	2e-12
+-17.576	2.5e-12
+-17.878	4.5e-12
+-18.182	7.5e-12
+-18.484	1.1e-11
+-18.788	1.6e-11
+-19.09	2.35e-11
+-19.394	3.4e-11
+-19.696	5e-11
+-20	7.25e-11
+-20.304	1.05e-10
+-20.606	1.49e-10
+-20.91	2.125e-10
+-21.212	3.005e-10
+-21.516	4.235e-10
+-21.818	5.97e-10
+-22.122	8.45e-10
+-22.424	1.202e-09
+-22.728	1.7335e-09
+-23.03	2.5385e-09
+-23.334	3.847e-09
+-23.636	6.0565e-09
+-23.94	1.01385e-08
+-24.242	1.961e-08
+-24.546	4.049e-08
+-24.848	1.0243e-07
+-25.152	3.844e-07
+-25.454	2.5205e-06
+-25.758	1.8455e-05
+-26.06	4.5015e-05
+-26.364	0.0100005
+-26.666	0.0100005
+-26.97	0.0100005
+-27.272	0.0100005
+-27.576	0.0100005
+-27.878	0.0100005
+-28.182	0.0100005
+-28.484	0.0100005
+-28.788	0.0100005
+-29.09	0.0100005
+-29.394	0.0100005
+-29.696	0.0100005
+-30	0.0100005
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL9A_14
+testdeviceID : TDDB-BEOL09A_14-100_100-BEOL9A
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : -30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : -3.73733e+08 V/m
+Ibd : 1.232e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:42:58 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+-0.304	0
+-0.606	-1e-12
+-0.91	-5e-13
+-1.212	0
+-1.516	0
+-1.818	5e-13
+-2.122	0
+-2.424	0
+-2.728	5e-13
+-3.03	5e-13
+-3.334	-5e-13
+-3.636	-5e-13
+-3.94	0
+-4.242	0
+-4.546	-5e-13
+-4.848	0
+-5.152	0
+-5.454	-1e-12
+-5.758	0
+-6.06	0
+-6.364	5e-13
+-6.666	0
+-6.97	-5e-13
+-7.272	1e-12
+-7.576	0
+-7.878	-5e-13
+-8.182	5e-13
+-8.484	0
+-8.788	5e-13
+-9.09	5e-13
+-9.394	-5e-13
+-9.696	-5e-13
+-10	5e-13
+-10.304	5e-13
+-10.606	-5e-13
+-10.91	-5e-13
+-11.212	-5e-13
+-11.516	-5e-13
+-11.818	-5e-13
+-12.122	0
+-12.424	0
+-12.728	0
+-13.03	0
+-13.334	5e-13
+-13.636	-5e-13
+-13.94	5e-13
+-14.242	0
+-14.546	5e-13
+-14.848	0
+-15.152	5e-13
+-15.454	0
+-15.758	5e-13
+-16.06	5e-13
+-16.364	5e-13
+-16.666	1e-12
+-16.97	1e-12
+-17.272	2e-12
+-17.576	3e-12
+-17.878	4.5e-12
+-18.182	7.5e-12
+-18.484	1.1e-11
+-18.788	1.65e-11
+-19.09	2.4e-11
+-19.394	3.55e-11
+-19.696	5.15e-11
+-20	7.45e-11
+-20.304	1.075e-10
+-20.606	1.53e-10
+-20.91	2.175e-10
+-21.212	3.08e-10
+-21.516	4.35e-10
+-21.818	6.12e-10
+-22.122	8.65e-10
+-22.424	1.232e-09
+-22.728	1.77e-09
+-23.03	2.5895e-09
+-23.334	3.9195e-09
+-23.636	6.17e-09
+-23.94	1.0348e-08
+-24.242	1.9855e-08
+-24.546	4.107e-08
+-24.848	1.0443e-07
+-25.152	3.9315e-07
+-25.454	2.6015e-06
+-25.758	1.873e-05
+-26.06	4.4775e-05
+-26.364	0.0100005
+-26.666	0.0100015
+-26.97	0.0100005
+-27.272	0.0100005
+-27.576	0.0100005
+-27.878	0.0100005
+-28.182	0.010001
+-28.484	0.0100005
+-28.788	0.0100005
+-29.09	0.0100005
+-29.394	0.0100005
+-29.696	0.0100005
+-30	0.0100005
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL10A_01
+testdeviceID : TDDB-BEOL10A_01-100_100-BEOL10A
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : -30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : -3.73733e+08 V/m
+Ibd : 1.0415e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:43:12 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+-0.304	0
+-0.606	5e-13
+-0.91	5e-13
+-1.212	0
+-1.516	-5e-13
+-1.818	-5e-13
+-2.122	0
+-2.424	5e-13
+-2.728	0
+-3.03	5e-13
+-3.334	0
+-3.636	-5e-13
+-3.94	0
+-4.242	5e-13
+-4.546	0
+-4.848	5e-13
+-5.152	5e-13
+-5.454	5e-13
+-5.758	-5e-13
+-6.06	0
+-6.364	5e-13
+-6.666	0
+-6.97	0
+-7.272	-5e-13
+-7.576	0
+-7.878	0
+-8.182	-5e-13
+-8.484	0
+-8.788	-5e-13
+-9.09	0
+-9.394	-5e-13
+-9.696	0
+-10	0
+-10.304	5e-13
+-10.606	0
+-10.91	-5e-13
+-11.212	5e-13
+-11.516	0
+-11.818	5e-13
+-12.122	-5e-13
+-12.424	5e-13
+-12.728	-5e-13
+-13.03	0
+-13.334	0
+-13.636	5e-13
+-13.94	5e-13
+-14.242	5e-13
+-14.546	0
+-14.848	-5e-13
+-15.152	0
+-15.454	0
+-15.758	5e-13
+-16.06	5e-13
+-16.364	1e-12
+-16.666	1e-12
+-16.97	5e-13
+-17.272	2e-12
+-17.576	2.5e-12
+-17.878	4e-12
+-18.182	5.5e-12
+-18.484	9e-12
+-18.788	1.3e-11
+-19.09	1.95e-11
+-19.394	2.95e-11
+-19.696	4.3e-11
+-20	6.2e-11
+-20.304	8.95e-11
+-20.606	1.28e-10
+-20.91	1.82e-10
+-21.212	2.59e-10
+-21.516	3.65e-10
+-21.818	5.17e-10
+-22.122	7.32e-10
+-22.424	1.0415e-09
+-22.728	1.51e-09
+-23.03	2.2095e-09
+-23.334	3.354e-09
+-23.636	5.305e-09
+-23.94	8.887e-09
+-24.242	1.7145e-08
+-24.546	3.5225e-08
+-24.848	8.7595e-08
+-25.152	3.19e-07
+-25.454	1.9805e-06
+-25.758	1.5795e-05
+-26.06	4.5265e-05
+-26.364	0.0100005
+-26.666	0.0100005
+-26.97	0.0100005
+-27.272	0.0100005
+-27.576	0.0100005
+-27.878	0.0100015
+-28.182	0.0100005
+-28.484	0.010001
+-28.788	0.0100005
+-29.09	0.0100005
+-29.394	0.0100005
+-29.696	0.0100005
+-30	0.0100005
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL10A_03
+testdeviceID : TDDB-BEOL10A_03-100_100-BEOL10A
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : -30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : -3.73733e+08 V/m
+Ibd : 9.515e-10 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:43:25 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+-0.304	-5e-13
+-0.606	-5e-13
+-0.91	0
+-1.212	0
+-1.516	0
+-1.818	0
+-2.122	5e-13
+-2.424	0
+-2.728	-1e-12
+-3.03	0
+-3.334	-5e-13
+-3.636	5e-13
+-3.94	0
+-4.242	5e-13
+-4.546	0
+-4.848	5e-13
+-5.152	-5e-13
+-5.454	0
+-5.758	0
+-6.06	0
+-6.364	0
+-6.666	0
+-6.97	-5e-13
+-7.272	-5e-13
+-7.576	-5e-13
+-7.878	5e-13
+-8.182	-5e-13
+-8.484	-5e-13
+-8.788	-5e-13
+-9.09	5e-13
+-9.394	-5e-13
+-9.696	-5e-13
+-10	0
+-10.304	0
+-10.606	-5e-13
+-10.91	0
+-11.212	-5e-13
+-11.516	-5e-13
+-11.818	0
+-12.122	-5e-13
+-12.424	5e-13
+-12.728	0
+-13.03	5e-13
+-13.334	0
+-13.636	5e-13
+-13.94	0
+-14.242	0
+-14.546	-5e-13
+-14.848	-5e-13
+-15.152	0
+-15.454	0
+-15.758	5e-13
+-16.06	0
+-16.364	0
+-16.666	5e-13
+-16.97	1e-12
+-17.272	2e-12
+-17.576	1.5e-12
+-17.878	3.5e-12
+-18.182	5.5e-12
+-18.484	7.5e-12
+-18.788	1.15e-11
+-19.09	1.75e-11
+-19.394	2.6e-11
+-19.696	3.85e-11
+-20	5.55e-11
+-20.304	8.05e-11
+-20.606	1.15e-10
+-20.91	1.645e-10
+-21.212	2.34e-10
+-21.516	3.315e-10
+-21.818	4.695e-10
+-22.122	6.68e-10
+-22.424	9.515e-10
+-22.728	1.379e-09
+-23.03	2.038e-09
+-23.334	3.1065e-09
+-23.636	4.9295e-09
+-23.94	8.3055e-09
+-24.242	1.54e-08
+-24.546	3.202e-08
+-24.848	7.924e-08
+-25.152	2.6295e-07
+-25.454	1.646e-06
+-25.758	1.429e-05
+-26.06	4.684e-05
+-26.364	0.0100005
+-26.666	0.0100005
+-26.97	0.0100005
+-27.272	0.0100005
+-27.576	0.0100005
+-27.878	0.0100005
+-28.182	0.0100005
+-28.484	0.010001
+-28.788	0.0100005
+-29.09	0.0100005
+-29.394	0.0100005
+-29.696	0.0100005
+-30	0.0100005
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL10A_22
+testdeviceID : TDDB-BEOL10A_22-100_100-BEOL10A
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : -30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : -3.73733e+08 V/m
+Ibd : 9.505e-10 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:43:38 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	5e-13
+-0.304	-5e-13
+-0.606	5e-13
+-0.91	-5e-13
+-1.212	0
+-1.516	5e-13
+-1.818	0
+-2.122	-5e-13
+-2.424	0
+-2.728	0
+-3.03	0
+-3.334	5e-13
+-3.636	5e-13
+-3.94	-5e-13
+-4.242	0
+-4.546	0
+-4.848	0
+-5.152	-5e-13
+-5.454	0
+-5.758	0
+-6.06	-5e-13
+-6.364	0
+-6.666	0
+-6.97	5e-13
+-7.272	0
+-7.576	0
+-7.878	1e-12
+-8.182	0
+-8.484	-5e-13
+-8.788	0
+-9.09	0
+-9.394	-5e-13
+-9.696	-5e-13
+-10	0
+-10.304	0
+-10.606	-5e-13
+-10.91	5e-13
+-11.212	-5e-13
+-11.516	5e-13
+-11.818	-5e-13
+-12.122	-5e-13
+-12.424	-5e-13
+-12.728	5e-13
+-13.03	0
+-13.334	-5e-13
+-13.636	-1e-12
+-13.94	5e-13
+-14.242	0
+-14.546	0
+-14.848	0
+-15.152	-5e-13
+-15.454	0
+-15.758	5e-13
+-16.06	0
+-16.364	0
+-16.666	5e-13
+-16.97	1e-12
+-17.272	1e-12
+-17.576	1.5e-12
+-17.878	3.5e-12
+-18.182	5e-12
+-18.484	7.5e-12
+-18.788	1.15e-11
+-19.09	1.75e-11
+-19.394	2.6e-11
+-19.696	3.75e-11
+-20	5.55e-11
+-20.304	8e-11
+-20.606	1.15e-10
+-20.91	1.645e-10
+-21.212	2.335e-10
+-21.516	3.315e-10
+-21.818	4.69e-10
+-22.122	6.655e-10
+-22.424	9.505e-10
+-22.728	1.381e-09
+-23.03	2.0255e-09
+-23.334	3.0895e-09
+-23.636	4.8905e-09
+-23.94	8.2295e-09
+-24.242	1.542e-08
+-24.546	3.1745e-08
+-24.848	7.9e-08
+-25.152	2.603e-07
+-25.454	1.6295e-06
+-25.758	1.4305e-05
+-26.06	4.658e-05
+-26.364	0.0100005
+-26.666	0.0100005
+-26.97	0.0100005
+-27.272	0.010001
+-27.576	0.010001
+-27.878	0.0100005
+-28.182	0.0100005
+-28.484	0.0100005
+-28.788	0.0100005
+-29.09	0.0100005
+-29.394	0.010001
+-29.696	0.0100005
+-30	0.010001
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL10A_24
+testdeviceID : TDDB-BEOL10A_24-100_100-BEOL10A
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : -30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : -3.73733e+08 V/m
+Ibd : 1.02e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:43:51 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+-0.304	-5e-13
+-0.606	0
+-0.91	5e-13
+-1.212	0
+-1.516	0
+-1.818	5e-13
+-2.122	0
+-2.424	0
+-2.728	0
+-3.03	0
+-3.334	0
+-3.636	0
+-3.94	5e-13
+-4.242	0
+-4.546	0
+-4.848	0
+-5.152	5e-13
+-5.454	0
+-5.758	-5e-13
+-6.06	0
+-6.364	0
+-6.666	0
+-6.97	0
+-7.272	5e-13
+-7.576	-5e-13
+-7.878	5e-13
+-8.182	5e-13
+-8.484	0
+-8.788	0
+-9.09	0
+-9.394	-5e-13
+-9.696	-5e-13
+-10	-5e-13
+-10.304	-5e-13
+-10.606	0
+-10.91	5e-13
+-11.212	0
+-11.516	0
+-11.818	0
+-12.122	-5e-13
+-12.424	0
+-12.728	0
+-13.03	0
+-13.334	0
+-13.636	5e-13
+-13.94	0
+-14.242	5e-13
+-14.546	0
+-14.848	-5e-13
+-15.152	5e-13
+-15.454	0
+-15.758	0
+-16.06	5e-13
+-16.364	5e-13
+-16.666	1e-12
+-16.97	1e-12
+-17.272	1e-12
+-17.576	2.5e-12
+-17.878	3.5e-12
+-18.182	5.5e-12
+-18.484	9e-12
+-18.788	1.25e-11
+-19.09	1.9e-11
+-19.394	2.9e-11
+-19.696	4.15e-11
+-20	6.05e-11
+-20.304	8.75e-11
+-20.606	1.25e-10
+-20.91	1.78e-10
+-21.212	2.535e-10
+-21.516	3.58e-10
+-21.818	5.065e-10
+-22.122	7.175e-10
+-22.424	1.02e-09
+-22.728	1.4735e-09
+-23.03	2.1825e-09
+-23.334	3.311e-09
+-23.636	5.2105e-09
+-23.94	8.7485e-09
+-24.242	1.6365e-08
+-24.546	3.3675e-08
+-24.848	8.3815e-08
+-25.152	2.7825e-07
+-25.454	1.7505e-06
+-25.758	1.4785e-05
+-26.06	4.562e-05
+-26.364	0.0100005
+-26.666	0.0100005
+-26.97	0.0100005
+-27.272	0.0100005
+-27.576	0.0100005
+-27.878	0.0100005
+-28.182	0.0100005
+-28.484	0.0100005
+-28.788	0.010001
+-29.09	0.0100005
+-29.394	0.0100005
+-29.696	0.0100005
+-30	0.0100005
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL11A_12
+testdeviceID : TDDB-BEOL11A_12-100_100-BEOL11A
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : -30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : -3.73733e+08 V/m
+Ibd : 1.09e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:44:04 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+-0.304	5e-13
+-0.606	-5e-13
+-0.91	-5e-13
+-1.212	-5e-13
+-1.516	-5e-13
+-1.818	0
+-2.122	5e-13
+-2.424	-5e-13
+-2.728	-5e-13
+-3.03	0
+-3.334	0
+-3.636	0
+-3.94	0
+-4.242	5e-13
+-4.546	5e-13
+-4.848	0
+-5.152	0
+-5.454	5e-13
+-5.758	0
+-6.06	0
+-6.364	0
+-6.666	0
+-6.97	0
+-7.272	5e-13
+-7.576	0
+-7.878	0
+-8.182	0
+-8.484	5e-13
+-8.788	5e-13
+-9.09	0
+-9.394	0
+-9.696	-5e-13
+-10	5e-13
+-10.304	-1e-12
+-10.606	0
+-10.91	0
+-11.212	5e-13
+-11.516	-5e-13
+-11.818	5e-13
+-12.122	5e-13
+-12.424	0
+-12.728	0
+-13.03	0
+-13.334	0
+-13.636	5e-13
+-13.94	0
+-14.242	5e-13
+-14.546	0
+-14.848	0
+-15.152	5e-13
+-15.454	0
+-15.758	0
+-16.06	5e-13
+-16.364	5e-13
+-16.666	5e-13
+-16.97	1e-12
+-17.272	1.5e-12
+-17.576	2.5e-12
+-17.878	4e-12
+-18.182	6e-12
+-18.484	9e-12
+-18.788	1.4e-11
+-19.09	2e-11
+-19.394	3.05e-11
+-19.696	4.45e-11
+-20	6.45e-11
+-20.304	9.35e-11
+-20.606	1.34e-10
+-20.91	1.91e-10
+-21.212	2.705e-10
+-21.516	3.82e-10
+-21.818	5.395e-10
+-22.122	7.645e-10
+-22.424	1.09e-09
+-22.728	1.5715e-09
+-23.03	2.3115e-09
+-23.334	3.503e-09
+-23.636	5.5325e-09
+-23.94	9.2855e-09
+-24.242	1.785e-08
+-24.546	3.6885e-08
+-24.848	9.229e-08
+-25.152	3.3975e-07
+-25.454	2.1635e-06
+-25.758	1.682e-05
+-26.06	4.544e-05
+-26.364	0.010001
+-26.666	0.0100005
+-26.97	0.010001
+-27.272	0.0100005
+-27.576	0.010001
+-27.878	0.0100005
+-28.182	0.0100005
+-28.484	0.0100005
+-28.788	0.0100005
+-29.09	0.010001
+-29.394	0.0100005
+-29.696	0.0100005
+-30	0.0100005
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL11A_13
+testdeviceID : TDDB-BEOL11A_13-100_100-BEOL11A
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : -30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : -3.73733e+08 V/m
+Ibd : 1.087e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:44:17 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+-0.304	-5e-13
+-0.606	1e-12
+-0.91	-5e-13
+-1.212	0
+-1.516	-5e-13
+-1.818	5e-13
+-2.122	5e-13
+-2.424	0
+-2.728	5e-13
+-3.03	0
+-3.334	-5e-13
+-3.636	-5e-13
+-3.94	-5e-13
+-4.242	0
+-4.546	5e-13
+-4.848	0
+-5.152	0
+-5.454	5e-13
+-5.758	0
+-6.06	5e-13
+-6.364	0
+-6.666	0
+-6.97	0
+-7.272	-5e-13
+-7.576	0
+-7.878	0
+-8.182	0
+-8.484	-5e-13
+-8.788	0
+-9.09	-5e-13
+-9.394	-5e-13
+-9.696	0
+-10	0
+-10.304	0
+-10.606	0
+-10.91	-5e-13
+-11.212	-5e-13
+-11.516	-5e-13
+-11.818	0
+-12.122	5e-13
+-12.424	0
+-12.728	0
+-13.03	0
+-13.334	0
+-13.636	-5e-13
+-13.94	-5e-13
+-14.242	0
+-14.546	5e-13
+-14.848	0
+-15.152	5e-13
+-15.454	0
+-15.758	5e-13
+-16.06	5e-13
+-16.364	5e-13
+-16.666	1e-12
+-16.97	1e-12
+-17.272	1.5e-12
+-17.576	2.5e-12
+-17.878	4e-12
+-18.182	6e-12
+-18.484	9e-12
+-18.788	1.4e-11
+-19.09	2.1e-11
+-19.394	3e-11
+-19.696	4.45e-11
+-20	6.5e-11
+-20.304	9.4e-11
+-20.606	1.335e-10
+-20.91	1.905e-10
+-21.212	2.7e-10
+-21.516	3.82e-10
+-21.818	5.38e-10
+-22.122	7.645e-10
+-22.424	1.087e-09
+-22.728	1.5705e-09
+-23.03	2.312e-09
+-23.334	3.5045e-09
+-23.636	5.5425e-09
+-23.94	9.3615e-09
+-24.242	1.8025e-08
+-24.546	3.7025e-08
+-24.848	9.3095e-08
+-25.152	3.414e-07
+-25.454	2.1755e-06
+-25.758	1.687e-05
+-26.06	4.557e-05
+-26.364	0.0100005
+-26.666	0.010001
+-26.97	0.010001
+-27.272	0.010001
+-27.576	0.0100005
+-27.878	0.0100005
+-28.182	0.0100005
+-28.484	0.0100005
+-28.788	0.0100005
+-29.09	0.0100005
+-29.394	0.0100005
+-29.696	0.0100005
+-30	0.0100005
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL9B_11
+testdeviceID : TDDB-BEOL09B_11-100_100-BEOL9B
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : 30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : 3.485e+08 V/m
+Ibd : 8.24e-10 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:44:31 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+0.304	-5e-13
+0.606	5e-13
+0.91	-1e-12
+1.212	-5e-13
+1.516	0
+1.818	-5e-13
+2.122	0
+2.424	0
+2.728	-5e-13
+3.03	-5e-13
+3.334	-1e-12
+3.636	0
+3.94	0
+4.242	0
+4.546	-1e-12
+4.848	-5e-13
+5.152	0
+5.454	0
+5.758	-5e-13
+6.06	0
+6.364	-5e-13
+6.666	-1e-12
+6.97	-5e-13
+7.272	-5e-13
+7.576	0
+7.878	-5e-13
+8.182	-1e-12
+8.484	-5e-13
+8.788	0
+9.09	0
+9.394	0
+9.696	-1e-12
+10	-1e-12
+10.304	-5e-13
+10.606	0
+10.91	-5e-13
+11.212	-5e-13
+11.516	0
+11.818	5e-13
+12.122	-1e-12
+12.424	0
+12.728	-5e-13
+13.03	-5e-13
+13.334	-1.5e-12
+13.636	-5e-13
+13.94	-5e-13
+14.242	-5e-13
+14.546	-1e-12
+14.848	-1e-12
+15.152	-5e-13
+15.454	-5e-13
+15.758	0
+16.06	-1e-12
+16.364	-1e-12
+16.666	-1e-12
+16.97	-1e-12
+17.272	-1e-12
+17.576	-1.5e-12
+17.878	-3.5e-12
+18.182	-6e-12
+18.484	-1.15e-11
+18.788	-1.95e-11
+19.09	-3.45e-11
+19.394	-5.9e-11
+19.696	-1.02e-10
+20	-1.735e-10
+20.304	-2.955e-10
+20.606	-4.9e-10
+20.91	-8.24e-10
+21.212	-1.3825e-09
+21.516	-2.3975e-09
+21.818	-4.3655e-09
+22.122	-8.9925e-09
+22.424	-2.859e-08
+22.728	-1.4705e-07
+23.03	-2.0605e-06
+23.334	-8.404e-06
+23.636	-1.102e-05
+23.94	-1.5225e-05
+24.242	-2.0885e-05
+24.546	-2.7585e-05
+24.848	-3.4625e-05
+25.152	-4.265e-05
+25.454	-4.8745e-05
+25.758	-0.0100005
+26.06	-0.010001
+26.364	-0.010001
+26.666	-0.0100015
+26.97	-0.010001
+27.272	-0.010001
+27.576	-0.010001
+27.878	-0.010001
+28.182	-0.010001
+28.484	-0.010001
+28.788	-0.010001
+29.09	-0.010001
+29.394	-0.010001
+29.696	-0.010001
+30	-0.010001
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL9B_14
+testdeviceID : TDDB-BEOL09B_14-100_100-BEOL9B
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : 30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : 3.485e+08 V/m
+Ibd : 8.38e-10 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:44:44 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	5e-13
+0.304	-5e-13
+0.606	0
+0.91	0
+1.212	-5e-13
+1.516	-5e-13
+1.818	-5e-13
+2.122	-5e-13
+2.424	0
+2.728	-5e-13
+3.03	-5e-13
+3.334	-5e-13
+3.636	-5e-13
+3.94	0
+4.242	0
+4.546	5e-13
+4.848	0
+5.152	-5e-13
+5.454	0
+5.758	5e-13
+6.06	-5e-13
+6.364	0
+6.666	-1e-12
+6.97	0
+7.272	-5e-13
+7.576	0
+7.878	-5e-13
+8.182	-5e-13
+8.484	-1e-12
+8.788	-1e-12
+9.09	-5e-13
+9.394	0
+9.696	-1e-12
+10	-5e-13
+10.304	-5e-13
+10.606	0
+10.91	0
+11.212	-1e-12
+11.516	0
+11.818	-5e-13
+12.122	-1.5e-12
+12.424	-1e-12
+12.728	-5e-13
+13.03	-5e-13
+13.334	0
+13.636	-5e-13
+13.94	0
+14.242	-5e-13
+14.546	-5e-13
+14.848	0
+15.152	-1e-12
+15.454	-1e-12
+15.758	-1e-12
+16.06	0
+16.364	-1.5e-12
+16.666	-1e-12
+16.97	-5e-13
+17.272	-1.5e-12
+17.576	-2.5e-12
+17.878	-3.5e-12
+18.182	-6.5e-12
+18.484	-1.15e-11
+18.788	-2e-11
+19.09	-3.45e-11
+19.394	-6.05e-11
+19.696	-1.05e-10
+20	-1.765e-10
+20.304	-2.985e-10
+20.606	-4.97e-10
+20.91	-8.38e-10
+21.212	-1.405e-09
+21.516	-2.424e-09
+21.818	-4.4185e-09
+22.122	-9.1515e-09
+22.424	-2.915e-08
+22.728	-1.5255e-07
+23.03	-2.126e-06
+23.334	-8.434e-06
+23.636	-1.1075e-05
+23.94	-1.531e-05
+24.242	-2.099e-05
+24.546	-2.7655e-05
+24.848	-3.467e-05
+25.152	-4.2605e-05
+25.454	-4.8625e-05
+25.758	-5.8675e-05
+26.06	-0.010001
+26.364	-0.010001
+26.666	-0.010001
+26.97	-0.010001
+27.272	-0.010001
+27.576	-0.010001
+27.878	-0.010001
+28.182	-0.010001
+28.484	-0.010001
+28.788	-0.010001
+29.09	-0.010001
+29.394	-0.010001
+29.696	-0.010001
+30	-0.010001
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL10B_01
+testdeviceID : TDDB-BEOL10B_01-100_100-BEOL10B
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : 30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : 3.53533e+08 V/m
+Ibd : 1.3375e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:44:57 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	0
+0.304	5e-13
+0.606	-1e-12
+0.91	0
+1.212	-5e-13
+1.516	-5e-13
+1.818	-1e-12
+2.122	0
+2.424	0
+2.728	-1e-12
+3.03	-5e-13
+3.334	-5e-13
+3.636	0
+3.94	0
+4.242	-5e-13
+4.546	-5e-13
+4.848	-5e-13
+5.152	0
+5.454	-5e-13
+5.758	0
+6.06	0
+6.364	0
+6.666	-5e-13
+6.97	5e-13
+7.272	0
+7.576	-1e-12
+7.878	-5e-13
+8.182	-5e-13
+8.484	-5e-13
+8.788	-5e-13
+9.09	-1e-12
+9.394	-1e-12
+9.696	-5e-13
+10	-5e-13
+10.304	0
+10.606	-5e-13
+10.91	0
+11.212	0
+11.516	0
+11.818	-5e-13
+12.122	0
+12.424	0
+12.728	0
+13.03	-5e-13
+13.334	-1e-12
+13.636	-1e-12
+13.94	-1e-12
+14.242	0
+14.546	-1e-12
+14.848	-1e-12
+15.152	-1e-12
+15.454	-5e-13
+15.758	-5e-13
+16.06	-5e-13
+16.364	-1e-12
+16.666	-1e-12
+16.97	-1.5e-12
+17.272	-1.5e-12
+17.576	-2e-12
+17.878	-3e-12
+18.182	-6e-12
+18.484	-1.05e-11
+18.788	-1.95e-11
+19.09	-3.3e-11
+19.394	-5.8e-11
+19.696	-9.9e-11
+20	-1.69e-10
+20.304	-2.835e-10
+20.606	-4.745e-10
+20.91	-7.96e-10
+21.212	-1.3375e-09
+21.516	-2.324e-09
+21.818	-4.2465e-09
+22.122	-8.8325e-09
+22.424	-2.853e-08
+22.728	-1.507e-07
+23.03	-2.1205e-06
+23.334	-8.4315e-06
+23.636	-1.097e-05
+23.94	-1.515e-05
+24.242	-2.078e-05
+24.546	-2.749e-05
+24.848	-3.476e-05
+25.152	-4.32e-05
+25.454	-4.9655e-05
+25.758	-0.010003
+26.06	-0.010001
+26.364	-0.0100025
+26.666	-0.010001
+26.97	-0.010001
+27.272	-0.010001
+27.576	-0.010001
+27.878	-0.010001
+28.182	-0.010001
+28.484	-0.010001
+28.788	-0.010001
+29.09	-0.010001
+29.394	-0.010001
+29.696	-0.010001
+30	-0.010001
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL10B_03
+testdeviceID : TDDB-BEOL10B_03-100_100-BEOL10B
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : 30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : 3.53533e+08 V/m
+Ibd : 1.16e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:45:11 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+0.304	0
+0.606	-5e-13
+0.91	1e-12
+1.212	-5e-13
+1.516	-5e-13
+1.818	-5e-13
+2.122	0
+2.424	-5e-13
+2.728	0
+3.03	0
+3.334	5e-13
+3.636	-5e-13
+3.94	-5e-13
+4.242	0
+4.546	5e-13
+4.848	-5e-13
+5.152	0
+5.454	-5e-13
+5.758	-1e-12
+6.06	-1e-12
+6.364	-5e-13
+6.666	-5e-13
+6.97	0
+7.272	0
+7.576	0
+7.878	-1e-12
+8.182	0
+8.484	-5e-13
+8.788	0
+9.09	0
+9.394	-5e-13
+9.696	-5e-13
+10	-5e-13
+10.304	0
+10.606	0
+10.91	-5e-13
+11.212	-5e-13
+11.516	0
+11.818	0
+12.122	0
+12.424	0
+12.728	-5e-13
+13.03	-1e-12
+13.334	-5e-13
+13.636	-1e-12
+13.94	0
+14.242	0
+14.546	0
+14.848	-1e-12
+15.152	0
+15.454	0
+15.758	-5e-13
+16.06	0
+16.364	0
+16.666	-5e-13
+16.97	-1e-12
+17.272	-1.5e-12
+17.576	-1.5e-12
+17.878	-3e-12
+18.182	-5.5e-12
+18.484	-9e-12
+18.788	-1.65e-11
+19.09	-2.8e-11
+19.394	-4.95e-11
+19.696	-8.5e-11
+20	-1.45e-10
+20.304	-2.47e-10
+20.606	-4.11e-10
+20.91	-6.905e-10
+21.212	-1.16e-09
+21.516	-2.011e-09
+21.818	-3.634e-09
+22.122	-7.4645e-09
+22.424	-2.093e-08
+22.728	-1.0283e-07
+23.03	-1.8245e-06
+23.334	-7.9325e-06
+23.636	-1.048e-05
+23.94	-1.4465e-05
+24.242	-1.9945e-05
+24.546	-2.6715e-05
+24.848	-3.443e-05
+25.152	-4.3635e-05
+25.454	-5.0735e-05
+25.758	-6.1475e-05
+26.06	-0.010001
+26.364	-0.010002
+26.666	-0.010001
+26.97	-0.010001
+27.272	-0.010001
+27.576	-0.010001
+27.878	-0.010001
+28.182	-0.010001
+28.484	-0.010001
+28.788	-0.010001
+29.09	-0.010001
+29.394	-0.010001
+29.696	-0.010001
+30	-0.010001
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL10B_22
+testdeviceID : TDDB-BEOL10B_22-100_100-BEOL10B
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : 30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : 3.53533e+08 V/m
+Ibd : 1.1535e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:45:24 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+0.304	0
+0.606	5e-13
+0.91	-1e-12
+1.212	-5e-13
+1.516	5e-13
+1.818	-5e-13
+2.122	-5e-13
+2.424	-5e-13
+2.728	0
+3.03	-1e-12
+3.334	0
+3.636	-5e-13
+3.94	-5e-13
+4.242	-5e-13
+4.546	0
+4.848	-5e-13
+5.152	0
+5.454	-5e-13
+5.758	5e-13
+6.06	-5e-13
+6.364	-5e-13
+6.666	0
+6.97	0
+7.272	0
+7.576	0
+7.878	0
+8.182	-1e-12
+8.484	0
+8.788	-5e-13
+9.09	-5e-13
+9.394	0
+9.696	0
+10	-5e-13
+10.304	0
+10.606	-5e-13
+10.91	-5e-13
+11.212	-5e-13
+11.516	-1e-12
+11.818	-5e-13
+12.122	-5e-13
+12.424	-1e-12
+12.728	-5e-13
+13.03	-5e-13
+13.334	0
+13.636	0
+13.94	-5e-13
+14.242	-5e-13
+14.546	-5e-13
+14.848	-5e-13
+15.152	-1e-12
+15.454	-1e-12
+15.758	-1e-12
+16.06	-5e-13
+16.364	-1e-12
+16.666	-5e-13
+16.97	-5e-13
+17.272	-1.5e-12
+17.576	-2e-12
+17.878	-3e-12
+18.182	-5e-12
+18.484	-9.5e-12
+18.788	-1.65e-11
+19.09	-2.8e-11
+19.394	-4.95e-11
+19.696	-8.45e-11
+20	-1.44e-10
+20.304	-2.46e-10
+20.606	-4.105e-10
+20.91	-6.88e-10
+21.212	-1.1535e-09
+21.516	-1.9935e-09
+21.818	-3.6175e-09
+22.122	-7.379e-09
+22.424	-2.0585e-08
+22.728	-1.0037e-07
+23.03	-1.815e-06
+23.334	-7.8835e-06
+23.636	-1.0445e-05
+23.94	-1.4385e-05
+24.242	-1.9865e-05
+24.546	-2.6635e-05
+24.848	-3.4365e-05
+25.152	-4.3585e-05
+25.454	-5.0665e-05
+25.758	-6.1375e-05
+26.06	-0.010001
+26.364	-0.010001
+26.666	-0.010001
+26.97	-0.010001
+27.272	-0.010001
+27.576	-0.010001
+27.878	-0.010001
+28.182	-0.010001
+28.484	-0.010001
+28.788	-0.010001
+29.09	-0.010001
+29.394	-0.010001
+29.696	-0.010001
+30	-0.010001
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL10B_24
+testdeviceID : TDDB-BEOL10B_24-100_100-BEOL10B
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : 30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : 3.53533e+08 V/m
+Ibd : 1.3065e-09 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:45:36 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	1e-12
+0.304	-5e-13
+0.606	0
+0.91	-5e-13
+1.212	-5e-13
+1.516	0
+1.818	-5e-13
+2.122	0
+2.424	0
+2.728	-5e-13
+3.03	-5e-13
+3.334	0
+3.636	-1e-12
+3.94	-5e-13
+4.242	-5e-13
+4.546	0
+4.848	0
+5.152	0
+5.454	0
+5.758	0
+6.06	-5e-13
+6.364	0
+6.666	5e-13
+6.97	-5e-13
+7.272	-5e-13
+7.576	0
+7.878	-5e-13
+8.182	-1e-12
+8.484	0
+8.788	5e-13
+9.09	0
+9.394	-5e-13
+9.696	0
+10	0
+10.304	-5e-13
+10.606	5e-13
+10.91	0
+11.212	-1e-12
+11.516	0
+11.818	0
+12.122	-1.5e-12
+12.424	-5e-13
+12.728	-5e-13
+13.03	-5e-13
+13.334	-5e-13
+13.636	-5e-13
+13.94	-5e-13
+14.242	-5e-13
+14.546	-5e-13
+14.848	0
+15.152	-1.5e-12
+15.454	-1e-12
+15.758	-5e-13
+16.06	-1e-12
+16.364	-1.5e-12
+16.666	-1e-12
+16.97	-5e-13
+17.272	-1.5e-12
+17.576	-2e-12
+17.878	-3e-12
+18.182	-6e-12
+18.484	-1.1e-11
+18.788	-1.85e-11
+19.09	-3.2e-11
+19.394	-5.55e-11
+19.696	-9.6e-11
+20	-1.635e-10
+20.304	-2.77e-10
+20.606	-4.625e-10
+20.91	-7.77e-10
+21.212	-1.3065e-09
+21.516	-2.262e-09
+21.818	-4.1365e-09
+22.122	-8.5535e-09
+22.424	-2.456e-08
+22.728	-1.352e-07
+23.03	-1.9395e-06
+23.334	-8.362e-06
+23.636	-1.0915e-05
+23.94	-1.503e-05
+24.242	-2.0635e-05
+24.546	-2.7335e-05
+24.848	-3.4665e-05
+25.152	-4.3205e-05
+25.454	-4.9695e-05
+25.758	-6.0085e-05
+26.06	-0.010001
+26.364	-0.010001
+26.666	-0.010001
+26.97	-0.010002
+27.272	-0.010001
+27.576	-0.010002
+27.878	-0.010001
+28.182	-0.010001
+28.484	-0.010001
+28.788	-0.010001
+29.09	-0.010001
+29.394	-0.010001
+29.696	-0.010001
+30	-0.010001
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL11B_12
+testdeviceID : TDDB-BEOL11B_12-100_100-BEOL11B
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : 30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : 0 V/m
+Ibd : 2.9665e-07 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:45:49 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	-2.9665e-07
+0.304	-0.0007603
+0.606	-0.0015215
+0.91	-0.002281
+1.212	-0.003033
+1.516	-0.00379
+1.818	-0.004544
+2.122	-0.0053105
+2.424	-0.0060695
+2.728	-0.0068195
+3.03	-0.007597
+3.334	-0.008328
+3.636	-0.0090895
+3.94	-0.00994
+4.242	-0.010001
+4.546	-0.010001
+4.848	-0.010001
+5.152	-0.010001
+5.454	-0.010001
+5.758	-0.010001
+6.06	-0.010001
+6.364	-0.010001
+6.666	-0.010001
+6.97	-0.010001
+7.272	-0.010001
+7.576	-0.010001
+7.878	-0.010001
+8.182	-0.010001
+8.484	-0.010001
+8.788	-0.010001
+9.09	-0.010001
+9.394	-0.010001
+9.696	-0.010001
+10	-0.010001
+10.304	-0.010001
+10.606	-0.010001
+10.91	-0.010001
+11.212	-0.010001
+11.516	-0.010001
+11.818	-0.010001
+12.122	-0.010001
+12.424	-0.0100015
+12.728	-0.010001
+13.03	-0.0100015
+13.334	-0.010001
+13.636	-0.0100015
+13.94	-0.010001
+14.242	-0.0100015
+14.546	-0.010001
+14.848	-0.010001
+15.152	-0.0100015
+15.454	-0.010001
+15.758	-0.010001
+16.06	-0.010001
+16.364	-0.010001
+16.666	-0.010001
+16.97	-0.010001
+17.272	-0.010001
+17.576	-0.010001
+17.878	-0.010001
+18.182	-0.010001
+18.484	-0.010001
+18.788	-0.010001
+19.09	-0.010001
+19.394	-0.010001
+19.696	-0.010001
+20	-0.010001
+20.304	-0.010001
+20.606	-0.010001
+20.91	-0.010001
+21.212	-0.010001
+21.516	-0.010001
+21.818	-0.010001
+22.122	-0.010001
+22.424	-0.010001
+22.728	-0.010001
+23.03	-0.010001
+23.334	-0.010001
+23.636	-0.010001
+23.94	-0.010001
+24.242	-0.010001
+24.546	-0.0100015
+24.848	-0.010001
+25.152	-0.010001
+25.454	-0.010001
+25.758	-0.010001
+26.06	-0.010001
+26.364	-0.0100015
+26.666	-0.010001
+26.97	-0.010001
+27.272	-0.010001
+27.576	-0.010001
+27.878	-0.010001
+28.182	-0.010001
+28.484	-0.0100025
+28.788	-0.010001
+29.09	-0.010001
+29.394	-0.010001
+29.696	-0.010001
+30	-0.010001
+EOD
+wafer : D02_100C_D122_IVUNKNOWN
+chipX : 0
+chipY : 0
+testdeviceModule : BEOL11B_13
+testdeviceID : TDDB-BEOL11B_13-100_100-BEOL11B
+testdeviceType : capacitor
+testdeviceWidth : 1
+testdeviceLength : 1
+testdeviceArea : 1e-08
+testdevicePerimeter : 4
+testdeviceTox : 6e-08
+testdeviceNsub : 1e+15
+testdeviceSpacerWidth : 0
+testdeviceDeltaL : 0
+testdeviceDeltaW : 0
+testdeviceNumDividerStages : 1
+testdeviceNumInverterStages : 1
+procNr : 43668
+procedureName : oxide_breakdown
+temperature : 294
+bottom start : 0 V
+bottom stop : 30 V
+bottom nmbr points : 100 
+leakage current : 1e-09 A
+breakdown current density : 3000 A/m^2
+breakdown field : 1.4e+09 V/m
+early injection current density : 10 A/m^2
+early injection field : 2e+08 V/m
+Ebd : 0 V/m
+Ibd : 2.759e-07 A
+fit : 1 
+operator : TIERNO63
+author : varelap
+date : Tue Oct 11 09:46:02 2022
+KD : 00688
+domain : 43699
+KC : 45209
+Lot_ID : UNKNOWN
+Design_ID : UNKNOWN
+Session_ID : UNKNOWN
+curveValue : 0
+BOD
+0	-2.759e-07
+0.304	-0.00064905
+0.606	-0.0012995
+0.91	-0.0019525
+1.212	-0.0026135
+1.516	-0.003285
+1.818	-0.003941
+2.122	-0.004626
+2.424	-0.0052785
+2.728	-0.005912
+3.03	-0.0063325
+3.334	-0.0070495
+3.636	-0.0076685
+3.94	-0.008466
+4.242	-0.00924
+4.546	-0.009846
+4.848	-0.010001
+5.152	-0.010001
+5.454	-0.010001
+5.758	-0.010001
+6.06	-0.010001
+6.364	-0.010001
+6.666	-0.010001
+6.97	-0.0099985
+7.272	-0.010001
+7.576	-0.010001
+7.878	-0.010001
+8.182	-0.010001
+8.484	-0.010001
+8.788	-0.010001
+9.09	-0.0100015
+9.394	-0.010001
+9.696	-0.010001
+10	-0.010001
+10.304	-0.010001
+10.606	-0.010001
+10.91	-0.010001
+11.212	-0.010001
+11.516	-0.010001
+11.818	-0.010001
+12.122	-0.0100015
+12.424	-0.0100015
+12.728	-0.010001
+13.03	-0.010001
+13.334	-0.010001
+13.636	-0.010001
+13.94	-0.010001
+14.242	-0.010001
+14.546	-0.010001
+14.848	-0.010001
+15.152	-0.010001
+15.454	-0.010001
+15.758	-0.010001
+16.06	-0.010001
+16.364	-0.010001
+16.666	-0.010001
+16.97	-0.010001
+17.272	-0.010001
+17.576	-0.010001
+17.878	-0.010001
+18.182	-0.010001
+18.484	-0.010001
+18.788	-0.010001
+19.09	-0.010001
+19.394	-0.010001
+19.696	-0.010001
+20	-0.010001
+20.304	-0.010001
+20.606	-0.010001
+20.91	-0.0100005
+21.212	-0.0100015
+21.516	-0.010001
+21.818	-0.010001
+22.122	-0.010001
+22.424	-0.0100015
+22.728	-0.0100015
+23.03	-0.010001
+23.334	-0.010001
+23.636	-0.010001
+23.94	-0.010001
+24.242	-0.010001
+24.546	-0.010001
+24.848	-0.010001
+25.152	-0.0100015
+25.454	-0.010001
+25.758	-0.010001
+26.06	-0.010001
+26.364	-0.010001
+26.666	-0.010001
+26.97	-0.010001
+27.272	-0.010001
+27.576	-0.010001
+27.878	-0.010001
+28.182	-0.010001
+28.484	-0.010001
+28.788	-0.010001
+29.09	-0.010001
+29.394	-0.010001
+29.696	-0.010001
+30	-0.010001
+EOD
