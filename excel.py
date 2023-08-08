@@ -3,7 +3,10 @@ import os
 
 import pandas as pd
 from openpyxl.reader.excel import load_workbook
-from getter import get_wafer
+from getter import get_wafer, get_R_structures, get_sessions, get_structures, get_coords, get_Leak_structures, \
+    get_C_structures, get_Cmes_structures, get_map_structures
+from scipy.stats import percentileofscore
+import numpy as np
 
 
 def wanted_excel(wafer_id, sessions, structures, types, Temps, Files, coords, file_name):
@@ -258,3 +261,299 @@ def classify_row(row):
         if pd.notna(numeric_value):
             return 'Positives' if numeric_value > 0 else 'Negatives'
     return 'NaN'
+
+
+def excel_normal_R(wafer_id, sessions, structures, coords, file_name):
+    """
+    Used to create an Excel file with all selected values of Resistance and their percentiles of normal distribution.
+    Filename has to be entered without any extension.
+
+    :param wafer_id: ID of the wafer
+    :param sessions: All sessions to be processed
+    :param structures: All structures to be processed
+    :param coords: All dies to be processed
+    :param file_name: name of the file created
+    """
+    if not os.path.exists(wafer_id):
+        os.makedirs(wafer_id)
+
+    big_df = pd.DataFrame()
+
+    wafer = get_wafer(wafer_id)
+    for session in sessions:
+        values = []
+        for structure in list(set(structures) & set(get_R_structures(wafer_id, session))):
+            for matrix in wafer[session][structure]['matrices']:
+                coord = f"({matrix['coordinates']['x']},{matrix['coordinates']['y']})"
+                if matrix.get("R") is not None and coord in coords:
+                    if matrix['R'] < 999000:
+                        values.append(matrix['R'])
+                    else:
+                        values.append(1e30)
+
+        values.sort()
+        percentiles = ['Percentiles']
+        perc = [percentileofscore(values, val, kind='weak') for val in values]
+        percentiles = percentiles + perc
+
+        df = pd.DataFrame({
+            session: ['Resistance'] + values,
+            session + ' ': percentiles
+        })
+
+        big_df = big_df.merge(df, left_index=True, right_index=True, how='outer')
+
+    big_df.to_excel(f"{wafer_id}\\{file_name}.xlsx", index=False, engine='openpyxl')
+
+    wb = load_workbook(f"{wafer_id}\\{file_name}.xlsx")
+
+    for sheet in wb.sheetnames:
+        for column in wb[sheet].columns:
+            max_length = 0
+            column = [cell for cell in column]
+            for cell in column:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            adjusted_width = (max_length + 2)
+            wb[sheet].column_dimensions[column[0].column_letter].width = adjusted_width
+
+    wb.save(f"{wafer_id}\\{file_name}.xlsx")
+
+
+def excel_normal_Leak(wafer_id, sessions, structures, coords, file_name):
+    """
+        Used to create an Excel file with all selected values of Leakage and their percentiles of normal distribution.
+        Filename has to be entered without any extension.
+
+        :param wafer_id: ID of the wafer
+        :param sessions: All sessions to be processed
+        :param structures: All structures to be processed
+        :param coords: All dies to be processed
+        :param file_name: name of the file created
+        """
+    if not os.path.exists(wafer_id):
+        os.makedirs(wafer_id)
+
+    big_df = pd.DataFrame()
+
+    wafer = get_wafer(wafer_id)
+    for session in sessions:
+        values = []
+        for structure in list(set(structures) & set(get_Leak_structures(wafer_id, session))):
+            for matrix in wafer[session][structure]['matrices']:
+                coord = f"({matrix['coordinates']['x']},{matrix['coordinates']['y']})"
+                if matrix.get("Leak") is not None and coord in coords:
+                    values.append(matrix['Leak'])
+
+
+        values.sort()
+        percentiles = ['Percentiles']
+        perc = [percentileofscore(values, val, kind='weak') for val in values]
+        percentiles = percentiles + perc
+
+        df = pd.DataFrame({
+            session: ['Leakage'] + values,
+            session + ' ': percentiles
+        })
+
+        big_df = big_df.merge(df, left_index=True, right_index=True, how='outer')
+
+    big_df.to_excel(f"{wafer_id}\\{file_name}.xlsx", index=False, engine='openpyxl')
+
+    wb = load_workbook(f"{wafer_id}\\{file_name}.xlsx")
+
+    for sheet in wb.sheetnames:
+        for column in wb[sheet].columns:
+            max_length = 0
+            column = [cell for cell in column]
+            for cell in column:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            adjusted_width = (max_length + 2)
+            wb[sheet].column_dimensions[column[0].column_letter].width = adjusted_width
+
+    wb.save(f"{wafer_id}\\{file_name}.xlsx")
+
+
+def excel_normal_C(wafer_id, sessions, structures, coords, file_name):
+    """
+        Used to create an Excel file with all selected values of Capacitance and their percentiles of normal distribution.
+        Filename has to be entered without any extension.
+
+        :param wafer_id: ID of the wafer
+        :param sessions: All sessions to be processed
+        :param structures: All structures to be processed
+        :param coords: All dies to be processed
+        :param file_name: name of the file created
+        """
+    if not os.path.exists(wafer_id):
+        os.makedirs(wafer_id)
+
+    big_df = pd.DataFrame()
+
+    wafer = get_wafer(wafer_id)
+    for session in sessions:
+        values = []
+        for structure in list(set(structures) & set(get_C_structures(wafer_id, session))):
+            for matrix in wafer[session][structure]['matrices']:
+                coord = f"({matrix['coordinates']['x']},{matrix['coordinates']['y']})"
+                if matrix.get("Cap") is not None and coord in coords:
+                    if matrix["Cap"].get("C"):
+                        values.append(matrix['Cap']['C'])
+
+
+        values.sort()
+        percentiles = ['Percentiles']
+        perc = [percentileofscore(values, val, kind='weak') for val in values]
+        percentiles = percentiles + perc
+
+        df = pd.DataFrame({
+            session: ['Capacitance'] + values,
+            session + ' ': percentiles
+        })
+
+        big_df = big_df.merge(df, left_index=True, right_index=True, how='outer')
+
+    big_df.to_excel(f"{wafer_id}\\{file_name}.xlsx", index=False, engine='openpyxl')
+
+    wb = load_workbook(f"{wafer_id}\\{file_name}.xlsx")
+
+    for sheet in wb.sheetnames:
+        for column in wb[sheet].columns:
+            max_length = 0
+            column = [cell for cell in column]
+            for cell in column:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            adjusted_width = (max_length + 2)
+            wb[sheet].column_dimensions[column[0].column_letter].width = adjusted_width
+
+    wb.save(f"{wafer_id}\\{file_name}.xlsx")
+
+
+def excel_normal_Cmes(wafer_id, sessions, structures, coords, file_name):
+    """
+        Used to create an Excel file with all selected values of Measured Capacitance and their percentiles of normal distribution.
+        Filename has to be entered without any extension.
+
+        :param wafer_id: ID of the wafer
+        :param sessions: All sessions to be processed
+        :param structures: All structures to be processed
+        :param coords: All dies to be processed
+        :param file_name: name of the file created
+        """
+    if not os.path.exists(wafer_id):
+        os.makedirs(wafer_id)
+
+    big_df = pd.DataFrame()
+
+    wafer = get_wafer(wafer_id)
+    for session in sessions:
+        values = []
+        for structure in list(set(structures) & set(get_Cmes_structures(wafer_id, session))):
+            for matrix in wafer[session][structure]['matrices']:
+                coord = f"({matrix['coordinates']['x']},{matrix['coordinates']['y']})"
+                if matrix.get("Cap") is not None and coord in coords:
+                    if matrix["Cap"].get("Cmes"):
+                        values.append(matrix['Cap']['Cmes'])
+
+
+        values.sort()
+        percentiles = ['Percentiles']
+        perc = [percentileofscore(values, val, kind='weak') for val in values]
+        percentiles = percentiles + perc
+
+        df = pd.DataFrame({
+            session: ['Measured Capacitance'] + values,
+            session + ' ': percentiles
+        })
+
+        big_df = big_df.merge(df, left_index=True, right_index=True, how='outer')
+
+    big_df.to_excel(f"{wafer_id}\\{file_name}.xlsx", index=False, engine='openpyxl')
+
+    wb = load_workbook(f"{wafer_id}\\{file_name}.xlsx")
+
+    for sheet in wb.sheetnames:
+        for column in wb[sheet].columns:
+            max_length = 0
+            column = [cell for cell in column]
+            for cell in column:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            adjusted_width = (max_length + 2)
+            wb[sheet].column_dimensions[column[0].column_letter].width = adjusted_width
+
+    wb.save(f"{wafer_id}\\{file_name}.xlsx")
+
+
+def excel_normal_VBD(wafer_id, sessions, structures, coords, file_name):
+    """
+        Used to create an Excel file with all selected values of VBD and their percentiles of normal distribution.
+        Filename has to be entered without any extension.
+
+        :param wafer_id: ID of the wafer
+        :param sessions: All sessions to be processed
+        :param structures: All structures to be processed
+        :param coords: All dies to be processed
+        :param file_name: name of the file created
+        """
+    if not os.path.exists(wafer_id):
+        os.makedirs(wafer_id)
+
+    big_df = pd.DataFrame()
+
+    wafer = get_wafer(wafer_id)
+    for session in sessions:
+        values = []
+        for structure in list(set(structures) & set(get_map_structures(wafer_id, session))):
+            for matrix in wafer[session][structure]['matrices']:
+                coord = f"({matrix['coordinates']['x']},{matrix['coordinates']['y']})"
+                if matrix.get("VBD") is not None and coord in coords and not np.isnan(matrix["VBD"]):
+                    values.append(matrix['VBD'])
+
+
+        values.sort()
+        percentiles = ['Percentiles']
+        perc = [percentileofscore(values, val, kind='weak') for val in values]
+        percentiles = percentiles + perc
+
+        df = pd.DataFrame({
+            session: ['VBD'] + values,
+            session + ' ': percentiles
+        })
+
+        big_df = big_df.merge(df, left_index=True, right_index=True, how='outer')
+
+    big_df.to_excel(f"{wafer_id}\\{file_name}.xlsx", index=False, engine='openpyxl')
+
+    wb = load_workbook(f"{wafer_id}\\{file_name}.xlsx")
+
+    for sheet in wb.sheetnames:
+        for column in wb[sheet].columns:
+            max_length = 0
+            column = [cell for cell in column]
+            for cell in column:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            adjusted_width = (max_length + 2)
+            wb[sheet].column_dimensions[column[0].column_letter].width = adjusted_width
+
+    wb.save(f"{wafer_id}\\{file_name}.xlsx")
+
+

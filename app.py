@@ -9,7 +9,7 @@ from flask import Flask, request, jsonify, send_from_directory
 import os
 import timeit
 
-from excel import wanted_excel, excel_VBD
+from excel import wanted_excel, excel_VBD, excel_normal_R, excel_normal_Leak, excel_normal_VBD, excel_normal_Cmes, excel_normal_C
 from new_manage_DB import create_db, setCompliance, create_db_tbl, get_db_name, create_db_lim
 from plot_and_powerpoint import plot_wanted_matrices, wanted_ppt
 from converter import handle_file, tbl_to_txt
@@ -586,6 +586,84 @@ def get_normal_values(waferId):
         Used for getting all extracted values in a wafer (Leak, R, C, Cmes and/or VBD)
     """
     return jsonify(get_values(waferId))
+
+@app.route("/excel_normal_Cmes/<waferId>/<sessions>/<structures>/<coords>/<filename>", methods=["GET"])
+def Cmes_excel_normal(waferId, sessions, structures, coords, filename):
+    """
+        Used for saving normal distribution of Cmes in an excel file.
+        We first refactor received information and then call the function
+    """
+    sessions = sessions.split(',')
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    excel_normal_Cmes(waferId, sessions, structures, coords, filename)
+
+    return jsonify({'result': 'success'}), 200
+
+
+@app.route("/excel_normal_C/<waferId>/<sessions>/<structures>/<coords>/<filename>", methods=["GET"])
+def C_excel_normal(waferId, sessions, structures, coords, filename):
+    """
+        Used for saving normal distribution of C in an excel file.
+        We first refactor received information and then call the function
+    """
+    sessions = sessions.split(',')
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    excel_normal_C(waferId, sessions, structures, coords, filename)
+
+    return jsonify({'result': 'success'}), 200
+
+
+@app.route("/excel_normal_R/<waferId>/<sessions>/<structures>/<coords>/<filename>", methods=["GET"])
+def R_excel_normal(waferId, sessions, structures, coords, filename):
+    """
+        Used for saving normal distribution of R in an excel file.
+        We first refactor received information and then call the function
+    """
+    sessions = sessions.split(',')
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    excel_normal_R(waferId, sessions, structures, coords, filename)
+
+    return jsonify({'result': 'success'}), 200
+
+@app.route("/excel_normal_Leak/<waferId>/<sessions>/<structures>/<coords>/<filename>", methods=["GET"])
+def Leak_excel_normal(waferId, sessions, structures, coords, filename):
+    """
+        Used for saving normal distribution of Leakage in an excel file.
+        We first refactor received information and then call the function
+    """
+    sessions = sessions.split(',')
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    excel_normal_Leak(waferId, sessions, structures, coords, filename)
+
+    return jsonify({'result': 'success'}), 200
+
+@app.route("/excel_normal_VBD/<waferId>/<sessions>/<structures>/<coords>/<filename>", methods=["GET"])
+def VBD_excel_normal(waferId, sessions, structures, coords, filename):
+    """
+        Used for saving normal distribution of VBD in an excel file.
+        We first refactor received information and then call the function
+    """
+    sessions = sessions.split(',')
+    structures = structures.split(',')
+    coords = coords.replace("),(", ") (")
+    coords = coords.split(" ")
+
+    excel_normal_VBD(waferId, sessions, structures, coords, filename)
+
+    return jsonify({'result': 'success'}), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

@@ -334,6 +334,7 @@ def get_Cmes_sessions(wafer_id):
                     break
             if session in sessions:
                 break
+    return list(set(sessions))
 
 
 def get_R_structures(wafer_id, session):
@@ -377,7 +378,6 @@ def get_Leak_structures(wafer_id, session):
             if 'Leak' in matrix:
                 structures.append(structure)
                 break
-
     return list(set(structures))
 
 

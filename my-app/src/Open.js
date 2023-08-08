@@ -44,6 +44,7 @@ function Open() {
     const [openPlotDialog, setOpenPlotDialog] = useState(false);
     const [openAccordion, setOpenAccordion] = useState(false);
     const [openVBDExcel, setOpenVBDExcel] = useState(false);
+    const [openNormalExcel, setOpenNormalExcel] = useState(false);
     const [openChooseNormal, setOpenChooseNormal] = useState(false);
     const [openChooseWM, setOpenChooseWM] = useState(false);
     const [openChooseLeak, setOpenChooseLeak] = useState(false);
@@ -234,6 +235,26 @@ function Open() {
         console.log(matrixImages.length);
     }, [matrixImages]);
 
+    useEffect(() => {
+        console.log(leakSessions)
+    }, [leakSessions])
+
+    useEffect(() => {
+        console.log(CSessions)
+    }, [CSessions])
+
+    useEffect(() => {
+        console.log(CmesSessions)
+    }, [CmesSessions])
+
+    useEffect(() => {
+        console.log(RSessions)
+    }, [RSessions])
+
+    useEffect(() => {
+        console.log(structures)
+    }, [structures])
+
 
     const handleCardClick = (waferId, event) => {
           event.stopPropagation();
@@ -250,6 +271,15 @@ function Open() {
     const handleSessionClick = (session) => {
         setSelectedSession(session);
         fetch(`/get_structures/${selectedWafer}/${session}`)
+          .then(response => response.json())
+          .then(data => {
+            setStructures(data);
+          });
+    }
+
+    const handleNormalSessionClick = (session) => {
+        setSelectedSession(session);
+        fetch(`/get_${selectedNormalMeasure}_structures/${selectedWafer}/${session}`)
           .then(response => response.json())
           .then(data => {
             setStructures(data);
@@ -306,7 +336,6 @@ function Open() {
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value.toUpperCase());
     }
-
 
     const handleChooseSelectStructureClick = (structure) => {
         if(selectedStructures.includes(structure)){
@@ -393,7 +422,6 @@ function Open() {
         }
     }
 
-
     const handleDeleteWaferClick = async (waferId) => {
         try {
           const response = await axios.delete(`http://localhost:3000/delete_wafer/${waferId}`);
@@ -423,7 +451,6 @@ function Open() {
             setOpenSetComplianceDialog(false);
         }
     }
-
 
     const handleSelectAll = () => {
         if(selectedStructures.length === structures.length) {
@@ -469,10 +496,9 @@ function Open() {
         })
           const response = await axios.get(`http://localhost:3000/register_excel_VBD/${selectedWafer}/${filteredSessions}/${selectedStructures}/${filteredTemps}/${filteredFiles}/${filteredCoords}/${nameOfExcelFile}`);
           if (response.status === 200) {
-              setOpenDeleteDialog(setOpenVBDExcel(false));
+              setOpenVBDExcel(false);
             alert("Excel created successfully");
             setNameOfExcelFile(null);
-            window.location.reload();
           }
         } catch(error) {
         console.error("Error uploading files: ", error)
@@ -481,8 +507,32 @@ function Open() {
         }
     }
 
+    const registerNormalVBD = async () => {
+        setIsLoading(true);
+        console.log(selectedNormalMeasure);
+        try{
+            const response = await axios.get(`http://localhost:3000/excel_normal_${selectedNormalMeasure}/${selectedWafer}/${sessions}/${selectedStructures}/${filteredCoords}/${nameOfExcelFile}`);
+          if (response.status === 200) {
+              setOpenNormalExcel(false);
+            alert("Excel created successfully");
+            setNameOfExcelFile(null);
+          }
+        } catch {
+            console.error("Error creating excel");
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
     const handleChooseNormal = (item) => {
         setSelectedNormalMeasure(item);
+        fetch(`/get_${item}_sessions/${selectedWafer}`)
+            .then(response => response.json())
+            .then(data => {
+                setSessions(data);
+                setFilteredSessions(data);
+                console.log(selectedSession)
+        })
         setOpenChooseNormal(true);
     }
 
@@ -1369,7 +1419,7 @@ function Open() {
                         aria-controls={`panel${index}-content`}
                         id={`panel${index}-header`}
                         onClick={() => {
-                          handleSessionClick(session);
+                          handleNormalSessionClick(session);
                           setOpenAccordion(openAccordion === `panel${index}` ? false : `panel${index}`);
                         }}
                       >
@@ -1784,6 +1834,7 @@ function Open() {
                 </DialogContent>
 
                 <DialogActions>
+                    <ExcelButton onClick={() => setOpenNormalExcel(true)}>Make Excel</ExcelButton>
                     <Button onClick={() => {
                         setOpenPlotsNormal(false);
                         setSelectedStructures([]);
@@ -1793,6 +1844,32 @@ function Open() {
                 </DialogActions>
             </Dialog>
 
+            <Dialog
+              open={openNormalExcel}
+              onClose={() => {
+                  setOpenNormalExcel(false);
+              }}
+              onBackdropClick={() => {
+                  setOpenNormalExcel(false);
+              }}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Please select a structure in a wafer"}</DialogTitle>
+              <DialogContent>
+                <Typography variant="h5">{selectedWafer}</Typography>
+
+                    <TextField autoFocus margin="dense" label="Name of File" fullWidth variant="standard" onChange={(e) => setNameOfExcelFile(e.target.value)} />
+
+
+              </DialogContent>
+              <DialogActions>
+                  <ExcelButton onClick={registerNormalVBD}>Make Excel</ExcelButton>
+                <Button onClick={() => {
+                  setOpenNormalExcel(false)
+              }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+              </DialogActions>
+            </Dialog>
 
             {/*
             <Dialog
