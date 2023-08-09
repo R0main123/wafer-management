@@ -1,13 +1,35 @@
 # wafer-management
 Improved Data-Extraction with React
 
+<span style="color:red; font-size:2em;">**WARNING:** Be sure to download this project and your python and Mongodb locally on your computer, **NOT ON ONE-DRIVE**</span>
 ## 1. Installing dependecies
-To install all dependecies, please run 
+### Python installation
+If you don't already have Python on your computer, install it using [this link](https://python.org). When downloading, please ensure you checked "Add to path". Then, go to custom installation and ensure that the **pip** checkbox is checked. 
+Follow all the steps of installation and then go to windows settings and search for "Environment variable". Go to "Edit environment variable" > "Advanced" > "Environment Variables..." and then in PATH in the upper window or Path in the lower one. 
+Check if you have these two Path: 
+```
+C:\Users\<Your username>\AppData\Local\Programs\Python\Python311\Scripts\
+```
+and 
+```
+C:\Users\<Your username>\AppData\Local\Programs\Python\Python311\
+```
+
+If not, add them.
+### Pip installation
+Then, run 
+``` bash
+py -m ensurepip --upgrade
+```
+in a Command Line Interface to install pip.
+
+### Installation of all dependencies
+To install all dependencies, please run 
 ```bash
 pip install -r requirements.txt
 ```
 
-You will also need to install MongoDB. PLease go to the official mogoDB website
+You will also need to install MongoDB. PLease go to the official MongoDB website.
 
 ## 2. MongoDB Installation
 ### Windows
@@ -30,8 +52,6 @@ Once downloaded, follow the install wizard to install MongoDB.
 
 3. When the wizard finishes, MongoDB will be installed as a Windows service, which means it will start up automatically with your computer.
 
- 
-
 ### Configuring MongoDB
 Once installed, you can start MongoDB by starting the MongoDB service:
 
@@ -39,14 +59,13 @@ Once installed, you can start MongoDB by starting the MongoDB service:
 
 2. Look for `MongoDB` in the services list, right click on it and select `Start`.
 
-By default, MongoDB listens on port 27017, and stores its data in `C:\Program Files\MongoDB\Server\4.4\data` (replace `4.4` with the version number you installed).
+By default, MongoDB listens on port 27017, and stores its data in `C:\Program Files\MongoDB\Server\6.0\data` (replace `6.0` with the version number you installed).
 
  
 
 ### Connecting to MongoDB
 You can connect to MongoDB with the Mongo shell, or with a programming language-specific client library.
 
- 
 
 ### Client Libraries
 We will use MongoDB with python interface, so you won't need to use Mongo's shell, but if you want to have a look on all datas and how datas are organized, you can open 
@@ -58,7 +77,6 @@ For more information about MongoDB, see the [MongoDB Manual](https://docs.mongod
 
 ### Troubleshooting
 If you have any problems installing or configuring MongoDB, please consult the [MongoDB Documentation](https://docs.mongodb.com/manual/installation/).
-
 
 ## 3. Getting started
 Please click on the `wafer-Management.bat` file to get started with the application. Then, choose `Register New Measures` and drag and drop the files you want to register. You can drop .txt files, lim files, .tbl files, or .tbl.Z.
