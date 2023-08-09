@@ -215,9 +215,12 @@ def excel_VBD(wafer_id, sessions, structures, Temps, Files, coords, file_name):
 
     # Write each DataFrame to a separate sheet
     with pd.ExcelWriter(file_name) as writer:
-        positive_df.to_excel(writer, sheet_name='Positives')
-        negative_df.to_excel(writer, sheet_name='Negatives')
-        nan_df.to_excel(writer, sheet_name='NaN')
+        if not positive_df.empty:
+            positive_df.to_excel(writer, sheet_name='Positives')
+        if not negative_df.empty:
+            negative_df.to_excel(writer, sheet_name='Negatives')
+        if not nan_df.empty:
+            nan_df.to_excel(writer, sheet_name='NaN')
 
     # Charger le classeur et ajuster la largeur des colonnes
     wb = load_workbook(file_name)
@@ -277,33 +280,60 @@ def excel_normal_R(wafer_id, sessions, structures, coords, file_name):
     if not os.path.exists(wafer_id):
         os.makedirs(wafer_id)
 
-    big_df = pd.DataFrame()
+    big_pos_df = pd.DataFrame()
+    big_neg_df = pd.DataFrame()
 
     wafer = get_wafer(wafer_id)
     for session in sessions:
-        values = []
+        pos_values = []
+        neg_values = []
         for structure in list(set(structures) & set(get_R_structures(wafer_id, session))):
             for matrix in wafer[session][structure]['matrices']:
                 coord = f"({matrix['coordinates']['x']},{matrix['coordinates']['y']})"
                 if matrix.get("R") is not None and coord in coords:
-                    if matrix['R'] < 999000:
-                        values.append(matrix['R'])
+                    if matrix['R'] >= 0:
+                        if matrix['R'] < 999000:
+                            pos_values.append(matrix['R'])
+                        else:
+                            pos_values.append(1e30)
                     else:
-                        values.append(1e30)
+                        neg_values.append(matrix['R'])
 
-        values.sort()
+        pos_values.sort()
+        neg_values.sort()
+
         percentiles = ['Percentiles']
-        perc = [percentileofscore(values, val, kind='weak') for val in values]
-        percentiles = percentiles + perc
 
-        df = pd.DataFrame({
-            session: ['Resistance'] + values,
-            session + ' ': percentiles
+        pos_perc = []
+        n = len(pos_values)
+        for i in range(0, n):
+            pos_perc.append(100*((i+1-0.5)/n))
+        pos_percentiles = percentiles + pos_perc
+
+        neg_perc = []
+        n = len(neg_values)
+        for i in range(0, n):
+            neg_perc.append(100 * ((i + 1 - 0.5) / n))
+        neg_percentiles = percentiles + neg_perc
+
+        pos_df = pd.DataFrame({
+            session: ['Resistance'] + pos_values,
+            session + ' ': pos_percentiles
         })
 
-        big_df = big_df.merge(df, left_index=True, right_index=True, how='outer')
+        neg_df = pd.DataFrame({
+            session: ['Resistance'] + neg_values,
+            session + ' ': neg_percentiles
+        })
 
-    big_df.to_excel(f"{wafer_id}\\{file_name}.xlsx", index=False, engine='openpyxl')
+        big_pos_df = big_pos_df.merge(pos_df, left_index=True, right_index=True, how='outer')
+        big_neg_df = big_neg_df.merge(neg_df, left_index=True, right_index=True, how='outer')
+
+    with pd.ExcelWriter(f"{wafer_id}\\{file_name}.xlsx", engine='openpyxl') as writer:
+        if not big_pos_df.empty:
+            big_pos_df.to_excel(writer, sheet_name="Positives", index=False)
+        if not big_neg_df.empty:
+            big_neg_df.to_excel(writer, sheet_name="Negatives", index=False)
 
     wb = load_workbook(f"{wafer_id}\\{file_name}.xlsx")
 
@@ -351,7 +381,10 @@ def excel_normal_Leak(wafer_id, sessions, structures, coords, file_name):
 
         values.sort()
         percentiles = ['Percentiles']
-        perc = [percentileofscore(values, val, kind='weak') for val in values]
+        perc = []
+        n = len(values)
+        for i in range(0, n):
+            perc.append(100 * ((i + 1 - 0.5) / n))
         percentiles = percentiles + perc
 
         df = pd.DataFrame({
@@ -410,7 +443,10 @@ def excel_normal_C(wafer_id, sessions, structures, coords, file_name):
 
         values.sort()
         percentiles = ['Percentiles']
-        perc = [percentileofscore(values, val, kind='weak') for val in values]
+        perc = []
+        n = len(values)
+        for i in range(0, n):
+            perc.append(100 * ((i + 1 - 0.5) / n))
         percentiles = percentiles + perc
 
         df = pd.DataFrame({
@@ -469,7 +505,10 @@ def excel_normal_Cmes(wafer_id, sessions, structures, coords, file_name):
 
         values.sort()
         percentiles = ['Percentiles']
-        perc = [percentileofscore(values, val, kind='weak') for val in values]
+        perc = []
+        n = len(values)
+        for i in range(0, n):
+            perc.append(100 * ((i + 1 - 0.5) / n))
         percentiles = percentiles + perc
 
         df = pd.DataFrame({
@@ -513,31 +552,57 @@ def excel_normal_VBD(wafer_id, sessions, structures, coords, file_name):
     if not os.path.exists(wafer_id):
         os.makedirs(wafer_id)
 
-    big_df = pd.DataFrame()
+    big_pos_df = pd.DataFrame()
+    big_neg_df = pd.DataFrame()
 
     wafer = get_wafer(wafer_id)
     for session in sessions:
-        values = []
-        for structure in list(set(structures) & set(get_map_structures(wafer_id, session))):
+        pos_values = []
+        neg_values = []
+        for structure in list(set(structures) & set(get_R_structures(wafer_id, session))):
             for matrix in wafer[session][structure]['matrices']:
                 coord = f"({matrix['coordinates']['x']},{matrix['coordinates']['y']})"
                 if matrix.get("VBD") is not None and coord in coords and not np.isnan(matrix["VBD"]):
-                    values.append(matrix['VBD'])
+                    if matrix['VBD'] >= 0:
+                        pos_values.append(matrix['VBD'])
+                    else:
+                        neg_values.append(matrix['VBD'])
 
+        pos_values.sort()
+        neg_values.sort()
 
-        values.sort()
         percentiles = ['Percentiles']
-        perc = [percentileofscore(values, val, kind='weak') for val in values]
-        percentiles = percentiles + perc
 
-        df = pd.DataFrame({
-            session: ['VBD'] + values,
-            session + ' ': percentiles
+        pos_perc = []
+        n = len(pos_values)
+        for i in range(0, n):
+            pos_perc.append(100 * ((i + 1 - 0.5) / n))
+        pos_percentiles = percentiles + pos_perc
+
+        neg_perc = []
+        n = len(neg_values)
+        for i in range(0, n):
+            neg_perc.append(100 * ((i + 1 - 0.5) / n))
+        neg_percentiles = percentiles + neg_perc
+
+        pos_df = pd.DataFrame({
+            session: ['VBD'] + pos_values,
+            session + ' ': pos_percentiles
         })
 
-        big_df = big_df.merge(df, left_index=True, right_index=True, how='outer')
+        neg_df = pd.DataFrame({
+            session: ['VBD'] + neg_values,
+            session + ' ': neg_percentiles
+        })
 
-    big_df.to_excel(f"{wafer_id}\\{file_name}.xlsx", index=False, engine='openpyxl')
+        big_pos_df = big_pos_df.merge(pos_df, left_index=True, right_index=True, how='outer')
+        big_neg_df = big_neg_df.merge(neg_df, left_index=True, right_index=True, how='outer')
+
+    with pd.ExcelWriter(f"{wafer_id}\\{file_name}.xlsx", engine='openpyxl') as writer:
+        if not big_pos_df.empty:
+            big_pos_df.to_excel(writer, sheet_name="Positives", index=False)
+        if not big_neg_df.empty:
+            big_neg_df.to_excel(writer, sheet_name="Negatives", index=False)
 
     wb = load_workbook(f"{wafer_id}\\{file_name}.xlsx")
 

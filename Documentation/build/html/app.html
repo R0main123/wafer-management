@@ -46,9 +46,35 @@
   <section id="module-app">
 <span id="app-module"></span><h1>app module<a class="headerlink" href="#module-app" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
+<dt class="sig sig-object py" id="app.C_WM">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">C_WM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.C_WM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to plot the wafer map based on Capacitance values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.C_excel_normal">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">C_excel_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sessions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.C_excel_normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used for saving normal distribution of C in an excel file.
+We first refactor received information and then call the function</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.C_normal">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">C_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sessions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.C_normal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used for plotting the normal plots of C.
+We first refactor received information and then call the function</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.Cmes_WM">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">Cmes_WM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.Cmes_WM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to plot the wafer map based on Measured Capacitance values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.Cmes_excel_normal">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">Cmes_excel_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sessions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.Cmes_excel_normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used for saving normal distribution of Cmes in an excel file.
 We first refactor received information and then call the function</p>
 </dd></dl>
 
@@ -60,6 +86,19 @@ We first refactor received information and then call the function</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="app.Leak_WM">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">Leak_WM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.Leak_WM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to plot the wafer map based on Leakage values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.Leak_excel_normal">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">Leak_excel_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sessions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.Leak_excel_normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used for saving normal distribution of Leakage in an excel file.
+We first refactor received information and then call the function</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.Leak_normal">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">Leak_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sessions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.Leak_normal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used for plotting the normal plots of Leak.
@@ -67,9 +106,29 @@ We first refactor received information and then call the function</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="app.R_WM">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">R_WM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structure</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.R_WM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to plot the wafer map based on resistance values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.R_excel_normal">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">R_excel_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sessions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.R_excel_normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used for saving normal distribution of R in an excel file.
+We first refactor received information and then call the function</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.R_normal">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">R_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sessions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.R_normal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used for plotting the normal plots of R.
+We first refactor received information and then call the function</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.VBD_excel_normal">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">VBD_excel_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sessions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.VBD_excel_normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used for saving normal distribution of VBD in an excel file.
 We first refactor received information and then call the function</p>
 </dd></dl>
 
@@ -120,6 +179,54 @@ We first refactor received information and then call the function</p>
 <dt class="sig sig-object py" id="app.filter_by_Temps">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">filter_by_Temps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selectedMeasurement</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.filter_by_Temps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used for displaying all structures that contain the selected temperature inside the given wafer.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getCSess">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getCSess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.getCSess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all session that contain Capacitance values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getCStruct">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getCStruct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.getCStruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain Capacitance values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getCmesSess">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getCmesSess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.getCmesSess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all session that contain Measured Capacitance values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getCmesStruct">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getCmesStruct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.getCmesStruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain Measured Capacitance values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getLeakSess">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getLeakSess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.getLeakSess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all session that contain Leakage values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getLeakStruct">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getLeakStruct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.getLeakStruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain Leakage values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getRSess">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getRSess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.getRSess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all session that contain Resistance values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getRStruct">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getRStruct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waferId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.getRStruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain Resistance values</p>
 </dd></dl>
 
 <dl class="py function">
@@ -291,10 +398,19 @@ Step 2: Manage lim files and file without extension</p>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">app module</a><ul>
+<li><a class="reference internal" href="#app.C_WM"><code class="docutils literal notranslate"><span class="pre">C_WM()</span></code></a></li>
+<li><a class="reference internal" href="#app.C_excel_normal"><code class="docutils literal notranslate"><span class="pre">C_excel_normal()</span></code></a></li>
 <li><a class="reference internal" href="#app.C_normal"><code class="docutils literal notranslate"><span class="pre">C_normal()</span></code></a></li>
+<li><a class="reference internal" href="#app.Cmes_WM"><code class="docutils literal notranslate"><span class="pre">Cmes_WM()</span></code></a></li>
+<li><a class="reference internal" href="#app.Cmes_excel_normal"><code class="docutils literal notranslate"><span class="pre">Cmes_excel_normal()</span></code></a></li>
 <li><a class="reference internal" href="#app.Cmes_normal"><code class="docutils literal notranslate"><span class="pre">Cmes_normal()</span></code></a></li>
+<li><a class="reference internal" href="#app.Leak_WM"><code class="docutils literal notranslate"><span class="pre">Leak_WM()</span></code></a></li>
+<li><a class="reference internal" href="#app.Leak_excel_normal"><code class="docutils literal notranslate"><span class="pre">Leak_excel_normal()</span></code></a></li>
 <li><a class="reference internal" href="#app.Leak_normal"><code class="docutils literal notranslate"><span class="pre">Leak_normal()</span></code></a></li>
+<li><a class="reference internal" href="#app.R_WM"><code class="docutils literal notranslate"><span class="pre">R_WM()</span></code></a></li>
+<li><a class="reference internal" href="#app.R_excel_normal"><code class="docutils literal notranslate"><span class="pre">R_excel_normal()</span></code></a></li>
 <li><a class="reference internal" href="#app.R_normal"><code class="docutils literal notranslate"><span class="pre">R_normal()</span></code></a></li>
+<li><a class="reference internal" href="#app.VBD_excel_normal"><code class="docutils literal notranslate"><span class="pre">VBD_excel_normal()</span></code></a></li>
 <li><a class="reference internal" href="#app.VBD_normal"><code class="docutils literal notranslate"><span class="pre">VBD_normal()</span></code></a></li>
 <li><a class="reference internal" href="#app.delete_wafer"><code class="docutils literal notranslate"><span class="pre">delete_wafer()</span></code></a></li>
 <li><a class="reference internal" href="#app.excel_structure_route"><code class="docutils literal notranslate"><span class="pre">excel_structure_route()</span></code></a></li>
@@ -303,6 +419,14 @@ Step 2: Manage lim files and file without extension</p>
 <li><a class="reference internal" href="#app.filter_by_Meas"><code class="docutils literal notranslate"><span class="pre">filter_by_Meas()</span></code></a></li>
 <li><a class="reference internal" href="#app.filter_by_Session"><code class="docutils literal notranslate"><span class="pre">filter_by_Session()</span></code></a></li>
 <li><a class="reference internal" href="#app.filter_by_Temps"><code class="docutils literal notranslate"><span class="pre">filter_by_Temps()</span></code></a></li>
+<li><a class="reference internal" href="#app.getCSess"><code class="docutils literal notranslate"><span class="pre">getCSess()</span></code></a></li>
+<li><a class="reference internal" href="#app.getCStruct"><code class="docutils literal notranslate"><span class="pre">getCStruct()</span></code></a></li>
+<li><a class="reference internal" href="#app.getCmesSess"><code class="docutils literal notranslate"><span class="pre">getCmesSess()</span></code></a></li>
+<li><a class="reference internal" href="#app.getCmesStruct"><code class="docutils literal notranslate"><span class="pre">getCmesStruct()</span></code></a></li>
+<li><a class="reference internal" href="#app.getLeakSess"><code class="docutils literal notranslate"><span class="pre">getLeakSess()</span></code></a></li>
+<li><a class="reference internal" href="#app.getLeakStruct"><code class="docutils literal notranslate"><span class="pre">getLeakStruct()</span></code></a></li>
+<li><a class="reference internal" href="#app.getRSess"><code class="docutils literal notranslate"><span class="pre">getRSess()</span></code></a></li>
+<li><a class="reference internal" href="#app.getRStruct"><code class="docutils literal notranslate"><span class="pre">getRStruct()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_all_coords"><code class="docutils literal notranslate"><span class="pre">get_all_coords()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_all_filenames"><code class="docutils literal notranslate"><span class="pre">get_all_filenames()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_all_structures"><code class="docutils literal notranslate"><span class="pre">get_all_structures()</span></code></a></li>

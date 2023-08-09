@@ -483,8 +483,9 @@ def setCompliance(waferId, session, compliance):
 
     wafer = collection.find_one({"wafer_id": waferId})
     wafer[session]['Compliance'] = compliance
-
-    for structure in wafer[session][1:]:
+    for structure in wafer[session]:
+        if structure == "Compliance":
+            continue
         for matrix in wafer[session][structure]['matrices']:
             X, Y = get_vectors_in_matrix(waferId, session, structure, matrix['coordinates']['x'], matrix['coordinates']['y'])
             matrix['VBD'] = calculate_breakdown(X, Y, compliance)[0]

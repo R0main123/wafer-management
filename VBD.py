@@ -239,10 +239,8 @@ def create_wafer_map(wafer_id, session, structure_id):
     plt.colorbar()
     plt.axis('equal')
 
-
-
     fig = plt.gcf()
-
+    plt.savefig(f"{wafer_id}\\WaferMap_VBD_{session}_{structure_id}.png")
     base64_str = fig_to_base64(fig)
 
     plt.close(fig)

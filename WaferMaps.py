@@ -84,9 +84,8 @@ def R_wafer_map(wafer_id, session, structure_id):
     plt.colorbar()
     plt.axis('equal')
 
-
-
     fig = plt.gcf()
+    plt.savefig(f"{wafer_id}\\WaferMap_Resistance_{session}_{structure_id}.png")
 
     base64_str = fig_to_base64(fig)
 
@@ -152,7 +151,7 @@ def Leak_wafer_map(wafer_id, session, structure_id):
     plt.axis('equal')
 
     fig = plt.gcf()
-
+    plt.savefig(f"{wafer_id}\\WaferMap_Leakage_{session}_{structure_id}.png")
     base64_str = fig_to_base64(fig)
 
     plt.close(fig)
@@ -217,7 +216,7 @@ def C_wafer_map(wafer_id, session, structure_id):
     plt.axis('equal')
 
     fig = plt.gcf()
-
+    plt.savefig(f"{wafer_id}\\WaferMap_Capacitance_{session}_{structure_id}.png")
     base64_str = fig_to_base64(fig)
 
     plt.close(fig)
@@ -282,7 +281,7 @@ def Cmes_wafer_map(wafer_id, session, structure_id):
     plt.axis('equal')
 
     fig = plt.gcf()
-
+    plt.savefig(f"{wafer_id}\\WaferMap_Measured_Capacitance_{session}_{structure_id}.png")
     base64_str = fig_to_base64(fig)
 
     plt.close(fig)

@@ -177,7 +177,7 @@ function Open() {
     useEffect(() => {
         if(selectedWafer){
             setIsLoading(true);
-            fetch(`/get_sessions/${selectedWafer}`)
+            fetch(`/get_plot_sessions/${selectedWafer}`)
             .then(response => response.json())
             .then(data => {
                 setSessions(data);
@@ -195,7 +195,7 @@ function Open() {
 
     useEffect(() => {
         if(selectedSession){
-            fetch(`/get_structures/${selectedWafer}/${selectedSession}`)
+            fetch(`/get_plot_structures/${selectedWafer}/${selectedSession}`)
                 .then(response => response.json())
                 .then(data => {
                     setStructures(data);
@@ -315,6 +315,7 @@ function Open() {
           setSelectedWafer(null);
           setOpenDialog(false);
           setSessions([]);
+          setOpenAccordion(false);
           setSelectedSession(null);
           document.body.style.overflow = 'auto';
     };
@@ -916,6 +917,7 @@ function Open() {
               onClose={() => {
                   setSelectedStructures([]);
                   setOpenDialogMakeExcel(false);
+                  setOpenAccordion(false);
                   setNameOfExcelFile("");
                   document.body.style.overflow = 'auto';
               }}
@@ -950,6 +952,7 @@ function Open() {
                 <Button onClick={() =>{
                     setOpenDialogMakeExcel(false);
                     setSelectedStructures([]);
+                    setOpenAccordion(false);
                     setNameOfExcelFile("")
                   document.body.style.overflow = 'auto';
                 }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
@@ -962,6 +965,7 @@ function Open() {
                   setSelectedStructures([]);
                   setOpenDialogMakePpt(false);
                   setNameOfPptFile("");
+                  setOpenAccordion(false);
                   document.body.style.overflow = 'auto';
               }}
               aria-labelledby="alert-dialog-title"
@@ -996,6 +1000,7 @@ function Open() {
                 <Button onClick={() =>{
                     setOpenDialogMakePpt(false);
                     setSelectedStructures([]);
+                    setOpenAccordion(false);
                     setNameOfPptFile("")
                   document.body.style.overflow = 'auto';
                 }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
@@ -1005,11 +1010,13 @@ function Open() {
             <Dialog
               open={openWaferMapDialog}
               onClose={() => {
+                  setOpenAccordion(false);
                   setOpenWaferMapDialog(false);
                   handleCloseDialog();
               }}
               onBackdropClick={() => {
                   setOpenWaferMapDialog(false);
+                  setOpenAccordion(false);
               }}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
@@ -1040,7 +1047,7 @@ function Open() {
                 />
                 {
                 mapSessions.length === 0 ?
-                <div>Found no sessions with I-V measures</div> : (
+                <div>Found no sessions with I-V measurements</div> : (
                 <Grid container spacing={2}>
                   {mapSessions.map((session, index) => (
                   <Grid item xs={12} key={index}>
@@ -1097,6 +1104,7 @@ function Open() {
               open={openSetComplianceDialog}
               onClose={() => {
                   setOpenSetComplianceDialog(false);
+                  setOpenAccordion(false);
                   document.body.style.overflow = 'auto';
               }}
               aria-labelledby="alert-dialog-title"
@@ -1110,6 +1118,7 @@ function Open() {
                   <ComplianceButton onClick={handleSetCompliance}>Set</ComplianceButton>
                 <Button onClick={() =>{
                     setOpenSetComplianceDialog(false);
+                    setOpenAccordion(false);
                   document.body.style.overflow = 'auto';
                 }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>
@@ -1122,6 +1131,7 @@ function Open() {
                     setOpenShowWaferMapDialog(false);
                     setCurrentWaferMap(null);
                     setSelectedSession(null);
+                    setOpenAccordion(false);
                 }}
                 maxWidth='md'
                 fullWidth={true}
@@ -1153,6 +1163,7 @@ function Open() {
                         setCurrentWaferMap(null);
                         setSelectedMatrixIndex(null);
                         setSelectedCompliance(null);
+                        setOpenAccordion(false);
                         setSelectedSession(null);
                         setTriplets([]);
                     }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
@@ -1161,7 +1172,10 @@ function Open() {
 
             <Dialog
                 open={openDeleteDialog}
-                onClose={() => setOpenDeleteDialog(false)}
+                onClose={() => {
+                    setOpenDeleteDialog(false);
+                    setOpenAccordion(false);
+                }}
                 aria-labelledby="delete-dialog-title"
                 aria-describedby="delete-dialog-description"
             >
@@ -1182,6 +1196,7 @@ function Open() {
                 <DialogActions>
                     <Button onClick={() => {
                         setOpenDeleteDialog(false);
+                        setOpenAccordion(false);
                         setSelectedWafer(null);
                     }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
                 </DialogActions>
@@ -1192,9 +1207,11 @@ function Open() {
               open={openVBDExcel}
               onClose={() => {
                   setOpenVBDExcel(false);
+                  setOpenAccordion(false);
               }}
               onBackdropClick={() => {
                   setOpenWaferMapDialog(false);
+                  setOpenAccordion(false);
               }}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
@@ -1225,7 +1242,7 @@ function Open() {
                 />
                 {
                 mapSessions.length === 0 ?
-                <div>Found no sessions with I-V measures</div> : (
+                <div>Found no sessions with I-V measurements</div> : (
                 <Grid container spacing={2}>
                   {mapSessions.map((session, index) => (
                   <Grid item xs={12} key={index}>
@@ -1271,7 +1288,8 @@ function Open() {
               <DialogActions>
                   <ExcelButton onClick={registerExcelVBD}>Make Excel</ExcelButton>
                 <Button onClick={() => {
-                  setOpenVBDExcel(false)
+                  setOpenVBDExcel(false);
+                  setOpenAccordion(false);
               }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>
             </Dialog>
@@ -1285,6 +1303,7 @@ function Open() {
               }}
               onBackdropClick={() => {
                   setOpenWhatNormal(false);
+                  setOpenAccordion(false);
               }}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
@@ -1327,6 +1346,7 @@ function Open() {
               }}
               onBackdropClick={() => {
                   setValues([]);
+                  setOpenAccordion(false);
                   setOpenWhatWM(false);
               }}
               aria-labelledby="alert-dialog-title"
@@ -1371,7 +1391,10 @@ function Open() {
 
             <Dialog
               open={openChooseNormal}
-              onClose={() => {setOpenChooseNormal(false)}}
+              onClose={() => {
+                  setOpenChooseNormal(false);
+                  setOpenAccordion(false);
+              }}
               onBackdropClick={handleCloseDialog}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
@@ -1451,14 +1474,20 @@ function Open() {
               </DialogContent>
               <DialogActions>
                   <Button onClick={handleNormalPlots} sx={{backgroundColor:'#47a3ff', color: 'white', '&:hover':{backgroundColor: 'blue'}}}>Plot</Button>
-                <Button onClick={() => {setOpenChooseNormal(false)}} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+                <Button onClick={() => {
+                    setOpenChooseNormal(false);
+                    setOpenAccordion(false);
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>
             </Dialog>
 
 
             <Dialog
               open={openChooseLeak}
-              onClose={() => {setOpenChooseLeak(false)}}
+              onClose={() => {
+                  setOpenChooseLeak(false);
+                  setOpenAccordion(false);
+              }}
               onBackdropClick={handleCloseDialog}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
@@ -1537,14 +1566,20 @@ function Open() {
 
               </DialogContent>
               <DialogActions>
-                <Button onClick={() => {setOpenChooseLeak(false)}} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+                <Button onClick={() => {
+                    setOpenChooseLeak(false);
+                    setOpenAccordion(false);
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>
             </Dialog>
 
 
             <Dialog
               open={openChooseR}
-              onClose={() => {setOpenChooseR(false)}}
+              onClose={() => {
+                  setOpenChooseR(false);
+                  setOpenAccordion(false);
+              }}
               onBackdropClick={handleCloseDialog}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
@@ -1623,13 +1658,19 @@ function Open() {
 
               </DialogContent>
               <DialogActions>
-                <Button onClick={() => {setOpenChooseR(false)}} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+                <Button onClick={() => {
+                    setOpenChooseR(false);
+                    setOpenAccordion(false);
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>
             </Dialog>
 
             <Dialog
               open={openChooseC}
-              onClose={() => {setOpenChooseC(false)}}
+              onClose={() => {
+                  setOpenChooseC(false);
+                  setOpenAccordion(false);
+              }}
               onBackdropClick={handleCloseDialog}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
@@ -1708,13 +1749,19 @@ function Open() {
 
               </DialogContent>
               <DialogActions>
-                <Button onClick={() => {setOpenChooseC(false)}} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+                <Button onClick={() => {
+                    setOpenChooseC(false);
+                    setOpenAccordion(false);
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>
             </Dialog>
 
             <Dialog
               open={openChooseCmes}
-              onClose={() => {setOpenChooseCmes(false)}}
+              onClose={() => {
+                  setOpenChooseCmes(false);
+                  setOpenAccordion(false);
+              }}
               onBackdropClick={handleCloseDialog}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
@@ -1793,7 +1840,10 @@ function Open() {
 
               </DialogContent>
               <DialogActions>
-                <Button onClick={() => {setOpenChooseCmes(false)}} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
+                <Button onClick={() => {
+                    setOpenChooseCmes(false);
+                    setOpenAccordion(false);
+                }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>
             </Dialog>
 
@@ -1848,9 +1898,11 @@ function Open() {
               open={openNormalExcel}
               onClose={() => {
                   setOpenNormalExcel(false);
+                  setOpenAccordion(false);
               }}
               onBackdropClick={() => {
                   setOpenNormalExcel(false);
+                  setOpenAccordion(false);
               }}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
@@ -1866,7 +1918,8 @@ function Open() {
               <DialogActions>
                   <ExcelButton onClick={registerNormalVBD}>Make Excel</ExcelButton>
                 <Button onClick={() => {
-                  setOpenNormalExcel(false)
+                  setOpenNormalExcel(false);
+                  setOpenAccordion(false);
               }} sx={{backgroundColor:'#ff4747', color: 'white', '&:hover':{backgroundColor: 'red'}}}>Close</Button>
               </DialogActions>
             </Dialog>

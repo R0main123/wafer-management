@@ -63,7 +63,7 @@
 
 
 \title{Wafer Management}
-\date{Aug 04, 2023}
+\date{Aug 08, 2023}
 \release{1.0.0}
 \author{Romain LAUP}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -488,6 +488,19 @@ Used to plot the wafer map based on Capacitance values
 
 \end{fulllineitems}
 
+\index{C\_excel\_normal() (in module app)@\spxentry{C\_excel\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.C_excel_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{C\_excel\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{filename}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for saving normal distribution of C in an excel file.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
 \index{C\_normal() (in module app)@\spxentry{C\_normal()}\spxextra{in module app}}
 
 \begin{fulllineitems}
@@ -510,6 +523,19 @@ We first refactor received information and then call the function
 \pysigstopsignatures
 \sphinxAtStartPar
 Used to plot the wafer map based on Measured Capacitance values
+
+\end{fulllineitems}
+
+\index{Cmes\_excel\_normal() (in module app)@\spxentry{Cmes\_excel\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.Cmes_excel_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{Cmes\_excel\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{filename}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for saving normal distribution of Cmes in an excel file.
+We first refactor received information and then call the function
 
 \end{fulllineitems}
 
@@ -538,6 +564,19 @@ Used to plot the wafer map based on Leakage values
 
 \end{fulllineitems}
 
+\index{Leak\_excel\_normal() (in module app)@\spxentry{Leak\_excel\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.Leak_excel_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{Leak\_excel\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{filename}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for saving normal distribution of Leakage in an excel file.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
 \index{Leak\_normal() (in module app)@\spxentry{Leak\_normal()}\spxextra{in module app}}
 
 \begin{fulllineitems}
@@ -563,6 +602,19 @@ Used to plot the wafer map based on resistance values
 
 \end{fulllineitems}
 
+\index{R\_excel\_normal() (in module app)@\spxentry{R\_excel\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.R_excel_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{R\_excel\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{filename}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for saving normal distribution of R in an excel file.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
 \index{R\_normal() (in module app)@\spxentry{R\_normal()}\spxextra{in module app}}
 
 \begin{fulllineitems}
@@ -572,6 +624,19 @@ Used to plot the wafer map based on resistance values
 \pysigstopsignatures
 \sphinxAtStartPar
 Used for plotting the normal plots of R.
+We first refactor received information and then call the function
+
+\end{fulllineitems}
+
+\index{VBD\_excel\_normal() (in module app)@\spxentry{VBD\_excel\_normal()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.VBD_excel_normal}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{VBD\_excel\_normal}}}{\sphinxparam{\DUrole{n,n}{waferId}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{filename}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for saving normal distribution of VBD in an excel file.
 We first refactor received information and then call the function
 
 \end{fulllineitems}
@@ -1211,6 +1276,196 @@ An Excel file is created with all VBDs inside the wafer, following selected filt
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{file\_name}} \textendash{} Name under which the file will be registered
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{excel\_normal\_C() (in module excel)@\spxentry{excel\_normal\_C()}\spxextra{in module excel}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{excel:excel.excel_normal_C}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{excel.}}\sphinxbfcode{\sphinxupquote{excel\_normal\_C}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to create an Excel file with all selected values of Capacitance and their percentiles of normal distribution.
+Filename has to be entered without any extension.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} All sessions to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} All structures to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} \textendash{} All dies to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file\_name}} \textendash{} name of the file created
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{excel\_normal\_Cmes() (in module excel)@\spxentry{excel\_normal\_Cmes()}\spxextra{in module excel}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{excel:excel.excel_normal_Cmes}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{excel.}}\sphinxbfcode{\sphinxupquote{excel\_normal\_Cmes}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to create an Excel file with all selected values of Measured Capacitance and their percentiles of normal distribution.
+Filename has to be entered without any extension.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} All sessions to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} All structures to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} \textendash{} All dies to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file\_name}} \textendash{} name of the file created
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{excel\_normal\_Leak() (in module excel)@\spxentry{excel\_normal\_Leak()}\spxextra{in module excel}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{excel:excel.excel_normal_Leak}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{excel.}}\sphinxbfcode{\sphinxupquote{excel\_normal\_Leak}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to create an Excel file with all selected values of Leakage and their percentiles of normal distribution.
+Filename has to be entered without any extension.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} All sessions to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} All structures to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} \textendash{} All dies to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file\_name}} \textendash{} name of the file created
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{excel\_normal\_R() (in module excel)@\spxentry{excel\_normal\_R()}\spxextra{in module excel}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{excel:excel.excel_normal_R}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{excel.}}\sphinxbfcode{\sphinxupquote{excel\_normal\_R}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to create an Excel file with all selected values of Resistance and their percentiles of normal distribution.
+Filename has to be entered without any extension.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} All sessions to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} All structures to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} \textendash{} All dies to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file\_name}} \textendash{} name of the file created
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{excel\_normal\_VBD() (in module excel)@\spxentry{excel\_normal\_VBD()}\spxextra{in module excel}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{excel:excel.excel_normal_VBD}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{excel.}}\sphinxbfcode{\sphinxupquote{excel\_normal\_VBD}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{sessions}}, \sphinxparam{\DUrole{n,n}{structures}}, \sphinxparam{\DUrole{n,n}{coords}}, \sphinxparam{\DUrole{n,n}{file\_name}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to create an Excel file with all selected values of VBD and their percentiles of normal distribution.
+Filename has to be entered without any extension.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sessions}} \textendash{} All sessions to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{structures}} \textendash{} All structures to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{coords}} \textendash{} All dies to be processed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{file\_name}} \textendash{} name of the file created
 
 \end{itemize}
 
@@ -2771,11 +3026,6 @@ str
 \end{fulllineitems}
 
 
-\sphinxstepscope
-
-
-\chapter{test module}
-\label{\detokenize{test:test-module}}\label{\detokenize{test::doc}}
 
 \chapter{Indices and tables}
 \label{\detokenize{index:indices-and-tables}}\begin{itemize}

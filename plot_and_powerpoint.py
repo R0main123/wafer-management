@@ -25,7 +25,7 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
     Used to plot only selected dies following selected filters. These plots won't be registered but will be displayed for the user.
     One plot is created per type of Measurement.
     A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated.
-    You can add a color in this list if you want (Line 44 to 60) but don't forget to change the number in line 109 (color_index % <this number>)
+    You can add a color in this list if you want (Line 44 to 60) but don't forget to change the number in line 119 (color_index % <this number>)
 
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
@@ -75,15 +75,25 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
                         results = [result for result in matrix["results"]]
                         if type in results:
                             if matrix["results"][type]["Filename"] in Files and matrix["results"][type]["Temperature"] in Temps:
+                                if type != 'It':
+                                    data_values = [[] for _ in range(len(y_values) + 1)]
+                                    data_values[0] = ['Voltage (V)']
 
-                                data_values = [[] for _ in range(len(y_values) + 1)]
-                                data_values[0] = ['Voltage (V)']
+                                    for double in matrix["results"][type]["Values"]:
+                                        data_values[0].append(abs(double["V"]))
+                                        for idx, unit in enumerate(y_values, 1):
+                                            if double.get(unit) is not None:
+                                                data_values[idx].append(abs(double[unit]))
 
-                                for double in matrix["results"][type]["Values"]:
-                                    data_values[0].append(abs(double["V"]))
-                                    for idx, unit in enumerate(y_values, 1):
-                                        if double.get(unit) is not None:
-                                            data_values[idx].append(abs(double[unit]))
+                                else:
+                                    data_values = [[] for _ in range(len(y_values) + 1)]
+                                    data_values[0] = ['T (seconds)']
+
+                                    for double in matrix["results"][type]["Values"]:
+                                        data_values[0].append(abs(double["t (s)"]))
+                                        for idx, unit in enumerate(y_values, 1):
+                                            if double.get(unit) is not None:
+                                                data_values[idx].append(abs(double[unit]))
 
                                 columns = [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}"] + [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}" + " " + unit for unit in y_values]
                                 new_df = pd.DataFrame(list(zip(*data_values)), columns=columns)
@@ -111,8 +121,7 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
                 ax.set_xlabel(label_x)
                 ax.set_ylabel(label_y)
 
-                if unit == "J" or "I":
-                    plt.yscale('log')
+                plt.yscale('log')
 
                 ax.set_title(f"{wafer_id} {unit}")
                 ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize='small')
@@ -136,7 +145,7 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
     Used to create a PowerPoint (registered in a folder named after the concerned wafer) with only selected dies following selected filters. These plots will be registered in a folder named 'plots'.
     One plot is created per type of Measurement.
     A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated on the plot.
-    You can add a color in this list if you want (Line 160 to 176) but don't forget to change the number in line 227 (color_index % <this number>)
+    You can add a color in this list if you want (Line 169 to 185) but don't forget to change the number in line 245 (color_index % <this number>)
 
     :param wafer_id: ID of the wafer
     :param sessions: Selected sessions
@@ -191,21 +200,30 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
                         results = [result for result in matrix["results"]]
                         if type in results:
                             if matrix["results"][type]["Filename"] in Files and matrix["results"][type]["Temperature"] in Temps:
+                                if type != 'It':
+                                    data_values = [[] for _ in range(len(y_values) + 1)]
+                                    data_values[0] = ['Voltage (V)']
 
-                                data_values = [[] for _ in range(len(y_values) + 1)]
-                                data_values[0] = ['Voltage (V)']
+                                    for double in matrix["results"][type]["Values"]:
+                                        data_values[0].append(abs(double["V"]))
+                                        for idx, unit in enumerate(y_values, 1):
+                                            data_values[idx].append(abs(double[unit]))
 
-                                for double in matrix["results"][type]["Values"]:
-                                    data_values[0].append(abs(double["V"]))
-                                    for idx, unit in enumerate(y_values, 1):
-                                        data_values[idx].append(abs(double[unit]))
+                                else:
+                                    data_values = [[] for _ in range(len(y_values) + 1)]
+                                    data_values[0] = ['T (seconds)']
+
+                                    for double in matrix["results"][type]["Values"]:
+                                        data_values[0].append(abs(double["t (s)"]))
+                                        for idx, unit in enumerate(y_values, 1):
+                                            data_values[idx].append(abs(double[unit]))
 
                                 columns = [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}"] + [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}" + " " + unit for unit in y_values]
                                 new_df = pd.DataFrame(list(zip(*data_values)), columns=columns)
                                 df_dict[type] = df_dict[type].merge(new_df, left_index=True, right_index=True, how='outer')
 
     prs = Presentation()
-    units ={"I": "A", "J": "A / cm^2", "It": "A"}
+    units = {"I": "A", "J": "A / cm^2", "It": "s"}
 
     for unit, df in df_dict.items():
         cols = [col.rstrip() for col in df.columns if not col.endswith(' ' + unit)]
@@ -229,8 +247,7 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
                 ax.set_xlabel(label_x)
                 ax.set_ylabel(label_y)
 
-                if unit == "J" or "I":
-                    plt.yscale('log')
+                plt.yscale('log')
 
                 ax.set_title(f"{wafer_id} {unit}")
                 ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize='small')

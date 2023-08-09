@@ -425,3 +425,50 @@ def get_Cmes_structures(wafer_id, session):
                 break
 
     return list(set(structures))
+
+
+def get_plot_sessions(wafer_id):
+    """
+    Used to get all sessions that can be plot (i.e that conatin I-V, J-V and/or It Measurements) inside a wafer.
+
+    :param <str> wafer_id: ID of the wafer
+
+    :return <list of str>: All sessions with I-V measurements inside the wafer
+    """
+    wafer = get_wafer(wafer_id)
+    sessions = []
+    for session in get_sessions(wafer_id):
+        for structure in wafer[session]:
+            if structure == "Compliance":
+                continue
+            for matrix in wafer[session][structure]['matrices']:
+                if matrix.get('results') is not None:
+                    if 'I' in matrix['results'] or "J" in matrix['results'] or "It" in matrix['results']:
+                        sessions.append(session)
+                    break
+            if session in sessions:
+                break
+    return list(set(sessions))
+
+
+def get_plot_structures(wafer_id, session):
+    """
+    Used to get all structures that contain measurements that can be plot inside the given session of a wafer.
+
+    :param <str> wafer_id: ID of the wafer
+    :param <str> session: Selected session
+
+    :return <list of str>: All structures that can be plot
+    """
+    wafer = get_wafer(wafer_id)
+    structures = []
+    for structure in get_structures(wafer_id, session):
+        for matrix in wafer[session][structure]['matrices']:
+            if 'I' in matrix['results'] or "J" in matrix['results'] or "It" in matrix['results']:
+                structures.append(structure)
+                break
+    if "Compliance" in structures:
+        structures.remove("Compliance")
+
+    return list(set(structures))
+

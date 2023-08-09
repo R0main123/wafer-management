@@ -15,7 +15,9 @@ from plot_and_powerpoint import plot_wanted_matrices, wanted_ppt
 from converter import handle_file, tbl_to_txt
 from getter import get_types, get_temps, get_filenames, get_coords, get_compliance, get_sessions, get_wafer, \
     get_structures, get_map_sessions, connexion, get_map_structures, get_Leak_structures, get_Leak_sessions, \
-    get_R_sessions, get_R_structures, get_C_sessions, get_C_structures, get_Cmes_sessions, get_Cmes_structures
+    get_R_sessions, get_R_structures, get_C_sessions, get_C_structures, get_Cmes_sessions, get_Cmes_structures, \
+    get_plot_sessions, get_plot_structures
+
 
 from filter import filter_by_meas, filter_by_temp, filter_by_coord, filter_by_filename, filter_by_session
 from VBD import create_wafer_map
@@ -397,6 +399,22 @@ def get_map_structures_server(wafer_id, session):
     return jsonify(get_map_structures(wafer_id, session)), 200
 
 
+@app.route('/get_plot_sessions/<wafer_id>', methods=['GET'])
+def get_plot_sessions_server(wafer_id):
+    """
+        Used for getting all sessions that contain I-V measurements (for the wafer map)
+    """
+    return jsonify(get_plot_sessions(wafer_id)), 200
+
+
+@app.route('/get_plot_structures/<wafer_id>/<session>', methods=['GET'])
+def get_plot_structures_server(wafer_id, session):
+    """
+        Used for getting all structures that contain I-V measurements (for the wafer map)
+    """
+    return jsonify(get_plot_structures(wafer_id, session)), 200
+
+
 @app.route('/register_excel_VBD/<waferId>/<sessions>/<structures>/<temps>/<files>/<coords>/<file_name>', methods=['GET'])
 def reg_excel_VBD(waferId, sessions, structures, temps, files, coords, file_name):
     """
@@ -432,6 +450,7 @@ def VBD_normal(waferId, sessions, structures, coords):
         structures.remove("Compliance")
 
     return jsonify([VBD_normal_distrib_pos(waferId, sessions, structures, coords), VBD_normal_distrib_neg(waferId, sessions, structures, coords)])
+
 
 @app.route("/normal_distrib_R/<waferId>/<sessions>/<structures>/<coords>", methods=["GET"])
 def R_normal(waferId, sessions, structures, coords):
@@ -487,7 +506,6 @@ def Cmes_normal(waferId, sessions, structures, coords):
     coords = coords.split(" ")
 
     return jsonify([Cmes_normal_distrib_pos(waferId, sessions, structures, coords), Cmes_normal_distrib_neg(waferId, sessions, structures, coords)])
-
 
 
 @app.route("/R_wafer_map/<waferId>/<session>/<structure>", methods=["GET"])
