@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.5.22)  8 AUG 2023 08:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.5.22)  9 AUG 2023 13:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -917,13 +917,13 @@ Chapter 9.
 No file wafermanagement.ind.
 (wafermanagement.aux)
 Package rerunfilecheck Info: File `wafermanagement.out' has not changed.
-(rerunfilecheck)             Checksum: 443CCCAC553AD5D7D0877A7E65153FED;2033.
+(rerunfilecheck)             Checksum: BA14D1752B065CEED136E6EBDB85B882;2033.
  ) 
 Here is how much of TeX's memory you used:
- 16379 strings out of 476374
- 278466 string characters out of 5798666
+ 16387 strings out of 476374
+ 278652 string characters out of 5798666
  1871340 words of memory out of 5000000
- 36197 multiletter control sequences out of 15000+600000
+ 36201 multiletter control sequences out of 15000+600000
  557802 words of font info for 71 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  72i,11n,76p,507b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -938,9 +938,9 @@ up77/AppData/Roaming/MiKTeX/fonts/type1/public/tex-gyre/qtmb.pfb><C:/Users/laup
 AppData/Roaming/MiKTeX/fonts/type1/public/txfonts/t1xbtt.pfb><C:/Users/laup77/A
 ppData/Roaming/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/laup77/App
 Data/Roaming/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb>
-Output written on wafermanagement.pdf (35 pages, 247536 bytes).
+Output written on wafermanagement.pdf (35 pages, 248326 bytes).
 PDF statistics:
- 453 PDF objects out of 1000 (max. 8388607)
- 179 named destinations out of 1000 (max. 500000)
+ 459 PDF objects out of 1000 (max. 8388607)
+ 183 named destinations out of 1000 (max. 500000)
  141 words of extra memory for PDF output out of 10000 (max. 10000000)
 

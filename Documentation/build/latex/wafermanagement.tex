@@ -63,7 +63,7 @@
 
 
 \title{Wafer Management}
-\date{Aug 08, 2023}
+\date{Aug 09, 2023}
 \release{1.0.0}
 \author{Romain LAUP}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -951,6 +951,30 @@ Used for getting all dies in the structure selected
 \pysigstopsignatures
 \sphinxAtStartPar
 Used for getting all extracted values in a wafer (Leak, R, C, Cmes and/or VBD)
+
+\end{fulllineitems}
+
+\index{get\_plot\_sessions\_server() (in module app)@\spxentry{get\_plot\_sessions\_server()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_plot_sessions_server}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_plot\_sessions\_server}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all sessions that contain I\sphinxhyphen{}V measurements (for the wafer map)
+
+\end{fulllineitems}
+
+\index{get\_plot\_structures\_server() (in module app)@\spxentry{get\_plot\_structures\_server()}\spxextra{in module app}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{app:app.get_plot_structures_server}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{app.}}\sphinxbfcode{\sphinxupquote{get\_plot\_structures\_server}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used for getting all structures that contain I\sphinxhyphen{}V measurements (for the wafer map)
 
 \end{fulllineitems}
 
@@ -2074,6 +2098,57 @@ List of matrices that contains I\sphinxhyphen{}V measurements
 
 \end{fulllineitems}
 
+\index{get\_plot\_sessions() (in module getter)@\spxentry{get\_plot\_sessions()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_plot_sessions}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_plot\_sessions}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all sessions that can be plot (i.e that conatin I\sphinxhyphen{}V, J\sphinxhyphen{}V and/or It Measurements) inside a wafer.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\sphinxlineitem{Return \textless{}list of str\textgreater{}}
+\sphinxAtStartPar
+All sessions with I\sphinxhyphen{}V measurements inside the wafer
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_plot\_structures() (in module getter)@\spxentry{get\_plot\_structures()}\spxextra{in module getter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{getter:getter.get_plot_structures}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{getter.}}\sphinxbfcode{\sphinxupquote{get\_plot\_structures}}}{\sphinxparam{\DUrole{n,n}{wafer\_id}}, \sphinxparam{\DUrole{n,n}{session}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Used to get all structures that contain measurements that can be plot inside the given session of a wafer.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wafer\_id}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} ID of the wafer
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{session}} (\sphinxstyleliteralemphasis{\sphinxupquote{\textless{}str\textgreater{}}}) \textendash{} Selected session
+
+\end{itemize}
+
+\sphinxlineitem{Return \textless{}list of str\textgreater{}}
+\sphinxAtStartPar
+All structures that can be plot
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{get\_sessions() (in module getter)@\spxentry{get\_sessions()}\spxextra{in module getter}}
 
 \begin{fulllineitems}
@@ -2787,7 +2862,7 @@ the wafer
 Used to plot only selected dies following selected filters. These plots won’t be registered but will be displayed for the user.
 One plot is created per type of Measurement.
 A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated.
-You can add a color in this list if you want (Line 44 to 60) but don’t forget to change the number in line 109 (color\_index \% \textless{}this number\textgreater{})
+You can add a color in this list if you want (Line 44 to 60) but don’t forget to change the number in line 119 (color\_index \% \textless{}this number\textgreater{})
 \begin{quote}\begin{description}
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
@@ -2839,7 +2914,7 @@ One plot per type of measurements, converted to base64
 Used to create a PowerPoint (registered in a folder named after the concerned wafer) with only selected dies following selected filters. These plots will be registered in a folder named ‘plots’.
 One plot is created per type of Measurement.
 A single plot contain all session, all dies and all structures selected. A list of 15 colors is generated, so up to 15 differents lines can be differenciated on the plot.
-You can add a color in this list if you want (Line 160 to 176) but don’t forget to change the number in line 227 (color\_index \% \textless{}this number\textgreater{})
+You can add a color in this list if you want (Line 169 to 185) but don’t forget to change the number in line 245 (color\_index \% \textless{}this number\textgreater{})
 \begin{quote}\begin{description}
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 

@@ -54,6 +54,8 @@
 \indexentry{get\_map\_structures\_server() (in module app)@\spxentry{get\_map\_structures\_server()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{get\_matrices() (in module app)@\spxentry{get\_matrices()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{get\_normal\_values() (in module app)@\spxentry{get\_normal\_values()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{get\_plot\_sessions\_server() (in module app)@\spxentry{get\_plot\_sessions\_server()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{get\_plot\_structures\_server() (in module app)@\spxentry{get\_plot\_structures\_server()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{get\_sessions\_server() (in module app)@\spxentry{get\_sessions\_server()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{get\_structures\_json() (in module app)@\spxentry{get\_structures\_json()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{index() (in module app)@\spxentry{index()}\spxextra{in module app}|hyperpage}{7}
@@ -64,8 +66,8 @@
 \indexentry{ppt\_structure\_route() (in module app)@\spxentry{ppt\_structure\_route()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{reg\_excel\_VBD() (in module app)@\spxentry{reg\_excel\_VBD()}\spxextra{in module app}|hyperpage}{7}
 \indexentry{send\_css() (in module app)@\spxentry{send\_css()}\spxextra{in module app}|hyperpage}{7}
-\indexentry{send\_js() (in module app)@\spxentry{send\_js()}\spxextra{in module app}|hyperpage}{7}
-\indexentry{send\_static\_files() (in module app)@\spxentry{send\_static\_files()}\spxextra{in module app}|hyperpage}{7}
+\indexentry{send\_js() (in module app)@\spxentry{send\_js()}\spxextra{in module app}|hyperpage}{8}
+\indexentry{send\_static\_files() (in module app)@\spxentry{send\_static\_files()}\spxextra{in module app}|hyperpage}{8}
 \indexentry{serve() (in module app)@\spxentry{serve()}\spxextra{in module app}|hyperpage}{8}
 \indexentry{set\_compl() (in module app)@\spxentry{set\_compl()}\spxextra{in module app}|hyperpage}{8}
 \indexentry{upload() (in module app)@\spxentry{upload()}\spxextra{in module app}|hyperpage}{8}
@@ -109,8 +111,10 @@
 \indexentry{get\_map\_sessions() (in module getter)@\spxentry{get\_map\_sessions()}\spxextra{in module getter}|hyperpage}{19}
 \indexentry{get\_map\_structures() (in module getter)@\spxentry{get\_map\_structures()}\spxextra{in module getter}|hyperpage}{19}
 \indexentry{get\_matrices\_with\_I() (in module getter)@\spxentry{get\_matrices\_with\_I()}\spxextra{in module getter}|hyperpage}{19}
-\indexentry{get\_sessions() (in module getter)@\spxentry{get\_sessions()}\spxextra{in module getter}|hyperpage}{19}
-\indexentry{get\_structures() (in module getter)@\spxentry{get\_structures()}\spxextra{in module getter}|hyperpage}{19}
+\indexentry{get\_plot\_sessions() (in module getter)@\spxentry{get\_plot\_sessions()}\spxextra{in module getter}|hyperpage}{19}
+\indexentry{get\_plot\_structures() (in module getter)@\spxentry{get\_plot\_structures()}\spxextra{in module getter}|hyperpage}{19}
+\indexentry{get\_sessions() (in module getter)@\spxentry{get\_sessions()}\spxextra{in module getter}|hyperpage}{20}
+\indexentry{get\_structures() (in module getter)@\spxentry{get\_structures()}\spxextra{in module getter}|hyperpage}{20}
 \indexentry{get\_temps() (in module getter)@\spxentry{get\_temps()}\spxextra{in module getter}|hyperpage}{20}
 \indexentry{get\_types() (in module getter)@\spxentry{get\_types()}\spxextra{in module getter}|hyperpage}{20}
 \indexentry{get\_wafer() (in module getter)@\spxentry{get\_wafer()}\spxextra{in module getter}|hyperpage}{20}

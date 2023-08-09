@@ -285,6 +285,37 @@ Returns None if the structure has no compliance registered</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="getter.get_plot_sessions">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_plot_sessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_plot_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all sessions that can be plot (i.e that conatin I-V, J-V and/or It Measurements) inside a wafer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p>
+</dd>
+<dt class="field-even">Return &lt;list of str&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>All sessions with I-V measurements inside the wafer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="getter.get_plot_structures">
+<span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_plot_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_plot_structures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get all structures that contain measurements that can be plot inside the given session of a wafer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wafer_id</strong> (<em>&lt;str&gt;</em>) – ID of the wafer</p></li>
+<li><p><strong>session</strong> (<em>&lt;str&gt;</em>) – Selected session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return &lt;list of str&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><p>All structures that can be plot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="getter.get_sessions">
 <span class="sig-prename descclassname"><span class="pre">getter.</span></span><span class="sig-name descname"><span class="pre">get_sessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wafer_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#getter.get_sessions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used to get all sessions inside a given wafer.</p>
@@ -384,6 +415,8 @@ Returns None if the structure has no compliance registered</p>
 <li><a class="reference internal" href="#getter.get_map_sessions"><code class="docutils literal notranslate"><span class="pre">get_map_sessions()</span></code></a></li>
 <li><a class="reference internal" href="#getter.get_map_structures"><code class="docutils literal notranslate"><span class="pre">get_map_structures()</span></code></a></li>
 <li><a class="reference internal" href="#getter.get_matrices_with_I"><code class="docutils literal notranslate"><span class="pre">get_matrices_with_I()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_plot_sessions"><code class="docutils literal notranslate"><span class="pre">get_plot_sessions()</span></code></a></li>
+<li><a class="reference internal" href="#getter.get_plot_structures"><code class="docutils literal notranslate"><span class="pre">get_plot_structures()</span></code></a></li>
 <li><a class="reference internal" href="#getter.get_sessions"><code class="docutils literal notranslate"><span class="pre">get_sessions()</span></code></a></li>
 <li><a class="reference internal" href="#getter.get_structures"><code class="docutils literal notranslate"><span class="pre">get_structures()</span></code></a></li>
 <li><a class="reference internal" href="#getter.get_temps"><code class="docutils literal notranslate"><span class="pre">get_temps()</span></code></a></li>
