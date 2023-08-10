@@ -95,7 +95,7 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
                                             if double.get(unit) is not None:
                                                 data_values[idx].append(abs(double[unit]))
 
-                                columns = [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}"] + [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}" + " " + unit for unit in y_values]
+                                columns = [f"{session} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}"] + [f"{session} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}" + " " + unit for unit in y_values]
                                 new_df = pd.DataFrame(list(zip(*data_values)), columns=columns)
                                 df_dict[type] = df_dict[type].merge(new_df, left_index=True, right_index=True, how='outer')
 
@@ -218,7 +218,7 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
                                         for idx, unit in enumerate(y_values, 1):
                                             data_values[idx].append(abs(double[unit]))
 
-                                columns = [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}"] + [f"{' '.join(session.split(' ')[1:])} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}" + " " + unit for unit in y_values]
+                                columns = [f"{session} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}"] + [f"{session} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}" + " " + unit for unit in y_values]
                                 new_df = pd.DataFrame(list(zip(*data_values)), columns=columns)
                                 df_dict[type] = df_dict[type].merge(new_df, left_index=True, right_index=True, how='outer')
 
