@@ -1,5 +1,7 @@
 from VBD import get_all_x, get_all_y, fig_to_base64
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
 from matplotlib import pyplot as plt
 import matplotlib.colors as colors
 from getter import get_wafer

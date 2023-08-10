@@ -85,7 +85,7 @@ def wanted_excel(wafer_id, sessions, structures, types, Temps, Files, coords, fi
                                 J = [session, matrix["results"][type]["Temperature"],
                                      matrix["results"][type]["Filename"], 'J (A/cm^2)']
                                 for double in matrix["results"][type]["Values"]:
-                                    print(f"{session}, {structure_id}: {matrix['coordinates']}: {double}")
+
                                     voltages.append(double["V"])
                                     J.append(double["J"])
 

@@ -29,13 +29,6 @@ def create_db(path, is_JV):
     db_name = get_db_name()
 
     db[db_name].create_index('wafer_id')
-    db[db_name].create_index('session')
-    db[db_name].create_index('testDeviceID')
-    db[db_name].create_index('matrices.coordinates')
-    db[db_name].create_index('results.Filename')
-    db[db_name].create_index('results.Temperature')
-    db[db_name].create_index('results.Values')
-    db[db_name].create_index([('wafer_id', pymongo.ASCENDING), ('matrices.coordinates', pymongo.ASCENDING)])
 
     collection = db[db_name]
 
@@ -311,13 +304,6 @@ def create_db_it(path):
     db_name = get_db_name()
 
     db[db_name].create_index('wafer_id')
-    db[db_name].create_index('session')
-    db[db_name].create_index('testDeviceID')
-    db[db_name].create_index('matrices.coordinates')
-    db[db_name].create_index('results.Filename')
-    db[db_name].create_index('results.Temperature')
-    db[db_name].create_index('results.Values')
-    db[db_name].create_index([('wafer_id', pymongo.ASCENDING), ('matrices.coordinates', pymongo.ASCENDING)])
 
     collection = db[db_name]
 
@@ -513,13 +499,6 @@ def create_db_tbl(path, is_JV):
     db_name = get_db_name()
 
     db[db_name].create_index('wafer_id')
-    db[db_name].create_index('session')
-    db[db_name].create_index('testDeviceID')
-    db[db_name].create_index('matrices.coordinates')
-    db[db_name].create_index('results.Filename')
-    db[db_name].create_index('results.Temperature')
-    db[db_name].create_index('results.Values')
-    db[db_name].create_index([('wafer_id', pymongo.ASCENDING), ('matrices.coordinates', pymongo.ASCENDING)])
 
     collection = db[db_name]
 
@@ -792,13 +771,6 @@ def create_db_lim(path):
     db_name = get_db_name()
 
     db[db_name].create_index('wafer_id')
-    db[db_name].create_index('session')
-    db[db_name].create_index('testDeviceID')
-    db[db_name].create_index('matrices.coordinates')
-    db[db_name].create_index('results.Filename')
-    db[db_name].create_index('results.Temperature')
-    db[db_name].create_index('results.Values')
-    db[db_name].create_index([('wafer_id', pymongo.ASCENDING), ('matrices.coordinates', pymongo.ASCENDING)])
 
     collection = db[db_name]
 
