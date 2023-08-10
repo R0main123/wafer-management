@@ -97,7 +97,7 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
                                             if double.get(unit) is not None:
                                                 data_values[idx].append(abs(double[unit]))
 
-                                columns = [f"{session.split(' ')[0]} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}"] + [f"{session.split(' ')[0]} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}" + " " + unit for unit in y_values]
+                                columns = [f"{session.split(' ')[0]} {coordinates} {structure} T: {matrix['results'][type]['Temperature']} C"] + [f"{session.split(' ')[0]} {coordinates} {structure} T: {matrix['results'][type]['Temperature']} C" + " " + unit for unit in y_values]
                                 new_df = pd.DataFrame(list(zip(*data_values)), columns=columns)
                                 df_dict[type] = df_dict[type].merge(new_df, left_index=True, right_index=True, how='outer')
 
@@ -106,13 +106,19 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
         if not cols:  # If no columns for this unit, skip
             continue
 
-        fig, ax = plt.subplots(figsize=(10, 5))  # Crée une figure avec une taille spécifique
+        fig, ax = plt.subplots(figsize=(10, 8))  # Crée une figure avec une taille spécifique
         color_index = 0
 
         for col in cols:
             if not df[col].empty:
                 label_x = df[col].iloc[0]
-                label_y = f"{unit} Value ({unit})"
+                if unit =="J":
+                    label_y = "Current density (A/cm2)"
+                elif unit == "I":
+                    label_y = "Current (A)"
+                elif unit == "It":
+                    label_y = "Current (A)"
+
 
                 df[col] = df[col].iloc[1:]
                 df[col + ' ' + unit] = df[col + ' ' + unit].iloc[1:]
@@ -123,15 +129,17 @@ def plot_wanted_matrices(wafer_id, sessions, structures, types, Temps, Files, co
                 ax.set_xlabel(label_x)
                 ax.set_ylabel(label_y)
 
+                if unit == "It":
+                    plt.xscale('log')
                 plt.yscale('log')
 
                 ax.set_title(f"{wafer_id} {unit}")
-                ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize='small')
+                ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize='8')
                 ax.grid(True)
 
                 color_index += 1
 
-        plt.subplots_adjust(right=0.7)  # Ajuste la zone de dessin pour laisser de l'espace à la légende
+        plt.subplots_adjust(right=0.6)  # Ajuste la zone de dessin pour laisser de l'espace à la légende
         figs.append(fig)
 
     figures = []
@@ -220,7 +228,7 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
                                         for idx, unit in enumerate(y_values, 1):
                                             data_values[idx].append(abs(double[unit]))
 
-                                columns = [f"{session.split(' ')[0]} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}"] + [f"{session.split(' ')[0]} {coordinates} {structure} {matrix['results'][type]['Temperature']} {matrix['results'][type]['Filename']}" + " " + unit for unit in y_values]
+                                columns = [f"{session.split(' ')[0]} {coordinates} {structure} T: {matrix['results'][type]['Temperature']} C"] + [f"{session.split(' ')[0]} {coordinates} {structure} T: {matrix['results'][type]['Temperature']} C" + " " + unit for unit in y_values]
                                 new_df = pd.DataFrame(list(zip(*data_values)), columns=columns)
                                 df_dict[type] = df_dict[type].merge(new_df, left_index=True, right_index=True, how='outer')
 
@@ -238,7 +246,12 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
         for col in cols:
             if not df[col].empty:
                 label_x = df[col].iloc[0]
-                label_y = f"{unit} Value ({units[unit]})"
+                if unit == "J":
+                    label_y = "Current density (A/cm2)"
+                elif unit == "I":
+                    label_y = "Current (A)"
+                elif unit == "It":
+                    label_y = "Current (A)"
 
                 df[col] = df[col].iloc[1:]
                 df[col + ' ' + unit] = df[col + ' ' + unit].iloc[1:]
@@ -250,6 +263,8 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
                 ax.set_ylabel(label_y)
 
                 plt.yscale('log')
+                if unit == "It":
+                    plt.xscale('log')
 
                 ax.set_title(f"{wafer_id} {unit}")
                 ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize='small')
@@ -257,7 +272,7 @@ def wanted_ppt(wafer_id, sessions, structures, types, Temps, Files, coords, file
 
                 color_index += 1
 
-        plt.subplots_adjust(right=0.7)  # Ajuste la zone de dessin pour laisser de l'espace à la légende
+        plt.subplots_adjust(right=0.5)  # Ajuste la zone de dessin pour laisser de l'espace à la légende
         plt.savefig(f"plots\\{file_name}_{wafer_id}_{unit}.png")
         plt.close()
 

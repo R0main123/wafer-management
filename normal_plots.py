@@ -9,7 +9,7 @@ import probscale
 from scipy.stats import norm, probplot
 from cycler import cycler
 
-from getter import get_wafer, get_structures, get_sessions, get_coords
+from getter import get_wafer, get_structures, get_sessions, get_coords, connexion
 from VBD import fig_to_base64
 
 
@@ -734,26 +734,36 @@ def get_values(wafer_id):
     :return: list of all Extracted values inside the wafer
     """
     values = set()
-    wafer = get_wafer(wafer_id)
-    for session in get_sessions(wafer_id):
-        for structure in get_structures(wafer_id, session):
-            for matrix in wafer[session][structure]['matrices']:
-                if matrix.get('VBD') is not None:
-                    values.add("VBD")
+    collection = connexion()
 
-                if matrix.get('Leak') is not None:
-                    values.add('Leak')
+    VBD = collection.find_one({"wafer_id": wafer_id,
+                              "sessions.structures.matrices": {
+                                  "$elemMatch": {
+                                      "VBD": {"$exists": True}
+                                  }
+                              }
+                           })
+    print(VBD)
+    if VBD is not None:
+        values.add("VBD")
 
-                if matrix.get('R') is not None:
-                    values.add("R")
+    Leak = collection.find_one({"wafer_id": wafer_id, "matrices.Leak": {"$exists": True}})
+    if Leak is not None:
+        values.add("Leak")
 
-                if matrix.get('Cap') is not None:
-                    if matrix['Cap'].get('C'):
-                        values.add('C')
+    R = collection.find_one({"wafer_id": wafer_id, "matrices.R": {"$exists": True}})
+    if R is not None:
+        values.add("R")
 
-                    if matrix['Cap'].get('Cmes'):
-                        values.add('Cmes')
-                if len(list(values)) == 5:
-                    return list(values)
+    C = collection.find_one({"wafer_id": wafer_id, "matrices.Cap.C": {"$exists": True}})
+    if C is not None:
+        values.add("C")
+
+    Cmes = collection.find_one({"wafer_id": wafer_id, "matrices.Cap.Cmes": {"$exists": True}})
+    if Cmes is not None:
+        values.add("Cmes")
 
     return list(values)
+
+
+print(get_values("AL123456_D02"))
