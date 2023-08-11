@@ -733,34 +733,25 @@ def get_values(wafer_id):
 
     :return: list of all Extracted values inside the wafer
     """
+    wafer = get_wafer(wafer_id)
     values = set()
-    collection = connexion()
-
-    VBD = collection.find_one({"wafer_id": wafer_id,
-                              "sessions.structures.matrices": {
-                                  "$elemMatch": {
-                                      "VBD": {"$exists": True}
-                                  }
-                              }
-                           })
-    if VBD is not None:
-        values.add("VBD")
-
-    Leak = collection.find_one({"wafer_id": wafer_id, "matrices.Leak": {"$exists": True}})
-    if Leak is not None:
-        values.add("Leak")
-
-    R = collection.find_one({"wafer_id": wafer_id, "matrices.R": {"$exists": True}})
-    if R is not None:
-        values.add("R")
-
-    C = collection.find_one({"wafer_id": wafer_id, "matrices.Cap.C": {"$exists": True}})
-    if C is not None:
-        values.add("C")
-
-    Cmes = collection.find_one({"wafer_id": wafer_id, "matrices.Cap.Cmes": {"$exists": True}})
-    if Cmes is not None:
-        values.add("Cmes")
+    for session in get_sessions(wafer_id):
+        for structure in get_structures(wafer_id, session):
+            for matrix in wafer[session][structure]["matrices"]:
+                if matrix.get("VBD") is not None:
+                    values.add("VBD")
+                if matrix.get("Leak") is not None:
+                    values.add("Leak")
+                if matrix.get("R") is not None:
+                    values.add("R")
+                if matrix.get("Cap") is not None:
+                    if matrix["Cap"].get("C") is not None:
+                        values.add("C")
+                    if matrix["Cap"].get("Cmes") is not None:
+                        values.add("Cmes")
+                if len(values) == 5:
+                    return list(values)
 
     return list(values)
+
 
