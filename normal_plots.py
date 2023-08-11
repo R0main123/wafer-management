@@ -743,7 +743,6 @@ def get_values(wafer_id):
                                   }
                               }
                            })
-    print(VBD)
     if VBD is not None:
         values.add("VBD")
 
@@ -765,5 +764,3 @@ def get_values(wafer_id):
 
     return list(values)
 
-
-print(get_values("AL123456_D02"))
